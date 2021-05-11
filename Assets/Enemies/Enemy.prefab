@@ -96,5 +96,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints: []
-  moveSpeed: 2
-  spriteRenderer: {fileID: 0}
+  moveSpeed: 5
+  spriteRenderer: {fileID: 2435646318348420415}
