@@ -7,7 +7,7 @@ public class EnnemySpawner : MonoBehaviour
     public Transform spawnPoint;
     public GameObject spawnee;
     public Transform[] waypoints;
-    public float timer = 1f; // Temps entre l'apparition de chaque ennemi (en secondes)
+    public float timer = 1000; // Temps entre l'apparition de chaque ennemi (en secondes)
 
     // Update is called once per frame
     void Update()
@@ -18,8 +18,8 @@ public class EnnemySpawner : MonoBehaviour
             spawnee.name = "Ennemy";
             script.SetWaypoints(waypoints);
             script.SetSpriteRenderer(spawnee.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer);
-            timer = 1f;
+            timer = 1000;
         }
-        timer -= Time.deltaTime; 
+        timer --; 
     }
 }
