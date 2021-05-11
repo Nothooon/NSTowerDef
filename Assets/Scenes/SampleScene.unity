@@ -219,11 +219,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae413f8a20e997c46a7ae4c84ade6c2e, type: 3}
+  m_Script: {fileID: 11500000, guid: d97a00407d3c31b4db38e4fd623e0b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spawnee: {fileID: 1230466837415378142, guid: 98f9703cfe4743d43af4198eb3a614b8, type: 3}
-  circle: {fileID: 874212035203925771, guid: a82239af2ebbde745ad688b7214f63c3, type: 3}
+  circleSpawn_: {fileID: 874212035203925771, guid: a82239af2ebbde745ad688b7214f63c3, type: 3}
+  circleRange_: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -1092,8 +1093,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 456349223
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ef3bcab4e521d064ea98520a9c0a2c38, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
