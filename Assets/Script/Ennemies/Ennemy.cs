@@ -19,11 +19,6 @@ public class Ennemy : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Projectile")){
-            this.takeDamage(10);
-        }
-    }
 
     public void takeDamage(int damage){
         this.currentHealth -= damage;
