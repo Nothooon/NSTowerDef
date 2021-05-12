@@ -59,6 +59,7 @@ public class FollowThePath : MonoBehaviour {
             }
         }
         else{
+            LifeCounter.LifeValue--;
             Destroy(gameObject);
         }
     }
