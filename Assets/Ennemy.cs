@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Ennemy : MonoBehaviour
 {
@@ -12,16 +13,21 @@ public class Ennemy : MonoBehaviour
     public int points;
     public float speed;
 
+    public Slider slider;
     
     // Start is called before the first frame update
     void Start()
     {
+        
         currentHealth = maxHealth;
+        slider.maxValue = maxHealth; 
+        slider.value = currentHealth;
     }
 
     private void OnTriggerEnter2D(Collider2D other){
         if(other.CompareTag("Projectile")){
             this.takeDamage(10);
+            slider.value = currentHealth;
         }
     }
 
