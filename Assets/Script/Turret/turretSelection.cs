@@ -10,11 +10,11 @@ public class turretSelection : MonoBehaviour
     GameObject circleEnemy;
     GameObject circleRange;
 
-    GameObject target;    
+    public GameObject target;
 
     public float range = 4f;
     public bool displayRange; // if we want to see the range
-        
+
 
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed = 60.0f;
@@ -44,10 +44,10 @@ public class turretSelection : MonoBehaviour
         InvokeRepeating("TryShooting", 0.5f, fireRate);
     }
 
- 
+
     // Update is called once per frame
     void Update()
-    {        
+    {
         UpdateTarget(); // target recalculation
         FollowTarget(); // target tracking
 
@@ -56,12 +56,12 @@ public class turretSelection : MonoBehaviour
 
     void FollowTarget()
     {
-        if(target != null)
+        if (target != null)
         {
             Vector3 targetPos = target.transform.position;
 
             // We show the target tracked
-            circleEnemy.SetActive(true);            
+            circleEnemy.SetActive(true);
             circleEnemy.transform.position = targetPos;
 
             // We calculate the turret rotation
@@ -79,6 +79,8 @@ public class turretSelection : MonoBehaviour
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+        target = null;
 
         // We run through the enemies and stop at the first in our range
         // foreach goes through them in their order of creation
@@ -110,7 +112,9 @@ public class turretSelection : MonoBehaviour
     void Shoot(Vector2 direction, float rotationZ)
     {
         // We create a projectile with the trajectory to the target
-        GameObject projectile = Instantiate(projectilePrefab) as GameObject;
+        GameObject projectile = Instantiate(projectilePrefab) as GameObject;        
+        projectile.transform.parent = gameObject.transform;
+        projectile.GetComponent<projectile>().target = target;
         projectile.transform.position = transform.position;
         projectile.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed * Time.deltaTime;

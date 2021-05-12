@@ -145,8 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
+  target: {fileID: 0}
   range: 5
-  displayRange: 1
+  displayRange: 0
   projectilePrefab: {fileID: 1926976674763420170, guid: 5d9bb05f5f40399418f58c6f1d88501c, type: 3}
-  projectileSpeed: 50000
+  projectileSpeed: 10000
   fireRate: 1.5

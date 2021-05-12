@@ -24,12 +24,6 @@ public class Ennemy : MonoBehaviour
         slider.value = currentHealth;
     }
 
-    private void OnTriggerEnter2D(Collider2D other){
-        if(other.CompareTag("Projectile")){
-            this.takeDamage(10);
-            slider.value = currentHealth;
-        }
-    }
 
     public void takeDamage(int damage){
         this.currentHealth -= damage;
