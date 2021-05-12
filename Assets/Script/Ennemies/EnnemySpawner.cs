@@ -5,14 +5,12 @@ using UnityEngine;
 public class EnnemySpawner : MonoBehaviour
 {
     public Transform spawnPoint;
-    public GameObject spawnee;
+    public GameObject[] spawnee;
+    public GameObject instance;
     public Transform[] waypoints;
 
     private int points;
 
-        
-
-    public float timer = 1000;
 
     void Start(){
         StartCoroutine(Waves());
@@ -28,7 +26,6 @@ public class EnnemySpawner : MonoBehaviour
             yield return new WaitForSecondsRealtime(1);
         }
 
-        
         // WAVE 2
         points = 10;
         yield return new WaitForSecondsRealtime(5); // preparation time
@@ -49,12 +46,11 @@ public class EnnemySpawner : MonoBehaviour
     int SpawnEnnemies(int points){
         float random = Random.Range(0f,1f);
         if(random > 0){
-            spawnee = Instantiate(spawnee, spawnPoint.position, spawnPoint.rotation);
-            FollowThePath script = spawnee.GetComponent(typeof(FollowThePath)) as FollowThePath;
-            spawnee.name = "Ennemy";
-            script.SetWaypoints(waypoints);
-            script.SetSpriteRenderer(spawnee.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer);
-            return 1;
+            instance = Instantiate(spawnee[0], spawnPoint.position, spawnPoint.rotation);
+            FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
+            instance.name = "Ennemy";
+            follow.SetWaypoints(waypoints);
+            return instance.GetComponent<Ennemy>().points;
         }else{
             return 0;
         }        
@@ -65,17 +61,4 @@ public class EnnemySpawner : MonoBehaviour
         return this.points;
     }
 
-    // Update is called once per frame
-    void Update()
-    {/*
-        if(timer == 0) {
-            spawnee = Instantiate(spawnee, spawnPoint.position, spawnPoint.rotation);
-            FollowThePath script = spawnee.GetComponent(typeof(FollowThePath)) as FollowThePath;
-            spawnee.name = "Ennemy";
-            script.SetWaypoints(waypoints);
-            script.SetSpriteRenderer(spawnee.GetComponent(typeof(SpriteRenderer)) as SpriteRenderer);
-            timer = 1000;
-        }
-        timer--;*/
-    }
 }

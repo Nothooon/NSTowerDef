@@ -12,12 +12,14 @@ GameObject:
   - component: {fileID: 2435646318348420415}
   - component: {fileID: 3616179793422291810}
   - component: {fileID: 8948802138576273439}
+  - component: {fileID: 6645400247515456006}
+  - component: {fileID: 3542281153281415377}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2435646318348420414
 Transform:
@@ -98,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   moveSpeed: 2
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 2435646318348420415}
 --- !u!95 &8948802138576273439
 Animator:
   serializedVersion: 3
@@ -118,3 +120,47 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6645400247515456006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435646318348420412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74cbb5cebe0dd04459332faf7df37833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 10
+  damage: 2
+  reward: 0
+  points: 1
+  speed: 100
+--- !u!61 &3542281153281415377
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435646318348420412}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.017639063, y: 0.07801773}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.64, y: 0.64}
+    newSize: {x: 8.15, y: 5.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.40119803, y: 0.29672208}
+  m_EdgeRadius: 0
