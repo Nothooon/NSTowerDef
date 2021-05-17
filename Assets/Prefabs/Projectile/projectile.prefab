@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1926976674763420168}
   - component: {fileID: 1926976674763420171}
   - component: {fileID: -3028568443268391763}
-  - component: {fileID: 4357328539284983938}
+  - component: {fileID: 8868805002064644572}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Projectile
@@ -97,7 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: 400
---- !u!50 &4357328539284983938
+  target: {fileID: 0}
+--- !u!50 &8868805002064644572
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -105,16 +106,16 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1926976674763420170}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
