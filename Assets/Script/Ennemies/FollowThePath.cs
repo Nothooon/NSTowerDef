@@ -8,7 +8,7 @@ public class FollowThePath : MonoBehaviour {
 
     // Walk speed that can be set in Inspector
     [SerializeField]
-    private float moveSpeed = 2f;
+    private float moveSpeed;
 
     // Index of current waypoint from which Enemy walks
     // to the next one
@@ -21,6 +21,7 @@ public class FollowThePath : MonoBehaviour {
 
         // Set position of Enemy as position of the first waypoint
         transform.position = waypoints[waypointIndex].transform.position;
+        this.moveSpeed = GetComponent<Ennemy>().speed;
 	}
 	
 	// Update is called once per frame
@@ -58,6 +59,7 @@ public class FollowThePath : MonoBehaviour {
             }
         }
         else{
+            LifeCounter.LifeValue--;
             Destroy(gameObject);
         }
     }
