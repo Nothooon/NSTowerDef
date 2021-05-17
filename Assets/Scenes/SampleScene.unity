@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnee: {fileID: 1230466837415378142, guid: 98f9703cfe4743d43af4198eb3a614b8, type: 3}
-  circleSpawn_: {fileID: 874212035203925771, guid: a82239af2ebbde745ad688b7214f63c3, type: 3}
+  radius: 0.5
   circleRange_: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
 --- !u!20 &519420031
 Camera:
