@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4226188520265023580}
   - component: {fileID: 4226188520265023583}
   - component: {fileID: 4226188520265023582}
+  - component: {fileID: 3521023948886029335}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Enemy
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: a8c92d715a37da447956eef2efc3d128, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -139,6 +140,32 @@ MonoBehaviour:
   points: 20
   speed: 2
   slider: {fileID: 5990113101677805442}
+--- !u!61 &3521023948886029335
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4226188520265023569}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.20529157, y: -0.3144104}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.5, y: 1.5}
+    newSize: {x: 1.5, y: 1.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.80089915, y: 0.6566402}
+  m_EdgeRadius: 0
 --- !u!1001 &7289621954895933514
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -216,11 +243,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3893600105931855225, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.203
       objectReference: {fileID: 0}
     - target: {fileID: 3893600105931855225, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.32
+      value: 0.124
       objectReference: {fileID: 0}
     - target: {fileID: 3893600105931855225, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
