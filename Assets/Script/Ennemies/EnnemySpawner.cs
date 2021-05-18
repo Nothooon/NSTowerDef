@@ -8,7 +8,6 @@ public class EnnemySpawner : MonoBehaviour
     public GameObject[] spawnee;
     public GameObject instance;
     public Transform[] waypoints;
-
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
 
@@ -27,6 +26,7 @@ public class EnnemySpawner : MonoBehaviour
             points -= SpawnEnnemies(points,difficulty);
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
+        GetComponentInParent<GameOverManager>().onDefeat();
 
         // WAVE 2
         points = 20;

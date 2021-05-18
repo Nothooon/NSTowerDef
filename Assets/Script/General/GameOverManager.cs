@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
-    public GameObject gameOverUI;
-    public GameObject SuccessUI;
+    public GameObject defeatUI;
+    public GameObject successUI;
 
     public static GameOverManager instance;
 
@@ -19,7 +19,8 @@ public class GameOverManager : MonoBehaviour
 
     public void retryButton(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        gameOverUI.SetActive(false);
+        //defeatUI.SetActive(false);
+        //successUI.SetActive(false);
     }
 
     public void mainMenuButton(){
@@ -27,20 +28,19 @@ public class GameOverManager : MonoBehaviour
     }
 
     public void onDefeat(){
-        gameOverUI.SetActive(true);
-        //Time.timeScale = 0;
+        defeatUI.SetActive(true);
     }
 
     public void onSuccess(){
-        SuccessUI.SetActive(true);
-        //Time.timeScale = 0;
+        successUI.SetActive(true);
     }
 
     public void setGameOverUI(GameObject ui){
-        this.gameOverUI = ui;
+        this.defeatUI = ui;
+        StopAllCoroutines();
     }
 
     public void setSuccessUI(GameObject ui){
-        this.SuccessUI = ui;
+        this.successUI = ui;
     }
 }
