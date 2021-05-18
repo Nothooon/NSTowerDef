@@ -59,7 +59,11 @@ public class FollowThePath : MonoBehaviour {
             }
         }
         else{
-            LifeCounter.LifeValue--;
+            LifeCounter.LifeValue -= GetComponent<Ennemy>().damage;
+            if(LifeCounter.LifeValue <= 0)
+            {
+                //perdu
+            }
             Destroy(gameObject);
         }
     }

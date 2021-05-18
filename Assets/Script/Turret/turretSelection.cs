@@ -113,7 +113,7 @@ public class turretSelection : MonoBehaviour
     {
         // We create a projectile with the trajectory to the target
         GameObject projectile = Instantiate(projectilePrefab) as GameObject;        
-        projectile.transform.parent = gameObject.transform;
+        //projectile.transform.parent = gameObject.transform;
         projectile.GetComponent<projectile>().target = target;
         projectile.transform.position = transform.position;
         projectile.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
