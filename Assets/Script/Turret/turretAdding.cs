@@ -20,15 +20,8 @@ public class turretAdding : MonoBehaviour
 
     private void Start()
     {
-        // On initialise le cercle de taille de l'unité
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        circleSpawn = Instantiate(spawnee);
-        circleSpawn.transform.position = mousePos2D;
-        circleSpawn.transform.parent = gameObject.transform;
-        circleSpawn.GetComponent<turretSelection>().enabled = false;
-        sprite = circleSpawn.GetComponent<SpriteRenderer>();
-        circleSpawn.SetActive(false);
 
         // Instanciation of the circle showing the range
         circleRange = Instantiate(circleRange_);
@@ -44,20 +37,20 @@ public class turretAdding : MonoBehaviour
     void Update()
     {
         // On met à jour la position du cercle de séléction
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        circleSpawn.transform.position = new Vector2(mousePos.x, mousePos.y);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);        
         circleRange.transform.position = new Vector2(mousePos.x, mousePos.y);
 
         // On met à jour la couleur du cercle de séléction
-        if (circleSpawn.activeSelf)
+        if (circleSpawn != null && circleSpawn.activeSelf)
         {
             UpdateSelection();
+            circleSpawn.transform.position = new Vector2(mousePos.x, mousePos.y);
         }
 
         if (Input.GetMouseButtonDown(0))
         {
             // Si le mode d'achat est actif, on essaye de spawn une tourelle
-            if (circleSpawn.activeSelf)
+            if (circleSpawn != null && circleSpawn.activeSelf)
             {
                 trySpawnTurret();
             }
@@ -78,7 +71,7 @@ public class turretAdding : MonoBehaviour
         // Clic droit désactive le mode achat
         else if (Input.GetMouseButtonDown(1) && circleSpawn.activeSelf)
         {
-            circleSpawn.SetActive(false);
+            Destroy(circleSpawn.gameObject);
             circleRange.SetActive(false);
         }
     }
@@ -133,7 +126,7 @@ public class turretAdding : MonoBehaviour
             spawned.transform.position = mousePos2D;
 
             // On sort du mode achat
-            circleSpawn.SetActive(false);
+            Destroy(circleSpawn.gameObject);
             circleRange.SetActive(false);
         }
 
@@ -150,6 +143,15 @@ public class turretAdding : MonoBehaviour
         spawnee = turret;
 
         radius = Mathf.Max(turret.gameObject.transform.localScale.x, turret.gameObject.transform.localScale.y)/2;
+
+        // On initialise le cercle de taille de l'unité
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        circleSpawn = Instantiate(turret);
+        circleSpawn.transform.position = mousePos2D;
+        circleSpawn.transform.parent = gameObject.transform;
+        circleSpawn.GetComponent<turretSelection>().enabled = false;
+        sprite = circleSpawn.GetComponent<SpriteRenderer>();
 
         circleSpawn.SetActive(true);
         circleRange.SetActive(true);
