@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject SuccessUI;
 
     public static GameOverManager instance;
 
@@ -22,7 +23,7 @@ public class GameOverManager : MonoBehaviour
     }
 
     public void mainMenuButton(){
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void onDefeat(){
@@ -30,7 +31,16 @@ public class GameOverManager : MonoBehaviour
         //Time.timeScale = 0;
     }
 
-    public void setUI(GameObject ui){
+    public void onSuccess(){
+        SuccessUI.SetActive(true);
+        //Time.timeScale = 0;
+    }
+
+    public void setGameOverUI(GameObject ui){
         this.gameOverUI = ui;
+    }
+
+    public void setSuccessUI(GameObject ui){
+        this.SuccessUI = ui;
     }
 }

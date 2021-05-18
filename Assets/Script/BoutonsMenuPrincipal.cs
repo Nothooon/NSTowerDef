@@ -7,15 +7,18 @@ public class BoutonsMenuPrincipal : MonoBehaviour
 {
     
     private GameObject gameOverUI;
+    private GameObject successUI;
     public GameObject gameManager;
 
-    public void LancerJeu(){
+    public void launchFirstLevel(){
         SceneManager.LoadScene("SampleScene");
         gameOverUI = GameObject.Find("GameOverMenu");
-        gameManager.GetComponent<GameOverManager>().setUI(gameOverUI);
+        successUI = GameObject.Find("SuccessMenu");
+        gameManager.GetComponent<GameOverManager>().setGameOverUI(gameOverUI);
+        gameManager.GetComponent<GameOverManager>().setSuccessUI(successUI);
     }
 
-    public void QuitterJeu(){
+    public void QuitGame(){
         Debug.Log("User quitted the game");
         Application.Quit();
     }
