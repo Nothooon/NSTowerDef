@@ -20,7 +20,7 @@ public class turretAdding : MonoBehaviour
 
     private void Start()
     {
-        // On initialise le cercle de taille de l'unité
+        // On initialise le cercle de taille de l'unitï¿½
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         circleSpawn = Instantiate(spawnee);
@@ -43,12 +43,12 @@ public class turretAdding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // On met à jour la position du cercle de séléction
+        // On met ï¿½ jour la position du cercle de sï¿½lï¿½ction
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         circleSpawn.transform.position = new Vector2(mousePos.x, mousePos.y);
         circleRange.transform.position = new Vector2(mousePos.x, mousePos.y);
 
-        // On met à jour la couleur du cercle de séléction
+        // On met ï¿½ jour la couleur du cercle de sï¿½lï¿½ction
         if (circleSpawn.activeSelf)
         {
             UpdateSelection();
@@ -75,7 +75,7 @@ public class turretAdding : MonoBehaviour
             }
         }
 
-        // Clic droit désactive le mode achat
+        // Clic droit dï¿½sactive le mode achat
         else if (Input.GetMouseButtonDown(1) && circleSpawn.activeSelf)
         {
             circleSpawn.SetActive(false);
@@ -84,28 +84,28 @@ public class turretAdding : MonoBehaviour
     }
 
     /**
-     * Mise à jour du cercle de selection
-     * retourne si il est possible de placer la tourelle séléctionnée à l'emplacement de la souris
+     * Mise ï¿½ jour du cercle de selection
+     * retourne si il est possible de placer la tourelle sï¿½lï¿½ctionnï¿½e ï¿½ l'emplacement de la souris
      */
     bool UpdateSelection()
     {
-        // On récupère la position de la souris
+        // On rï¿½cupï¿½re la position de la souris
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On vérifie que rien n'empêche de faire apparaître une tourelle à cette endroit
+        // On vï¿½rifie que rien n'empï¿½che de faire apparaï¿½tre une tourelle ï¿½ cette endroit
         RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
 
         if (hit.Length <= 1)
         {
-            // On affiche le cercle en vert si il est possible de poser une tourelle à cette emplacement
+            // On affiche le cercle en vert si il est possible de poser une tourelle ï¿½ cette emplacement
             sprite.color = new Color(0, 1, 0, 0.5f);
             sprite2.color = new Color(0, 1, 0, 0.5f);
             return true;
         }
         else
         {
-            // On affiche le cercle en rouge si impossible de poser une tourelle à cette emplacement
+            // On affiche le cercle en rouge si impossible de poser une tourelle ï¿½ cette emplacement
             sprite.color = new Color(1, 0, 0, 0.5f);
             sprite2.color = new Color(1, 0, 0, 0.5f);
             return false;
@@ -114,20 +114,20 @@ public class turretAdding : MonoBehaviour
 
 
     /**
-     * Essai d'apparition de la tourelle séléctionner
+     * Essai d'apparition de la tourelle sï¿½lï¿½ctionner
      */
     void trySpawnTurret()
     {
-        // On récupère la position de la souris
+        // On rï¿½cupï¿½re la position de la souris
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On vérifie que rien n'empêche de faire apparaître une tourelle à cette endroit
+        // On vï¿½rifie que rien n'empï¿½che de faire apparaï¿½tre une tourelle ï¿½ cette endroit
         RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
 
         if (hit.Length <= 1)
         {
-            // On fait apparaître la tourelle séléctionnée
+            // On fait apparaï¿½tre la tourelle sï¿½lï¿½ctionnï¿½e
             GameObject spawned = Instantiate(spawnee);
             Debug.Log("Tourelle apparu " + spawned.gameObject.name);
             spawned.transform.position = mousePos2D;
@@ -139,7 +139,7 @@ public class turretAdding : MonoBehaviour
 
         else
         {
-            Debug.Log("Un objet empêche le positionnement de la tourelle");
+            Debug.Log("Un objet empï¿½che le positionnement de la tourelle");
             // TEMP : On supprime la tourelle en lui cliquant dessus                                 
         }
 
