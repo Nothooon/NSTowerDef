@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 15
+  maxHealth: 10
   damage: 10
   reward: 5
   points: 1
@@ -156,7 +156,7 @@ BoxCollider2D:
   m_Offset: {x: -0.017639063, y: 0.07801773}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.47, y: 0.62}
     oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 8.15, y: 5.56}
     adaptiveTilingThreshold: 0.5

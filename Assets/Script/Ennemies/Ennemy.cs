@@ -27,6 +27,7 @@ public class Ennemy : MonoBehaviour
 
     public void takeDamage(int damage){
         this.currentHealth -= damage;
+        slider.value = currentHealth;
         if(currentHealth <= 0){
             MoneyCounter.MoneyValue += reward;
             Destroy(gameObject);
