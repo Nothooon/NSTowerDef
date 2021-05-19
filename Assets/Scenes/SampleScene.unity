@@ -511,9 +511,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPaused: 0
   pauseUI: {fileID: 844840127}
-  moneyCounter: {fileID: 1663616858}
+  moneyCounter: {fileID: 0}
   lifeCounter: {fileID: 1974802650}
-  waveCounter: {fileID: 1308107830}
+  waveCounter: {fileID: 0}
   shop: {fileID: 681433863}
 --- !u!4 &304650193
 Transform:
@@ -528,7 +528,7 @@ Transform:
   m_Children:
   - {fileID: 1424330116}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
@@ -611,7 +611,7 @@ Transform:
   m_LocalScale: {x: 0.79936, y: 0.79936, z: 0.79936}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &560995985
 GameObject:
@@ -1022,7 +1022,7 @@ Transform:
   - {fileID: 2072580515}
   - {fileID: 2028433166}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &681433863
 GameObject:
@@ -1539,7 +1539,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1070529310
 GameObject:
@@ -2425,7 +2425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tourelleStandard: {fileID: 1230466837415378142, guid: 98f9703cfe4743d43af4198eb3a614b8, type: 3}
-  tourelleCanon: {fileID: 1774541212466704423, guid: 4217fb3d327f4824f8f8aad54469ebe4, type: 3}
+  tourelleCanon: {fileID: 6964647414306671078, guid: 504f3ecbdc44f124abb6d552216161bb, type: 3}
 --- !u!4 &1748096912
 Transform:
   m_ObjectHideFlags: 0
@@ -2438,7 +2438,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1748096913
 MonoBehaviour:
@@ -2447,7 +2447,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1748096910}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d97a00407d3c31b4db38e4fd623e0b7c, type: 3}
   m_Name: 
@@ -2700,10 +2700,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1974802651}
-  - component: {fileID: 1974802653}
   - component: {fileID: 1974802652}
-  - component: {fileID: 1974802654}
   m_Layer: 5
   m_Name: lifecounter
   m_TagString: Untagged
@@ -2711,11 +2708,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1974802651
+--- !u!224 &1974802651 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 789162712191567316, guid: 7e9a2c7f0703c0f45bb3f89a3c693807, type: 3}
   m_PrefabInstance: {fileID: 789162712551431439}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1974802652
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1974802650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1976439938
 GameObject:
   m_ObjectHideFlags: 0
@@ -3026,7 +3037,7 @@ Transform:
   m_Children:
   - {fileID: 1382972324}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089296197
 GameObject:
@@ -3157,7 +3168,7 @@ RectTransform:
   - {fileID: 1974802651}
   - {fileID: 791243826}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

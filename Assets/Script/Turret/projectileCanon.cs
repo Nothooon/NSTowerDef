@@ -33,10 +33,8 @@ public class projectileCanon : MonoBehaviour
         {
             if(enemy.collider.gameObject.tag == "Enemy")
             {
-                Debug.Log(enemy.collider.gameObject.name);
                 Vector3 enemyVector = gameObject.transform.position - enemy.collider.transform.position;
                 float degat = power * (range - enemyVector.magnitude) / range;
-                Debug.Log(enemy.collider.gameObject.name + " : " + degat);
                 enemy.collider.GetComponent<Ennemy>().takeDamage((int) degat);
             }
             

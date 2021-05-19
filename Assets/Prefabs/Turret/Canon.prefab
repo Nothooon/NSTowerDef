@@ -124,6 +124,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
   target: {fileID: 0}
+  price: 200
   range: 4
   displayRange: 0
   projectilePrefab: {fileID: 2416906669234828768, guid: 2a06446c7cd883b4cb1323699ff1196a, type: 3}

@@ -12,6 +12,8 @@ public class turretSelection : MonoBehaviour
 
     public GameObject target;
 
+    public int price;
+
     public float range = 4f;
     public bool displayRange; // if we want to see the range
 
@@ -128,6 +130,11 @@ public class turretSelection : MonoBehaviour
         {
             projectile.GetComponent<projectileCanon>().target = target;
         }
+    }
+
+    public int GetPrice()
+    {
+        return price;
     }
 
 }

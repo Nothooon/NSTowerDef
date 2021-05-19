@@ -14,36 +14,35 @@ public class ShopScript : MonoBehaviour
 
     public void BuyStandardTurret(){
 
-        if(MoneyCounter.MoneyValue < 100)
+        turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleStandard);
+
+        if(MoneyCounter.MoneyValue < turretBuilder.GetTourelleAConstruire().GetComponent<turretSelection>().GetPrice())
         {
             Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
-        }else{
+        }
+        else
+        {
 
-            turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleStandard);
-
-            outilPoseTourelle.SetTurret(turretBuilder.GetTourelleAConstruire());
-            outilPoseTourelle.SetRadius(0.5f);
-            outilPoseTourelle.SetPrixTourelle(100);
-
+            outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
     }
 
     public void BuySecondaryTurret(){
 
-        if(MoneyCounter.MoneyValue < 200)
+        turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleCanon);
+        GameObject t = turretBuilder.GetTourelleAConstruire();
+        int prix = t.GetComponentInChildren<turretSelection>().GetPrice();
+
+        if (MoneyCounter.MoneyValue < prix)
         {
             Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
-        }else{
-
-            turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleCanon);
-
-            outilPoseTourelle.SetTurret(turretBuilder.GetTourelleAConstruire());
-            outilPoseTourelle.SetRadius(0.5f);
-            outilPoseTourelle.SetPrixTourelle(200);
-
+        }
+        else
+        {
+            outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
     }
