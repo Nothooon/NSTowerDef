@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class turretAdding : MonoBehaviour
 {
-    public GameObject spawnee;
-    public float radius;
+    private GameObject turret;
+    private float radius;
     public GameObject circleRange_;
-
+    private int prixTourelle;
 
     GameObject circleSpawn;
     SpriteRenderer sprite;
@@ -14,16 +14,12 @@ public class turretAdding : MonoBehaviour
     GameObject circleRange;
     SpriteRenderer sprite2;
 
-
-
-
-
     private void Start()
     {
         // On initialise le cercle de taille de l'unit�
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        circleSpawn = Instantiate(spawnee);
+        circleSpawn = Instantiate(turret);
         circleSpawn.transform.position = mousePos2D;
         circleSpawn.transform.parent = gameObject.transform;
         circleSpawn.GetComponent<turretSelection>().enabled = false;
@@ -32,7 +28,7 @@ public class turretAdding : MonoBehaviour
 
         // Instanciation of the circle showing the range
         circleRange = Instantiate(circleRange_);
-        circleRange.transform.localScale = new Vector3(1, 1, 1) * spawnee.gameObject.GetComponent<turretSelection>().range * 2;
+        circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponent<turretSelection>().range * 2;
         circleRange.transform.position = mousePos2D;
         circleRange.transform.parent = gameObject.transform;
         sprite2 = circleRange.GetComponent<SpriteRenderer>();
@@ -47,39 +43,37 @@ public class turretAdding : MonoBehaviour
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         circleSpawn.transform.position = new Vector2(mousePos.x, mousePos.y);
         circleRange.transform.position = new Vector2(mousePos.x, mousePos.y);
-
+        
         // On met � jour la couleur du cercle de s�l�ction
-        if (circleSpawn.activeSelf)
-        {
-            UpdateSelection();
-        }
 
+        UpdateSelection();
+    
         if (Input.GetMouseButtonDown(0))
         {
-            // Si le mode d'achat est actif, on essaye de spawn une tourelle
-            if (circleSpawn.activeSelf)
-            {
-                trySpawnTurret();
-            }
-
-            // TEMP : On suppose qu'un clic gauche active le mode achat de tourelle
-            else
-            {
-                turretChosen(spawnee);
-
-                /**
-                 * On devra utiliser la fonction turretChosen pour choisir une tourelle et passer en mode achat
-                 * turretChosen(Turret);
-                 */
-
+            if (trySpawnTurret()){
+                MoneyCounter.MoneyValue -= prixTourelle;
+                this.enabled = false;
             }
         }
-
+        
         // Clic droit d�sactive le mode achat
         else if (Input.GetMouseButtonDown(1) && circleSpawn.activeSelf)
         {
             circleSpawn.SetActive(false);
             circleRange.SetActive(false);
+            this.enabled = false;
+        }
+
+        // TEMP : On suppose qu'un clic gauche active le mode achat de tourelle
+        else
+        {
+            turretChosen(turret);
+
+            /**
+                * On devra utiliser la fonction turretChosen pour choisir une tourelle et passer en mode achat
+                * turretChosen(Turret);
+                */
+
         }
     }
 
@@ -116,7 +110,7 @@ public class turretAdding : MonoBehaviour
     /**
      * Essai d'apparition de la tourelle s�l�ctionner
      */
-    void trySpawnTurret()
+    bool trySpawnTurret()
     {
         // On r�cup�re la position de la souris
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -128,18 +122,21 @@ public class turretAdding : MonoBehaviour
         if (hit.Length <= 1)
         {
             // On fait appara�tre la tourelle s�l�ctionn�e
-            GameObject spawned = Instantiate(spawnee);
+            GameObject spawned = Instantiate(turret);
             Debug.Log("Tourelle apparu " + spawned.gameObject.name);
             spawned.transform.position = mousePos2D;
 
             // On sort du mode achat
             circleSpawn.SetActive(false);
             circleRange.SetActive(false);
+
+            return true;
         }
 
         else
         {
             Debug.Log("Un objet emp�che le positionnement de la tourelle");
+            return false;
             // TEMP : On supprime la tourelle en lui cliquant dessus                                 
         }
 
@@ -147,7 +144,7 @@ public class turretAdding : MonoBehaviour
 
     void turretChosen(GameObject turret)
     {
-        spawnee = turret;
+        this.turret = turret;
 
         radius = Mathf.Max(turret.gameObject.transform.localScale.x, turret.gameObject.transform.localScale.y)/2;
 
@@ -156,4 +153,30 @@ public class turretAdding : MonoBehaviour
 
     }
 
+
+    public void SetRadius (float radius){
+        this.radius = radius;
+    }
+
+    public float GetRadius(){
+        return this.radius;
+    }
+
+    public void SetTurret (GameObject turret){
+        this.turret = turret;
+    }
+
+    public GameObject GetTurret(){
+        return this.turret;
+    }
+
+    public void SetPrixTourelle (int prixTourelle){
+        this.prixTourelle = prixTourelle;
+    }
+
+    public float GetPrixTourelle(){
+        return this.prixTourelle;
+    }
+
 }
+
