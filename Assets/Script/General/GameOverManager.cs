@@ -18,8 +18,8 @@ public class GameOverManager : MonoBehaviour
     }
 
     public void retryButton(){
-        string currentSceneName = SceneManager.GetActiveScene().name;
         GetComponent<PauseManager>().unPauseGame();
+        string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
     }
 
