@@ -128,8 +128,6 @@ public class turretSelection : MonoBehaviour
         {
             projectile.GetComponent<projectileCanon>().target = target;
         }
-
-        Debug.Log("Shoot");
     }
 
 }

@@ -38,7 +38,7 @@ public class ShopScript : MonoBehaviour
             outilPoseTourelle.enabled = false;
         }else{
 
-            turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleStandard);
+            turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleCanon);
 
             outilPoseTourelle.SetTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.SetRadius(0.5f);

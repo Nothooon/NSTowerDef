@@ -7,7 +7,7 @@ public class turretAdding : MonoBehaviour
     public GameObject circleRange_;
     private int prixTourelle;
 
-    GameObject circleSpawn;
+    GameObject turretSprite;
     SpriteRenderer sprite;
 
     float range;
@@ -18,12 +18,12 @@ public class turretAdding : MonoBehaviour
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        circleSpawn = Instantiate(turret);
-        circleSpawn.transform.position = mousePos2D;
-        circleSpawn.transform.parent = gameObject.transform;
-        circleSpawn.GetComponent<turretSelection>().enabled = false;
-        sprite = circleSpawn.GetComponent<SpriteRenderer>();
-        circleSpawn.SetActive(false);
+        turretSprite = Instantiate(turret);
+        turretSprite.transform.position = mousePos2D;
+        turretSprite.transform.parent = gameObject.transform;
+        turretSprite.GetComponent<turretSelection>().enabled = false;
+        sprite = turretSprite.GetComponent<SpriteRenderer>();
+        turretSprite.SetActive(false);
 
         // Instanciation of the circle showing the range
         circleRange = Instantiate(circleRange_);
@@ -55,23 +55,15 @@ public class turretAdding : MonoBehaviour
         }
         
         // Clic droit d�sactive le mode achat
-        else if (Input.GetMouseButtonDown(1) && circleSpawn.activeSelf)
+        else if (Input.GetMouseButtonDown(1) && turretSprite.activeSelf)
         {
-            Destroy(circleSpawn.gameObject);
-            circleRange.SetActive(false);
             this.enabled = false;
         }
 
         // TEMP : On suppose qu'un clic gauche active le mode achat de tourelle
         else
         {
-            turretChosen(turret);
-
-            /**
-                * On devra utiliser la fonction turretChosen pour choisir une tourelle et passer en mode achat
-                * turretChosen(Turret);
-                */
-
+            refreshBuildingIndicator(turret);
         }
     }
 
@@ -123,24 +115,21 @@ public class turretAdding : MonoBehaviour
             GameObject spawned = Instantiate(turret);
             Debug.Log("Tourelle apparu " + spawned.gameObject.name);
             spawned.transform.position = mousePos2D;
-
-            // On sort du mode achat
-            Destroy(circleSpawn.gameObject);
             circleRange.SetActive(false);
-
+            turretSprite.SetActive(false);
             return true;
         }
 
         else
         {
-            Debug.Log("Un objet emp�che le positionnement de la tourelle");
+            Debug.Log("Un objet empeche le positionnement de la tourelle");
             return false;
             // TEMP : On supprime la tourelle en lui cliquant dessus                                 
         }
 
     }
 
-    void turretChosen(GameObject turret)
+    void refreshBuildingIndicator(GameObject turret)
     {
         this.turret = turret;
 
@@ -149,13 +138,12 @@ public class turretAdding : MonoBehaviour
         // On initialise le cercle de taille de l'unit�
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        circleSpawn = Instantiate(turret);
-        circleSpawn.transform.position = mousePos2D;
-        circleSpawn.transform.parent = gameObject.transform;
-        circleSpawn.GetComponent<turretSelection>().enabled = false;
-        sprite = circleSpawn.GetComponent<SpriteRenderer>();
+        turretSprite.transform.position = mousePos2D;
+        turretSprite.transform.parent = gameObject.transform;
+        turretSprite.GetComponent<turretSelection>().enabled = false;
+        sprite = turretSprite.GetComponent<SpriteRenderer>();
 
-        circleSpawn.SetActive(true);
+        turretSprite.SetActive(true);
         circleRange.SetActive(true);
 
     }
