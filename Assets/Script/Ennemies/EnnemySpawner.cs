@@ -6,7 +6,7 @@ public class EnnemySpawner : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject[] spawnee;
-    public GameObject instance;
+    private GameObject instance;
     public Transform[] waypoints;
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty

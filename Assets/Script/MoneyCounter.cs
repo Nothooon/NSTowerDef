@@ -13,6 +13,7 @@ public class MoneyCounter : MonoBehaviour
     void Start()
     {
         money = GetComponent<Text>();
+        MoneyValue = 200;
     }
 
     // Update is called once per frame

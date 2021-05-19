@@ -14,6 +14,7 @@ public class WaveCounter : MonoBehaviour
     void Start()
     {
         wave = GetComponent<Text>();
+        WaveActual = 0;
     }
 
     // Update is called once per frame

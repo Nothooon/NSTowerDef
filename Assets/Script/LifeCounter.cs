@@ -13,6 +13,7 @@ public class LifeCounter : MonoBehaviour
     void Start()
     {
         life = GetComponent<Text>();
+        LifeValue = 100;
     }
 
     // Update is called once per frame
@@ -24,6 +25,7 @@ public class LifeCounter : MonoBehaviour
         {
             //GetComponentInParent<GameOverManager>().onDefeat();
             GameOverManager.instance.onDefeat();
+            LifeValue = 0;
             defeat = true;
         }
     }
