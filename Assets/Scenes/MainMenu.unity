@@ -3577,6 +3577,7 @@ GameObject:
   - component: {fileID: 2057486639}
   - component: {fileID: 2057486638}
   - component: {fileID: 2057486640}
+  - component: {fileID: 2057486641}
   m_Layer: 0
   m_Name: BGM
   m_TagString: Untagged
@@ -3709,6 +3710,18 @@ MonoBehaviour:
   bgmSlider: {fileID: 1488249088}
   music: {fileID: 2057486638}
   volumeText: {fileID: 869136814}
+--- !u!114 &2057486641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2057486637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bca0e89f105d984b91b4283e88aded3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2095575586
 GameObject:
   m_ObjectHideFlags: 0
