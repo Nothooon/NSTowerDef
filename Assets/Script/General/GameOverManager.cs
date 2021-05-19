@@ -19,18 +19,18 @@ public class GameOverManager : MonoBehaviour
 
     public void retryButton(){
         string currentSceneName = SceneManager.GetActiveScene().name;
-        Time.timeScale = 1;
+        GetComponent<PauseManager>().unPauseGame();
         SceneManager.LoadScene(currentSceneName);
     }
 
     public void mainMenuButton(){
+        GetComponent<PauseManager>().unPauseGame();
         SceneManager.LoadScene("MainMenu");
     }
 
     public void onDefeat(){
         defeatUI.SetActive(true);
-        Time.timeScale = 0;
-        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<PauseManager>().pauseGame(false);
     }
 
     public void onSuccess(){
@@ -44,4 +44,6 @@ public class GameOverManager : MonoBehaviour
     public void setSuccessUI(GameObject ui){
         this.successUI = ui;
     }
+
+    
 }

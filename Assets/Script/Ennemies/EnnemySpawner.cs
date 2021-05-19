@@ -10,6 +10,7 @@ public class EnnemySpawner : MonoBehaviour
     public Transform[] waypoints;
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
+    private bool paused;
 
 
     void Start(){
@@ -24,7 +25,9 @@ public class EnnemySpawner : MonoBehaviour
         WaveCounter.WaveActual++;
         difficulty = 0.5f;
         while(points > 0){ 
-            points -= SpawnEnnemies(points,difficulty);
+            if(!paused){
+                points -= SpawnEnnemies(points,difficulty);
+            }
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
         //GetComponentInParent<GameOverManager>().onDefeat();
@@ -35,7 +38,9 @@ public class EnnemySpawner : MonoBehaviour
         WaveCounter.WaveActual++;
         difficulty = 0.2f;
         while(points > 0){ 
-            points -= SpawnEnnemies(points,difficulty);
+            if(!paused){
+                points -= SpawnEnnemies(points,difficulty);
+            }
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
 
@@ -45,7 +50,9 @@ public class EnnemySpawner : MonoBehaviour
         WaveCounter.WaveActual++;
         difficulty = 0f;
         while(points > 0){ 
-            points -= SpawnEnnemies(points,difficulty);
+            if(!paused){
+                points -= SpawnEnnemies(points,difficulty);
+            }
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
         
@@ -97,6 +104,14 @@ public class EnnemySpawner : MonoBehaviour
             }
         }
         return 0;
+    }
+
+    public void pauseSpawn(){
+        this.paused = true;
+    }
+
+    public void unPauseSpawn(){
+        this.paused = false;
     }
 }
 
