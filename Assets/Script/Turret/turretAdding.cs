@@ -113,7 +113,6 @@ public class turretAdding : MonoBehaviour
         {
             // On fait appara�tre la tourelle s�l�ctionn�e
             GameObject spawned = Instantiate(turret);
-            Debug.Log("Tourelle apparu " + spawned.gameObject.name);
             spawned.transform.position = mousePos2D;
             circleRange.SetActive(false);
             turretSprite.SetActive(false);
