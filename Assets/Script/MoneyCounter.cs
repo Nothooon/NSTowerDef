@@ -21,4 +21,5 @@ public class MoneyCounter : MonoBehaviour
     {
         money.text = "" + MoneyValue;
     }
+
 }

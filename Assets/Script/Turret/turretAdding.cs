@@ -2,30 +2,32 @@ using UnityEngine;
 
 public class turretAdding : MonoBehaviour
 {
-    public GameObject spawnee;
-    public float radius;
+    private GameObject turret;
+    private float radius;
     public GameObject circleRange_;
+    private int prixTourelle;
 
-
-    GameObject circleSpawn;
+    GameObject turretSprite;
     SpriteRenderer sprite;
 
     float range;
     GameObject circleRange;
     SpriteRenderer sprite2;
 
-
-
-
-
     private void Start()
     {
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        turretSprite = Instantiate(turret);
+        turretSprite.transform.position = mousePos2D;
+        turretSprite.transform.parent = gameObject.transform;
+        turretSprite.GetComponent<turretSelection>().enabled = false;
+        sprite = turretSprite.GetComponent<SpriteRenderer>();
+        turretSprite.SetActive(false);
 
         // Instanciation of the circle showing the range
         circleRange = Instantiate(circleRange_);
-        circleRange.transform.localScale = new Vector3(1, 1, 1) * spawnee.gameObject.GetComponent<turretSelection>().range * 2;
+        circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponent<turretSelection>().range * 2;
         circleRange.transform.position = mousePos2D;
         circleRange.transform.parent = gameObject.transform;
         sprite2 = circleRange.GetComponent<SpriteRenderer>();
@@ -36,69 +38,58 @@ public class turretAdding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // On met à jour la position du cercle de séléction
+        // On met ï¿½ jour la position du cercle de sï¿½lï¿½ction
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);        
         circleRange.transform.position = new Vector2(mousePos.x, mousePos.y);
+        
+        // On met ï¿½ jour la couleur du cercle de sï¿½lï¿½ction
 
-        // On met à jour la couleur du cercle de séléction
-        if (circleSpawn != null && circleSpawn.activeSelf)
-        {
-            UpdateSelection();
-            circleSpawn.transform.position = new Vector2(mousePos.x, mousePos.y);
-        }
-
+        UpdateSelection();
+    
         if (Input.GetMouseButtonDown(0))
         {
-            // Si le mode d'achat est actif, on essaye de spawn une tourelle
-            if (circleSpawn != null && circleSpawn.activeSelf)
-            {
-                trySpawnTurret();
-            }
-
-            // TEMP : On suppose qu'un clic gauche active le mode achat de tourelle
-            else
-            {
-                turretChosen(spawnee);
-
-                /**
-                 * On devra utiliser la fonction turretChosen pour choisir une tourelle et passer en mode achat
-                 * turretChosen(Turret);
-                 */
-
+            if (trySpawnTurret()){
+                MoneyCounter.MoneyValue -= prixTourelle;
+                this.enabled = false;
             }
         }
-
-        // Clic droit désactive le mode achat
-        else if (Input.GetMouseButtonDown(1) && circleSpawn.activeSelf)
+        
+        // Clic droit dï¿½sactive le mode achat
+        else if (Input.GetMouseButtonDown(1) && turretSprite.activeSelf)
         {
-            Destroy(circleSpawn.gameObject);
-            circleRange.SetActive(false);
+            this.enabled = false;
+        }
+
+        // TEMP : On suppose qu'un clic gauche active le mode achat de tourelle
+        else
+        {
+            refreshBuildingIndicator(turret);
         }
     }
 
     /**
-     * Mise à jour du cercle de selection
-     * retourne si il est possible de placer la tourelle séléctionnée à l'emplacement de la souris
+     * Mise ï¿½ jour du cercle de selection
+     * retourne si il est possible de placer la tourelle sï¿½lï¿½ctionnï¿½e ï¿½ l'emplacement de la souris
      */
     bool UpdateSelection()
     {
-        // On récupère la position de la souris
+        // On rï¿½cupï¿½re la position de la souris
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On vérifie que rien n'empêche de faire apparaître une tourelle à cette endroit
+        // On vï¿½rifie que rien n'empï¿½che de faire apparaï¿½tre une tourelle ï¿½ cette endroit
         RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
 
         if (hit.Length <= 1)
         {
-            // On affiche le cercle en vert si il est possible de poser une tourelle à cette emplacement
+            // On affiche le cercle en vert si il est possible de poser une tourelle ï¿½ cette emplacement
             sprite.color = new Color(0, 1, 0, 0.5f);
             sprite2.color = new Color(0, 1, 0, 0.5f);
             return true;
         }
         else
         {
-            // On affiche le cercle en rouge si impossible de poser une tourelle à cette emplacement
+            // On affiche le cercle en rouge si impossible de poser une tourelle ï¿½ cette emplacement
             sprite.color = new Color(1, 0, 0, 0.5f);
             sprite2.color = new Color(1, 0, 0, 0.5f);
             return false;
@@ -107,55 +98,79 @@ public class turretAdding : MonoBehaviour
 
 
     /**
-     * Essai d'apparition de la tourelle séléctionner
+     * Essai d'apparition de la tourelle sï¿½lï¿½ctionner
      */
-    void trySpawnTurret()
+    bool trySpawnTurret()
     {
-        // On récupère la position de la souris
+        // On rï¿½cupï¿½re la position de la souris
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On vérifie que rien n'empêche de faire apparaître une tourelle à cette endroit
+        // On vï¿½rifie que rien n'empï¿½che de faire apparaï¿½tre une tourelle ï¿½ cette endroit
         RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
 
         if (hit.Length <= 1)
         {
-            // On fait apparaître la tourelle séléctionnée
-            GameObject spawned = Instantiate(spawnee);
-            Debug.Log("Tourelle apparu " + spawned.gameObject.name);
+            // On fait apparaï¿½tre la tourelle sï¿½lï¿½ctionnï¿½e
+            GameObject spawned = Instantiate(turret);
             spawned.transform.position = mousePos2D;
-
-            // On sort du mode achat
-            Destroy(circleSpawn.gameObject);
             circleRange.SetActive(false);
+            turretSprite.SetActive(false);
+            return true;
         }
 
         else
         {
-            Debug.Log("Un objet empêche le positionnement de la tourelle");
+            Debug.Log("Un objet empeche le positionnement de la tourelle");
+            return false;
             // TEMP : On supprime la tourelle en lui cliquant dessus                                 
         }
 
     }
 
-    void turretChosen(GameObject turret)
+    void refreshBuildingIndicator(GameObject turret)
     {
-        spawnee = turret;
+        this.turret = turret;
 
         radius = Mathf.Max(turret.gameObject.transform.localScale.x, turret.gameObject.transform.localScale.y)/2;
 
-        // On initialise le cercle de taille de l'unité
+        // On initialise le cercle de taille de l'unitï¿½
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-        circleSpawn = Instantiate(turret);
-        circleSpawn.transform.position = mousePos2D;
-        circleSpawn.transform.parent = gameObject.transform;
-        circleSpawn.GetComponent<turretSelection>().enabled = false;
-        sprite = circleSpawn.GetComponent<SpriteRenderer>();
+        turretSprite.transform.position = mousePos2D;
+        turretSprite.transform.parent = gameObject.transform;
+        turretSprite.GetComponent<turretSelection>().enabled = false;
+        sprite = turretSprite.GetComponent<SpriteRenderer>();
 
-        circleSpawn.SetActive(true);
+        turretSprite.SetActive(true);
         circleRange.SetActive(true);
 
     }
 
+
+    public void SetRadius (float radius){
+        this.radius = radius;
+    }
+
+    public float GetRadius(){
+        return this.radius;
+    }
+
+    public void SetTurret (GameObject turret){
+        this.turret = turret;
+    }
+
+    public GameObject GetTurret(){
+        return this.turret;
+    }
+
+    public void SetPrixTourelle (int prixTourelle){
+        this.prixTourelle = prixTourelle;
+    }
+
+    public float GetPrixTourelle(){
+        return this.prixTourelle;
+    }
+
 }
+

@@ -45,7 +45,7 @@ public class EnnemySpawner : MonoBehaviour
         }
 
         // WAVE 3
-        points = 1000;
+        points = 50;
         yield return new WaitForSecondsRealtime(5); // preparation time
         WaveCounter.WaveActual++;
         difficulty = 0f;
