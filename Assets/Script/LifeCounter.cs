@@ -13,11 +13,20 @@ public class LifeCounter : MonoBehaviour
     void Start()
     {
         life = GetComponent<Text>();
+        LifeValue = 100;
     }
 
     // Update is called once per frame
     void Update()
     {
+        bool defeat = false;
         life.text = "" + LifeValue;
+        if (LifeValue <= 0 && !defeat)
+        {
+            //GetComponentInParent<GameOverManager>().onDefeat();
+            GameOverManager.instance.onDefeat();
+            LifeValue = 0;
+            defeat = true;
+        }
     }
 }

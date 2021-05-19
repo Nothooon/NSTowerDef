@@ -16,7 +16,6 @@ public class turretAdding : MonoBehaviour
 
     private void Start()
     {
-        // On initialise le cercle de taille de l'unit�
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
         circleSpawn = Instantiate(turret);
@@ -40,8 +39,7 @@ public class turretAdding : MonoBehaviour
     void Update()
     {
         // On met � jour la position du cercle de s�l�ction
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        circleSpawn.transform.position = new Vector2(mousePos.x, mousePos.y);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);        
         circleRange.transform.position = new Vector2(mousePos.x, mousePos.y);
         
         // On met � jour la couleur du cercle de s�l�ction
@@ -59,7 +57,7 @@ public class turretAdding : MonoBehaviour
         // Clic droit d�sactive le mode achat
         else if (Input.GetMouseButtonDown(1) && circleSpawn.activeSelf)
         {
-            circleSpawn.SetActive(false);
+            Destroy(circleSpawn.gameObject);
             circleRange.SetActive(false);
             this.enabled = false;
         }
@@ -127,7 +125,7 @@ public class turretAdding : MonoBehaviour
             spawned.transform.position = mousePos2D;
 
             // On sort du mode achat
-            circleSpawn.SetActive(false);
+            Destroy(circleSpawn.gameObject);
             circleRange.SetActive(false);
 
             return true;
@@ -147,6 +145,15 @@ public class turretAdding : MonoBehaviour
         this.turret = turret;
 
         radius = Mathf.Max(turret.gameObject.transform.localScale.x, turret.gameObject.transform.localScale.y)/2;
+
+        // On initialise le cercle de taille de l'unit�
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+        circleSpawn = Instantiate(turret);
+        circleSpawn.transform.position = mousePos2D;
+        circleSpawn.transform.parent = gameObject.transform;
+        circleSpawn.GetComponent<turretSelection>().enabled = false;
+        sprite = circleSpawn.GetComponent<SpriteRenderer>();
 
         circleSpawn.SetActive(true);
         circleRange.SetActive(true);

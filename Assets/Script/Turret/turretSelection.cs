@@ -112,12 +112,23 @@ public class turretSelection : MonoBehaviour
     void Shoot(Vector2 direction, float rotationZ)
     {
         // We create a projectile with the trajectory to the target
-        GameObject projectile = Instantiate(projectilePrefab) as GameObject;        
-        //projectile.transform.parent = gameObject.transform;
-        projectile.GetComponent<projectile>().target = target;
+        GameObject projectile = Instantiate(projectilePrefab) as GameObject;
+
+
+
         projectile.transform.position = transform.position;
         projectile.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed * Time.deltaTime;
+
+        if (projectile.GetComponent<projectile>() != null)
+        {
+            projectile.GetComponent<projectile>().target = target;
+        }
+        else if (projectile.GetComponent<projectileCanon>() != null)
+        {
+            projectile.GetComponent<projectileCanon>().target = target;
+        }
+
         Debug.Log("Shoot");
     }
 

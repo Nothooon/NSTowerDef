@@ -18,9 +18,9 @@ public class GameOverManager : MonoBehaviour
     }
 
     public void retryButton(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //defeatUI.SetActive(false);
-        //successUI.SetActive(false);
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        Time.timeScale = 1;
+        SceneManager.LoadScene(currentSceneName);
     }
 
     public void mainMenuButton(){
@@ -29,6 +29,8 @@ public class GameOverManager : MonoBehaviour
 
     public void onDefeat(){
         defeatUI.SetActive(true);
+        Time.timeScale = 0;
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 
     public void onSuccess(){
@@ -37,7 +39,6 @@ public class GameOverManager : MonoBehaviour
 
     public void setGameOverUI(GameObject ui){
         this.defeatUI = ui;
-        StopAllCoroutines();
     }
 
     public void setSuccessUI(GameObject ui){

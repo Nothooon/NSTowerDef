@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MoneyCounter : MonoBehaviour
+public class WaveCounter : MonoBehaviour
 {
 
-    public static int MoneyValue = 200;
-    Text money;
+    public static int WaveActual = 0;
+    public static int WaveTotal = 3;
+    Text wave;
 
     // Start is called before the first frame update
     void Start()
     {
-        money = GetComponent<Text>();
-        MoneyValue = 200;
+        wave = GetComponent<Text>();
+        WaveActual = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        money.text = "" + MoneyValue;
+        wave.text = WaveActual + "/" + WaveTotal;
     }
-
 }
