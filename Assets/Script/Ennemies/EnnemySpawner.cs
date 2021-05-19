@@ -27,7 +27,7 @@ public class EnnemySpawner : MonoBehaviour
             points -= SpawnEnnemies(points,difficulty);
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
-        GetComponentInParent<GameOverManager>().onDefeat();
+        //GetComponentInParent<GameOverManager>().onDefeat();
 
         // WAVE 2
         points = 20;

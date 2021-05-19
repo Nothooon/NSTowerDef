@@ -18,6 +18,13 @@ public class LifeCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool defeat = false;
         life.text = "" + LifeValue;
+        if (LifeValue <= 0 && !defeat)
+        {
+            //GetComponentInParent<GameOverManager>().onDefeat();
+            GameOverManager.instance.onDefeat();
+            defeat = true;
+        }
     }
 }
