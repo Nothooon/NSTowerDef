@@ -21,6 +21,7 @@ public class EnnemySpawner : MonoBehaviour
         // WAVE 1
         points = 10;
         yield return new WaitForSecondsRealtime(5); // preparation time
+        WaveCounter.WaveActual++;
         difficulty = 0.5f;
         while(points > 0){ 
             points -= SpawnEnnemies(points,difficulty);
@@ -31,6 +32,7 @@ public class EnnemySpawner : MonoBehaviour
         // WAVE 2
         points = 20;
         yield return new WaitForSecondsRealtime(5); // preparation time
+        WaveCounter.WaveActual++;
         difficulty = 0.2f;
         while(points > 0){ 
             points -= SpawnEnnemies(points,difficulty);
@@ -40,6 +42,7 @@ public class EnnemySpawner : MonoBehaviour
         // WAVE 3
         points = 1000;
         yield return new WaitForSecondsRealtime(5); // preparation time
+        WaveCounter.WaveActual++;
         difficulty = 0f;
         while(points > 0){ 
             points -= SpawnEnnemies(points,difficulty);
