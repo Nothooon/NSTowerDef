@@ -12,6 +12,7 @@ public class PauseManager : MonoBehaviour
     public GameObject lifeCounter;
     public GameObject waveCounter;
     public GameObject shop;
+    public GameObject turrentBuilder;
     public static PauseManager instance;
     //private bool cantPause;
 
@@ -30,11 +31,13 @@ public class PauseManager : MonoBehaviour
             pauseUI.SetActive(true);
         isPaused = true;
         Time.timeScale = 0;
+
+        turrentBuilder.SetActive(false);
         shop.SetActive(false);
         waveCounter.SetActive(false);
         lifeCounter.SetActive(false);
         moneyCounter.SetActive(false);
-        transform.GetChild(0).gameObject.GetComponent<EnnemySpawner>().pauseSpawn();
+        gameObject.GetComponent<EnnemySpawner>().pauseSpawn();
     }
 
     public void unPauseGame(){
@@ -42,27 +45,22 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1;
         
+        turrentBuilder.SetActive(true);
         shop.SetActive(true);
         waveCounter.SetActive(true);
         lifeCounter.SetActive(true);
         moneyCounter.SetActive(true);
-        transform.GetChild(0).gameObject.GetComponent<EnnemySpawner>().unPauseSpawn();
+        gameObject.GetComponent<EnnemySpawner>().unPauseSpawn();
     }
-    /*
-    public void setCantPause(bool val){
-        cantPause = val;
-    }
-    */
+
     // Update is called once per frame
-    void Update(){
-        //if(!cantPause){
-            if(Input.GetKeyDown("escape")){
-                if(isPaused){
-                    unPauseGame();
-                }else{
-                    pauseGame(true);
-                }
+    void Update(){ 
+        if(Input.GetKeyDown("escape")){
+            if(isPaused){
+                unPauseGame();
+            }else{
+                pauseGame(true);
             }
-        //}
+        }
     }
 }

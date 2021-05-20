@@ -43,7 +43,5 @@ public class GameOverManager : MonoBehaviour
 
     public void setSuccessUI(GameObject ui){
         this.successUI = ui;
-    }
-
-    
+    }  
 }
