@@ -3,19 +3,17 @@ using UnityEngine;
 public class turretAdding : MonoBehaviour
 {
     private GameObject turret;
-    private float radius;
+    float radius;
+
     public GameObject circleRange_;
-    private int prixTourelle;
+    float range;
 
     GameObject turretSprite;
-    SpriteRenderer sprite;
-
-    float range;
     GameObject circleRange;
-    SpriteRenderer sprite2;
 
     private void Start()
     {
+        // Recover mouse position
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
@@ -23,7 +21,6 @@ public class turretAdding : MonoBehaviour
         circleRange = Instantiate(circleRange_);
         circleRange.transform.position = mousePos2D;
         circleRange.transform.parent = gameObject.transform;
-        sprite2 = circleRange.GetComponent<SpriteRenderer>();
         circleRange.SetActive(false);
 
     }
@@ -31,29 +28,27 @@ public class turretAdding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Recover mouse position
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On met � jour la position du cercle de s�l�ction
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);        
-        circleRange.transform.position = new Vector2(mousePos.x, mousePos.y);
-
-        // On met � jour la couleur du cercle de s�l�ction
-
-        // On met à jour la couleur du cercle de séléction et sa position si en mode achat
+        // if buy mode, update color and position of the sprites
         if (turretSprite != null && turretSprite.activeSelf)
         {
-            UpdateSelection();
-            turretSprite.transform.position = new Vector2(mousePos.x, mousePos.y);
+            UpdateSelectionColor();
+            circleRange.transform.position = mousePos2D;
+            turretSprite.transform.position = mousePos2D;
         }
 
-        // Si mode achat et clic gauche on essaye de poser
+        // If buy mode and left click, try to spawn
         if (Input.GetMouseButtonDown(0) && turretSprite != null && turretSprite.activeSelf)
         {
             if (trySpawnTurret()){
                 MoneyCounter.MoneyValue -= turret.GetComponentInChildren<turretSelection>().GetPrice();
             }
         }
-        
-        // Si mode achat et Clic droit desactive le mode achat
+
+        // If buy mode and right click, deactivate buy mode
         else if (Input.GetMouseButtonDown(1) && turretSprite != null && turretSprite.activeSelf)
         {
             Destroy(turretSprite.gameObject);
@@ -62,45 +57,35 @@ public class turretAdding : MonoBehaviour
     }
 
     /**
-     * Mise à jour du cercle de selection
+     * Update the color depends on the availability of the mouse position
      */
-    void UpdateSelection()
+    void UpdateSelectionColor()
     {
-        // On récupère la position de la souris
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
-
-        // On vérifie que rien n'empêche de faire apparaître une tourelle à cette endroit
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
-
         if (FreeSpace())
         {
-            // On affiche le cercle en vert si il est possible de poser une tourelle à cette emplacement
+            // Change color to green if space is free
             ChangeColor(new Color(0, 1, 0, 0.5f));
         }
         else
         {
-            // On affiche le cercle en rouge si impossible de poser une tourelle à cette emplacement
+            // Change color to red if space is not free
             ChangeColor(new Color(1, 0, 0, 0.5f));
         }
     }
 
 
     /**
-     * Essai d'apparition de la tourelle s�l�ctionner
+     * Try to spawn a turret at the mouse position
      */
     bool trySpawnTurret()
     {
-        // On r�cup�re la position de la souris
+        // Recover mouse position
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On v�rifie que rien n'emp�che de faire appara�tre une tourelle � cette endroit
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
-
         if (FreeSpace())
         {
-            // On fait apparaitre la tourelle selectionnee
+            // Bring up the selected turret
             GameObject spawned = Instantiate(turret);
             spawned.transform.position = mousePos2D;
             circleRange.SetActive(false);
@@ -118,7 +103,7 @@ public class turretAdding : MonoBehaviour
 
 
     /**
-     *  Active buy mode with the choosen turret
+     *  Activate buy mode with the choosen turret
      */
     public void ChooseTurret(GameObject turret)
     {
@@ -141,54 +126,46 @@ public class turretAdding : MonoBehaviour
             turretSprite.transform.position = mousePos2D;
             turretSprite.transform.parent = gameObject.transform;
             turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
-            sprite = turretSprite.GetComponentInChildren<SpriteRenderer>();
         }
     }
 
+    /**
+     * Change the color of turretSprite and of circleRange
+     */
     void ChangeColor(Color c)
     {
+        // Change the color of the circleRange
         circleRange.GetComponent<SpriteRenderer>().color = c;
+
+        // Change the color of the turretSprite and all its children
         foreach( SpriteRenderer s in turretSprite.GetComponentsInChildren<SpriteRenderer>())
         {
             s.color = c;
         }
     }
 
+    /**
+     *  Return the availability of space
+     */
     bool FreeSpace ()
     {
-        // On r�cup�re la position de la souris
+        // Recover mouse position
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
-        // On v�rifie que rien n'emp�che de faire appara�tre une tourelle � cette endroit
+        // Verify wich are in the circle zone
         RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
 
-        return (hit.Length <= 1 - turretSprite.transform.childCount); // Jsp pas pk
-    }
-
-
-    public void SetRadius (float radius){
-        this.radius = radius;
+        // Return if there are more collider than just the turretSprite
+        return (hit.Length <= 1 - turretSprite.transform.childCount); // Idk
     }
 
     public float GetRadius(){
         return this.radius;
     }
 
-    public void SetTurret (GameObject turret){
-        this.turret = turret;
-    }
-
     public GameObject GetTurret(){
         return this.turret;
-    }
-
-    public void SetPrixTourelle (int prixTourelle){
-        this.prixTourelle = prixTourelle;
-    }
-
-    public float GetPrixTourelle(){
-        return this.prixTourelle;
     }
 
 }
