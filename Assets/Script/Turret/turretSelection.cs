@@ -56,6 +56,9 @@ public class turretSelection : MonoBehaviour
         circleRange.SetActive(displayRange); // Display the range if wanted
     }
 
+    /**
+     * Calculation of the rotation to the target
+     */
     void FollowTarget()
     {
         if (target != null)
@@ -69,7 +72,7 @@ public class turretSelection : MonoBehaviour
             // We calculate the turret rotation
             Vector3 difference = transform.position - targetPos;
             float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 0.0f, rotationZ), 120 * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0.0f, 0.0f, rotationZ), 500 * Time.deltaTime);
 
         }
         else
@@ -78,6 +81,9 @@ public class turretSelection : MonoBehaviour
         }
     }
 
+    /**
+     * Find the enemy to target
+     */
     void UpdateTarget()
     {
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
@@ -97,6 +103,9 @@ public class turretSelection : MonoBehaviour
         }
     }
 
+    /**
+     * if there is a target, shoot to the target
+     */ 
     void TryShooting()
     {
         if (target != null)
@@ -111,13 +120,12 @@ public class turretSelection : MonoBehaviour
         }
     }
 
+    /**
+     * Create a projectile at the turret position with the trajectory to the target
+     */
     void Shoot(Vector2 direction, float rotationZ)
     {
-        // We create a projectile with the trajectory to the target
         GameObject projectile = Instantiate(projectilePrefab) as GameObject;
-
-
-
         projectile.transform.position = transform.position;
         projectile.transform.rotation = Quaternion.Euler(0.0f, 0.0f, rotationZ);
         projectile.GetComponent<Rigidbody2D>().velocity = direction * projectileSpeed * Time.deltaTime;
@@ -132,6 +140,9 @@ public class turretSelection : MonoBehaviour
         }
     }
 
+    /**
+     * Return the turret price
+     */
     public int GetPrice()
     {
         return price;
