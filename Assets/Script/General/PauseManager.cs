@@ -13,6 +13,7 @@ public class PauseManager : MonoBehaviour
     public GameObject waveCounter;
     public GameObject shop;
     public GameObject turrentBuilder;
+    public GameObject powerButons;
     public static PauseManager instance;
     //private bool cantPause;
 
@@ -37,6 +38,7 @@ public class PauseManager : MonoBehaviour
         waveCounter.SetActive(false);
         lifeCounter.SetActive(false);
         moneyCounter.SetActive(false);
+        powerButons.SetActive(false);
         gameObject.GetComponent<EnnemySpawner>().pauseSpawn();
     }
 
@@ -50,6 +52,7 @@ public class PauseManager : MonoBehaviour
         waveCounter.SetActive(true);
         lifeCounter.SetActive(true);
         moneyCounter.SetActive(true);
+        powerButons.SetActive(true);
         gameObject.GetComponent<EnnemySpawner>().unPauseSpawn();
     }
 
