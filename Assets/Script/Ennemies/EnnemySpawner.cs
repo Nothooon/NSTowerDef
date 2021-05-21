@@ -11,10 +11,13 @@ public class EnnemySpawner : MonoBehaviour
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
     private bool paused;
+    private bool wavesFinished = false;
 
 
     void Start(){
         StartCoroutine(Waves());
+        wavesFinished = false;
+        paused = false;    
     }
 
 
@@ -26,7 +29,11 @@ public class EnnemySpawner : MonoBehaviour
         difficulty = 0.5f;
         while(points > 0){ 
             if(!paused){
-                points -= SpawnEnnemies(points,difficulty);
+                points -= SpawnEnemies(points,difficulty);
+                Debug.Log(points);
+
+            }else{
+                yield return new WaitUntil(() => !paused );
             }
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
@@ -39,7 +46,10 @@ public class EnnemySpawner : MonoBehaviour
         difficulty = 0.2f;
         while(points > 0){ 
             if(!paused){
-                points -= SpawnEnnemies(points,difficulty);
+                points -= SpawnEnemies(points,difficulty);
+                Debug.Log(points);
+            }else{
+                yield return new WaitUntil(() => !paused );
             }
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
@@ -51,59 +61,61 @@ public class EnnemySpawner : MonoBehaviour
         difficulty = 0f;
         while(points > 0){ 
             if(!paused){
-                points -= SpawnEnnemies(points,difficulty);
+                points -= SpawnEnemies(points,difficulty);
+                Debug.Log(points);
+            }else{
+                yield return new WaitUntil(() => !paused );
             }
             yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
         }
+        wavesFinished =  true;
         
     }
-    int SpawnEnnemies(int points, float difficulty){
+    public int SpawnEnemies(int points, float difficulty){
         float random = Random.Range(0f,1f);
+        int enemyIndex = 0;
         random += difficulty;
         if(random < 0.1){
-            if(((points -= spawnee[3].GetComponent<Ennemy>().points) >=0)){
-                instance = Instantiate(spawnee[3], spawnPoint.position, spawnPoint.rotation);
-                FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
-                //instance.name = "Ennemy";
-                follow.SetWaypoints(waypoints);
-                return spawnee[3].GetComponent<Ennemy>().points;
+            if(((points -= spawnee[enemyIndex].GetComponent<Ennemy>().points) >=0)){
+                return SpawnEnemy(enemyIndex);                
             }else{
                 random += 0.1f;
             }
         }
+        enemyIndex ++;
         if(random < 0.2){
-            if(((points -= spawnee[2].GetComponent<Ennemy>().points) >=0)){
-                instance = Instantiate(spawnee[2], spawnPoint.position, spawnPoint.rotation);
-                FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
-                //instance.name = "Ennemy";
-                follow.SetWaypoints(waypoints);
-                return spawnee[2].GetComponent<Ennemy>().points;
+            if(((points -= spawnee[enemyIndex].GetComponent<Ennemy>().points) >=0)){
+                return SpawnEnemy(enemyIndex);  
             }else{
                 random += 0.2f;
             }
         }
+        enemyIndex ++;
         if(random < 0.5){
-            if(((points -= spawnee[1].GetComponent<Ennemy>().points) >=0)){
-                instance = Instantiate(spawnee[1], spawnPoint.position, spawnPoint.rotation);
-                FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
-                //instance.name = "Ennemy";
-                follow.SetWaypoints(waypoints);
-                return spawnee[1].GetComponent<Ennemy>().points;
+            if(((points -= spawnee[enemyIndex].GetComponent<Ennemy>().points) >=0)){
+                return SpawnEnemy(enemyIndex);  
             }else{
                 random += 0.5f;
             }
         }
-
+        enemyIndex ++;
         if(random > 0.5){
-            if(((points -= spawnee[0].GetComponent<Ennemy>().points) >=0)){
-                instance = Instantiate(spawnee[0], spawnPoint.position, spawnPoint.rotation);
-                FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
-                //instance.name = "Ennemy";
-                follow.SetWaypoints(waypoints);
-                return spawnee[0].GetComponent<Ennemy>().points;
+            if(((points -= spawnee[enemyIndex].GetComponent<Ennemy>().points) >=0)){
+                return SpawnEnemy(enemyIndex);  
             }
         }
+
         return 0;
+    }
+
+
+
+    public int SpawnEnemy(int enemyIndex){
+        instance = Instantiate(spawnee[enemyIndex], spawnPoint.position, spawnPoint.rotation);
+        FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
+        //instance.name = "Ennemy";
+        follow.SetWaypoints(waypoints);
+        return spawnee[enemyIndex].GetComponent<Ennemy>().points;
     }
 
     public void pauseSpawn(){
@@ -112,6 +124,12 @@ public class EnnemySpawner : MonoBehaviour
 
     public void unPauseSpawn(){
         this.paused = false;
+    }
+
+    public void Update(){
+        if(wavesFinished && points == 0 && FindObjectOfType<Ennemy>() == null){
+            GetComponent<GameOverManager>().onSuccess();
+        }
     }
 }
 
