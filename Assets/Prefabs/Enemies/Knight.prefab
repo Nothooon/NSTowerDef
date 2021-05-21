@@ -156,7 +156,7 @@ BoxCollider2D:
   m_Offset: {x: -0.20529157, y: -0.3144104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.40064567, y: 0.27231324}
     oldSize: {x: 1.5, y: 1.5}
     newSize: {x: 1.5, y: 1.5}
     adaptiveTilingThreshold: 0.5
@@ -173,6 +173,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4226188520265023578}
     m_Modifications:
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 69.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 14.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 21.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 33.81
+      objectReference: {fileID: 0}
     - target: {fileID: 3893600105931855224, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -268,6 +284,10 @@ PrefabInstance:
     - target: {fileID: 3893600106112353053, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600106112353053, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.25020218
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}

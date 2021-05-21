@@ -156,7 +156,7 @@ BoxCollider2D:
   m_Offset: {x: 0.000000029802322, y: -0.56158954}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5061146, y: 0.2851153}
     oldSize: {x: 5.12, y: 2.56}
     newSize: {x: 5.12, y: 2.56}
     adaptiveTilingThreshold: 0.5
@@ -173,6 +173,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6464879491273674944}
     m_Modifications:
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 101.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 18.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.0000014305
+      objectReference: {fileID: 0}
+    - target: {fileID: 3893600105833353163, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 51.8
+      objectReference: {fileID: 0}
     - target: {fileID: 3893600105931855224, guid: b98969fc09bdd004c9d551b73eb687e4, type: 3}
       propertyPath: m_Name
       value: Canvas
