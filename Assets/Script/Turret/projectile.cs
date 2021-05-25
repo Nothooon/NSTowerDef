@@ -6,7 +6,7 @@ public class projectile : MonoBehaviour
 {
 
     public int power = 400;
-    public GameObject target;
+    [SerializeField] GameObject target;
     float targetSize = 0.5f;
     public GameObject boomAnimation;
 
@@ -36,5 +36,10 @@ public class projectile : MonoBehaviour
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
     }
 }

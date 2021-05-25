@@ -21,12 +21,13 @@ public class FollowThePath : MonoBehaviour {
 
         // Set position of Enemy as position of the first waypoint
         transform.position = waypoints[waypointIndex].transform.position;
-        this.moveSpeed = GetComponent<Ennemy>().speed;
+        this.moveSpeed = GetComponent<Ennemy>().GetCurrentSpeed();
 	}
 	
 	// Update is called once per frame
 	private void Update () {
 
+        this.moveSpeed = GetComponent<Ennemy>().GetCurrentSpeed();
         // Move Enemy
         Move();
 	}
