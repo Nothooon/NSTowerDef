@@ -9,6 +9,7 @@ public class projectileCanon : MonoBehaviour
     public GameObject target;
     float targetSize = 0.5f;
     public float range = 2f;
+    public GameObject boomAnimation;
 
     // Update is called once per frame
     void Update()
@@ -35,6 +36,8 @@ public class projectileCanon : MonoBehaviour
             {
                 Vector3 enemyVector = gameObject.transform.position - enemy.collider.transform.position;
                 float degat = power * (range - enemyVector.magnitude) / range;
+                GameObject boom = Instantiate(boomAnimation, target.transform.position, new Quaternion(0, 0, 0, 0));
+                boom.transform.localScale = boom.transform.localScale * 0.5f;
                 enemy.collider.GetComponent<Ennemy>().takeDamage((int) degat);
             }
             

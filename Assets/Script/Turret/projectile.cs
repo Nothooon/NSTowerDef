@@ -8,6 +8,7 @@ public class projectile : MonoBehaviour
     public int power = 400;
     public GameObject target;
     float targetSize = 0.5f;
+    public GameObject boomAnimation;
 
     // Update is called once per frame
     void Update()
@@ -18,7 +19,6 @@ public class projectile : MonoBehaviour
             if (targetVector.magnitude <= targetSize) // if the projectile hit the target
             {
                 TouchTarget();
-                Destroy(gameObject); // Destroy the projectile after it touches the target
             }
         }
     }
@@ -27,6 +27,9 @@ public class projectile : MonoBehaviour
     void TouchTarget()
     {
         target.GetComponent<Ennemy>().takeDamage(power);
+        GameObject boom = Instantiate(boomAnimation, transform.position, new Quaternion(0, 0, 0, 0));
+        boom.transform.localScale = boom.transform.localScale * 0.25f;
+        Destroy(gameObject); // Destroy the projectile after it touches the target
     }
 
     // Destroy the projectile if is out of bound

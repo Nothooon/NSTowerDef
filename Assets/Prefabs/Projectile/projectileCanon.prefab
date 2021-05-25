@@ -120,3 +120,4 @@ MonoBehaviour:
   power: 12
   target: {fileID: 0}
   range: 2
+  boomAnimation: {fileID: 5855626589617168245, guid: 14f08a2a5751fe34f96b091b19463be7, type: 3}
