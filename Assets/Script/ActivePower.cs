@@ -9,6 +9,7 @@ public class ActivePower : MonoBehaviour
     private bool isBoomOnCooldown = false;
     private float boomCooldown = 5;
     private float nextBoomTime = 0;
+    public GameObject boomAnimation;
 
     void Start(){
         boomCooldown = 2;
@@ -21,6 +22,7 @@ public class ActivePower : MonoBehaviour
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach(GameObject enemy in enemies){
                 enemy.GetComponent<Ennemy>().takeDamage(10);
+                Instantiate(boomAnimation, enemy.transform.position, new Quaternion(0,0,0,0));
             }
             boomButton.GetComponent<Image>().fillAmount = 0;
             nextBoomTime = Time.time + boomCooldown;
