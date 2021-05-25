@@ -97,8 +97,10 @@ public class turretSelection : MonoBehaviour
             float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy <= range)
             {
-                target = enemy;
-                break;
+                if(target == null || target.GetComponent<FollowThePath>().GetDistanceTraveled() < enemy.GetComponent<FollowThePath>().GetDistanceTraveled())
+                {
+                    target = enemy;
+                }             
             }
         }
     }
