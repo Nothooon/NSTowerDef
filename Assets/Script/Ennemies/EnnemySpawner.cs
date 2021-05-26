@@ -119,10 +119,12 @@ public class EnnemySpawner : MonoBehaviour
     }
 
     public void pauseSpawn(){
+        StopCoroutine("Waves");
         this.paused = true;
     }
 
     public void unPauseSpawn(){
+        StartCoroutine("Waves");
         this.paused = false;
     }
 

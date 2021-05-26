@@ -52,6 +52,25 @@ public class ShopScript : MonoBehaviour
        
     }
 
+    public void BuyThirdTurret()
+    {
+
+        turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleColle);
+        GameObject t = turretBuilder.GetTourelleAConstruire();
+        int prix = t.GetComponentInChildren<turretSelection>().GetPrice();
+
+        if (MoneyCounter.MoneyValue < prix)
+        {
+            Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
+            outilPoseTourelle.enabled = false;
+        }
+        else
+        {
+            outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
+            outilPoseTourelle.enabled = true;
+        }
+    }
+
     private void GenerateErrorMessage(string message){
         errorMessage.GetComponent<TextMeshProUGUI>().text = "caca";
         Instantiate(errorMessage, errorPosition.transform.position, errorPosition.transform.rotation);

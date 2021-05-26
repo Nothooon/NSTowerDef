@@ -97,8 +97,10 @@ public class turretSelection : MonoBehaviour
             float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy <= range)
             {
-                target = enemy;
-                break;
+                if(target == null || target.GetComponent<FollowThePath>().GetDistanceTraveled() < enemy.GetComponent<FollowThePath>().GetDistanceTraveled())
+                {
+                    target = enemy;
+                }             
             }
         }
     }
@@ -132,11 +134,15 @@ public class turretSelection : MonoBehaviour
 
         if (projectile.GetComponent<projectile>() != null)
         {
-            projectile.GetComponent<projectile>().target = target;
+            projectile.GetComponent<projectile>().SetTarget(target);
         }
         else if (projectile.GetComponent<projectileCanon>() != null)
         {
-            projectile.GetComponent<projectileCanon>().target = target;
+            projectile.GetComponent<projectileCanon>().SetTarget(target);
+        } 
+        else if (projectile.GetComponent<projectileGlue>() != null)
+        {
+            projectile.GetComponent<projectileGlue>().SetTarget(target);
         }
     }
 
