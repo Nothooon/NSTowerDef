@@ -16,12 +16,16 @@ public class FollowThePath : MonoBehaviour {
 
     public SpriteRenderer spriteRenderer;
 
+    float distanceTraveled;
+
 	// Use this for initialization
 	private void Start () {
 
         // Set position of Enemy as position of the first waypoint
         transform.position = waypoints[waypointIndex].transform.position;
         this.moveSpeed = GetComponent<Ennemy>().GetCurrentSpeed();
+
+        distanceTraveled = 0f;
 	}
 	
 	// Update is called once per frame
@@ -46,6 +50,7 @@ public class FollowThePath : MonoBehaviour {
             transform.position = Vector2.MoveTowards(transform.position,
                waypoints[waypointIndex].transform.position,
                moveSpeed * Time.deltaTime);
+            distanceTraveled =moveSpeed * Time.deltaTime + distanceTraveled;
             if(transform.position.x > waypoints[waypointIndex].transform.position.x){
                 spriteRenderer.flipX = true;
             }else{
@@ -78,5 +83,10 @@ public class FollowThePath : MonoBehaviour {
 
     public void SetSpriteRenderer(SpriteRenderer renderer){
         spriteRenderer = renderer;
+    }
+
+    public float GetDistanceTraveled()
+    {
+        return distanceTraveled;
     }
 }
