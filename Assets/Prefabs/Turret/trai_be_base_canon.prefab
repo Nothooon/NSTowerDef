@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6964647414306671077}
   m_Layer: 0
   m_Name: trai_be_base_canon
-  m_TagString: Untagged
+  m_TagString: Turret
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
