@@ -157,7 +157,7 @@ public class turretAdding : MonoBehaviour
         RaycastHit2D[] hit = Physics2D.CircleCastAll(mousePos2D, radius, Vector2.zero);
 
         // Return if there are more collider than just the turretSprite
-        return (hit.Length <= 1 - turretSprite.transform.childCount); // Idk
+        return hit.Length <= 1 ; 
     }
 
     public float GetRadius(){
