@@ -65,9 +65,7 @@ public class Ennemy : MonoBehaviour
     IEnumerator ChangeSpeed(float speed, float length = 0f)
     {
         this.currentSpeed = speed;
-        Debug.Log("ralenti");
         yield return new WaitForSeconds(length);
-        Debug.Log("!ralenti");
         this.currentSpeed = this.speed;
     }
 

@@ -43,7 +43,7 @@ public class turretSelection : MonoBehaviour
         circleRange.transform.parent = gameObject.transform;
 
         // Call of the shot at the chosen frequency
-        InvokeRepeating("TryShooting", 0.5f, fireRate);
+        StartCoroutine(TryShootingCo());
     }
 
 
@@ -120,6 +120,14 @@ public class turretSelection : MonoBehaviour
             direction.Normalize();
             Shoot(direction, rotationZ);
         }
+    }
+
+    IEnumerator TryShootingCo()
+    {
+
+        TryShooting();
+        yield return new WaitForSeconds(fireRate);
+        StartCoroutine(TryShootingCo());
     }
 
     /**
