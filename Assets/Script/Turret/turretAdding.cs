@@ -1,7 +1,9 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class turretAdding : MonoBehaviour
 {
+    public GameObject[] buttons;
     private GameObject turret;
     float radius;
 
@@ -45,6 +47,7 @@ public class turretAdding : MonoBehaviour
         {
             if (trySpawnTurret()){
                 MoneyCounter.MoneyValue -= turret.GetComponentInChildren<turretSelection>().GetPrice();
+                ReactivateButtons();
             }
         }
 
@@ -53,6 +56,7 @@ public class turretAdding : MonoBehaviour
         {
             Destroy(turretSprite.gameObject);
             circleRange.SetActive(false);
+            ReactivateButtons();
         }
     }
 
@@ -168,5 +172,12 @@ public class turretAdding : MonoBehaviour
         return this.turret;
     }
 
+
+    private void ReactivateButtons(){
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Button>().interactable = true;
+        }
+    }
 }
 
