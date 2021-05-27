@@ -12,6 +12,7 @@ public class Ennemy : MonoBehaviour
     public int reward;
     public int points;
     public float speed;
+    [SerializeField] float currentSpeed;
 
     public Slider slider;
     
@@ -22,6 +23,7 @@ public class Ennemy : MonoBehaviour
         currentHealth = maxHealth;
         slider.maxValue = maxHealth; 
         slider.value = currentHealth;
+        currentSpeed = speed;
     }
 
 
@@ -32,11 +34,40 @@ public class Ennemy : MonoBehaviour
             MoneyCounter.MoneyValue += reward;
             Destroy(gameObject);
         }
+    }    
+
+    public float GetSpeed()
+    {
+        return speed;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float GetCurrentSpeed()
     {
-        
+        return currentSpeed;
     }
+
+    /**
+     * Change the gameObject speed to the speed given for length seconds
+     * If no length is given, the speed is forever changed 
+     */ 
+    public void SetSpeed(float speed, float length = 0f )
+    {
+        if (length == 0f)
+        {
+            this.currentSpeed = speed;
+        } 
+        else
+        {
+            StartCoroutine(ChangeSpeed(speed, length));
+        }
+    }
+
+    IEnumerator ChangeSpeed(float speed, float length = 0f)
+    {
+        this.currentSpeed = speed;
+        yield return new WaitForSeconds(length);
+        this.currentSpeed = this.speed;
+    }
+
+
 }

@@ -21,7 +21,7 @@ public class turretSelection : MonoBehaviour
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed = 60.0f;
 
-    public float fireRate = 1.5f; // number of seconds between two shots
+    public float fireRate = 0.6f; // number of seconds between two shots
 
 
 
@@ -43,7 +43,7 @@ public class turretSelection : MonoBehaviour
         circleRange.transform.parent = gameObject.transform;
 
         // Call of the shot at the chosen frequency
-        InvokeRepeating("TryShooting", 0.5f, fireRate);
+        StartCoroutine(TryShootingCo());
     }
 
 
@@ -97,8 +97,10 @@ public class turretSelection : MonoBehaviour
             float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy <= range)
             {
-                target = enemy;
-                break;
+                if(target == null || target.GetComponent<FollowThePath>().GetDistanceTraveled() < enemy.GetComponent<FollowThePath>().GetDistanceTraveled())
+                {
+                    target = enemy;
+                }             
             }
         }
     }
@@ -120,6 +122,14 @@ public class turretSelection : MonoBehaviour
         }
     }
 
+    IEnumerator TryShootingCo()
+    {
+
+        TryShooting();
+        yield return new WaitForSeconds(1/fireRate);
+        StartCoroutine(TryShootingCo());
+    }
+
     /**
      * Create a projectile at the turret position with the trajectory to the target
      */
@@ -132,11 +142,15 @@ public class turretSelection : MonoBehaviour
 
         if (projectile.GetComponent<projectile>() != null)
         {
-            projectile.GetComponent<projectile>().target = target;
+            projectile.GetComponent<projectile>().SetTarget(target);
         }
         else if (projectile.GetComponent<projectileCanon>() != null)
         {
-            projectile.GetComponent<projectileCanon>().target = target;
+            projectile.GetComponent<projectileCanon>().SetTarget(target);
+        } 
+        else if (projectile.GetComponent<projectileGlue>() != null)
+        {
+            projectile.GetComponent<projectileGlue>().SetTarget(target);
         }
         else if (projectile.GetComponent<projectileBallista>() != null)
         {

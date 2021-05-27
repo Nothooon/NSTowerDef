@@ -2,14 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class projectileCanon : MonoBehaviour
+public class projectileGlue : MonoBehaviour
 {
-
-    public int power = 12;
     [SerializeField] GameObject target;
     float targetSize = 0.5f;
-    public float range = 2f;
-    public GameObject boomAnimation;
 
     // Update is called once per frame
     void Update()
@@ -28,20 +24,8 @@ public class projectileCanon : MonoBehaviour
     // What we do when the projectile hit the target (depends of the type of projectile)
     void TouchTarget()
     {
-        // On récupère tout les ennemies à porter
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, range, Vector2.zero);
-        foreach (RaycastHit2D enemy in hit) 
-        {
-            if(enemy.collider.gameObject.tag == "Enemy")
-            {
-                Vector3 enemyVector = gameObject.transform.position - enemy.collider.transform.position;
-                float degat = power * (range - enemyVector.magnitude) / range;
-                GameObject boom = Instantiate(boomAnimation, target.transform.position, new Quaternion(0, 0, 0, 0));
-                boom.transform.localScale = boom.transform.localScale * 0.5f;
-                enemy.collider.GetComponent<Ennemy>().takeDamage((int) degat);
-            }
-            
-        } 
+        Ennemy enemy = target.GetComponent<Ennemy>();
+        enemy.SetSpeed(enemy.GetSpeed()/2, 5f);        
     }
 
     // Destroy the projectile if is out of bound
