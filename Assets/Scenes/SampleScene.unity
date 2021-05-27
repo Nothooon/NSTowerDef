@@ -3620,7 +3620,7 @@ MonoBehaviour:
   tourelleStandard: {fileID: 1230466837415378142, guid: 98f9703cfe4743d43af4198eb3a614b8, type: 3}
   tourelleCanon: {fileID: 6964647414306671078, guid: 504f3ecbdc44f124abb6d552216161bb, type: 3}
   tourelleBallista: {fileID: 4769486530548670545, guid: 618cd05937cdf9b429a78c389ab9ed47, type: 3}
-  tourelleColle: {fileID: 0}
+  tourelleColle: {fileID: 4559738526460770103, guid: f03f1eb0c2db29d47896c2b30ca6fd40, type: 3}
 --- !u!4 &1748096912
 Transform:
   m_ObjectHideFlags: 0
@@ -3656,7 +3656,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1353985551}
-  m_LocalRotation: {x: -0, y: -0.9999881, z: -0, w: 0.0048907683}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -0.09998605}
   m_LocalScale: {x: 0.99989796, y: 0.99989796, z: 0.99989796}
   m_Children:
@@ -3664,7 +3664,7 @@ RectTransform:
   - {fileID: 1593082702}
   m_Father: {fileID: 681433864}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -179.44, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
