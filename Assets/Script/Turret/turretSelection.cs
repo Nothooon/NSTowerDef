@@ -21,7 +21,7 @@ public class turretSelection : MonoBehaviour
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed = 60.0f;
 
-    public float fireRate = 1.5f; // number of seconds between two shots
+    public float fireRate = 0.6f; // number of seconds between two shots
 
 
 
@@ -126,7 +126,7 @@ public class turretSelection : MonoBehaviour
     {
 
         TryShooting();
-        yield return new WaitForSeconds(fireRate);
+        yield return new WaitForSeconds(1/fireRate);
         StartCoroutine(TryShootingCo());
     }
 
