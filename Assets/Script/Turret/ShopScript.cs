@@ -52,7 +52,7 @@ public class ShopScript : MonoBehaviour
        
     }
 
-    public void BuyThirdTurret()
+    public void BuyFourthTurret()
     {
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleColle);

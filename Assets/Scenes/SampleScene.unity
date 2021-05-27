@@ -198,11 +198,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7745091}
   m_CullTransparentMesh: 1
---- !u!1 &35082767 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4241204102147990076, guid: 03d6893bfc4e25549a5a44180c9b2b0a, type: 3}
-  m_PrefabInstance: {fileID: 4241204102180286515}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &35082768 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4241204102147990051, guid: 03d6893bfc4e25549a5a44180c9b2b0a, type: 3}
@@ -725,7 +720,7 @@ MonoBehaviour:
   waveCounter: {fileID: 7650656455437341733}
   shop: {fileID: 681433863}
   turrentBuilder: {fileID: 1748096910}
-  powerButons: {fileID: 35082767}
+  powerButons: {fileID: 0}
 --- !u!4 &304650193
 Transform:
   m_ObjectHideFlags: 0
@@ -1625,8 +1620,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -74.368}
-  m_SizeDelta: {x: 271.4, y: 583.27}
+  m_AnchoredPosition: {x: 0, y: -75.1}
+  m_SizeDelta: {x: 220.18, y: 581.81}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!61 &681433865
 BoxCollider2D:
@@ -1667,7 +1662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   errorPosition: {fileID: 0}
-  errorMessage: {fileID: 565191622028700730, guid: a9a334a9d4496b54f9e33236d73e9499, type: 3}
+  errorMessage: {fileID: 0}
 --- !u!114 &681433868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2201,7 +2196,7 @@ RectTransform:
   m_LocalScale: {x: 1.0001272, y: 1.0001272, z: 1.0001272}
   m_Children:
   - {fileID: 224759660}
-  - {fileID: 1771860249}
+  - {fileID: 1655335129}
   m_Father: {fileID: 452558420}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3032,6 +3027,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1338061510}
   m_CullTransparentMesh: 1
+--- !u!1 &1353985551
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1783575583}
+  m_Layer: 0
+  m_Name: Slot 3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &1359735764
 Transform:
   m_ObjectHideFlags: 0
@@ -3331,7 +3342,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 681433866}
         m_TargetAssemblyTypeName: ShopScript, Assembly-CSharp
-        m_MethodName: BuyThirdTurret
+        m_MethodName: BuyFourthTurret
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3444,6 +3455,81 @@ Transform:
   m_Father: {fileID: 662085227}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1655335128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1655335129}
+  - component: {fileID: 1655335131}
+  - component: {fileID: 1655335130}
+  m_Layer: 5
+  m_Name: Tourelle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1655335129
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655335128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 956994226}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1655335130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655335128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e882d87389055c84d8270f8cc559898c, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1655335131
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655335128}
+  m_CullTransparentMesh: 1
 --- !u!1 &1655733167
 GameObject:
   m_ObjectHideFlags: 0
@@ -3534,7 +3620,7 @@ MonoBehaviour:
   tourelleStandard: {fileID: 1230466837415378142, guid: 98f9703cfe4743d43af4198eb3a614b8, type: 3}
   tourelleCanon: {fileID: 6964647414306671078, guid: 504f3ecbdc44f124abb6d552216161bb, type: 3}
   tourelleBallista: {fileID: 4769486530548670545, guid: 618cd05937cdf9b429a78c389ab9ed47, type: 3}
-  tourelleColle: {fileID: 4559738526460770103, guid: f03f1eb0c2db29d47896c2b30ca6fd40, type: 3}
+  tourelleColle: {fileID: 0}
 --- !u!4 &1748096912
 Transform:
   m_ObjectHideFlags: 0
@@ -3561,98 +3647,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97a00407d3c31b4db38e4fd623e0b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons:
-  - {fileID: 659199204}
-  - {fileID: 108935685}
+  buttons: []
   circleRange_: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
---- !u!1 &1783575582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1771860249}
-  - component: {fileID: 1771860251}
-  - component: {fileID: 1771860250}
-  m_Layer: 5
-  m_Name: Tourelle
-  - component: {fileID: 1783575583}
-  m_Layer: 5
-  m_Name: Slot3
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!224 &1783575583
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771860248}
+  m_GameObject: {fileID: 1353985551}
   m_LocalRotation: {x: -0, y: -0.9999881, z: -0, w: 0.0048907683}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 956994226}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -179.44, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.1, y: 14.7}
-  m_SizeDelta: {x: 59.07, y: 46.42}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1771860250
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771860248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e882d87389055c84d8270f8cc559898c, type: 3}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
---- !u!222 &1771860251
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1771860248}
-  m_CullTransparentMesh: 1
-  m_GameObject: {fileID: 1783575582}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.000075, y: 1.000075, z: 1.000075}
+  m_LocalPosition: {x: 0, y: 0, z: -0.09998605}
+  m_LocalScale: {x: 0.99989796, y: 0.99989796, z: 0.99989796}
   m_Children:
   - {fileID: 819760775}
   - {fileID: 1593082702}
   m_Father: {fileID: 681433864}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: -179.44, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -3948,7 +3960,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2091179136}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4566,6 +4578,7 @@ RectTransform:
   - {fileID: 791243826}
   - {fileID: 523357590}
   - {fileID: 1443719121}
+  - {fileID: 35082768}
   - {fileID: 1887633699}
   m_Father: {fileID: 0}
   m_RootOrder: 2

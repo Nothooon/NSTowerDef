@@ -154,7 +154,7 @@ public class turretSelection : MonoBehaviour
         }
         else if (projectile.GetComponent<projectileBallista>() != null)
         {
-            projectile.GetComponent<projectileBallista>().target = target;
+            projectile.GetComponent<projectileBallista>().SetTarget(target);
         }
     }
 

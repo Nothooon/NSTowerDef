@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class projectileBallista : MonoBehaviour
 {
-    public int power = 600;
-    public GameObject target;
+    public int power = 2;
+    [SerializeField] GameObject target;
     float targetSize = 0.5f;
+    public GameObject boomAnimation;
 
     // Update is called once per frame
     void Update()
@@ -17,7 +18,6 @@ public class projectileBallista : MonoBehaviour
             if (targetVector.magnitude <= targetSize) // if the projectile hit the target
             {
                 TouchTarget();
-                //Destroy(gameObject); // Destroy the projectile after it touches the target
             }
         }
     }
@@ -26,11 +26,19 @@ public class projectileBallista : MonoBehaviour
     void TouchTarget()
     {
         target.GetComponent<Ennemy>().takeDamage(power);
+        GameObject boom = Instantiate(boomAnimation, transform.position, new Quaternion(0, 0, 0, 0));
+        boom.transform.localScale = boom.transform.localScale * 0.25f;
+        //Destroy(gameObject); // Destroy the projectile after it touches the target
     }
 
     // Destroy the projectile if is out of bound
     void OnBecameInvisible()
     {
         Destroy(gameObject);
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
     }
 }

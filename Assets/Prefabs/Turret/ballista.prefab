@@ -129,4 +129,4 @@ MonoBehaviour:
   displayRange: 0
   projectilePrefab: {fileID: 6526398951606987512, guid: 8c19fb8e58fef794d9006f5535a8cc83, type: 3}
   projectileSpeed: 10000
-  fireRate: 0.1
+  fireRate: 10
