@@ -2645,6 +2645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tourelleStandard: {fileID: 1230466837415378142, guid: 98f9703cfe4743d43af4198eb3a614b8, type: 3}
   tourelleCanon: {fileID: 6964647414306671078, guid: 504f3ecbdc44f124abb6d552216161bb, type: 3}
+  tourelleBallista: {fileID: 4769486530548670545, guid: 618cd05937cdf9b429a78c389ab9ed47, type: 3}
 --- !u!4 &1748096912
 Transform:
   m_ObjectHideFlags: 0
