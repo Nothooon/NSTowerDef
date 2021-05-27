@@ -26,8 +26,6 @@ public class projectileBallista : MonoBehaviour
     void TouchTarget()
     {
         target.GetComponent<Ennemy>().takeDamage(power);
-        GameObject boom = Instantiate(boomAnimation, transform.position, new Quaternion(0, 0, 0, 0));
-        boom.transform.localScale = boom.transform.localScale * 0.25f;
         //Destroy(gameObject); // Destroy the projectile after it touches the target
     }
 
