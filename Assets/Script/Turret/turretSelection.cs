@@ -138,6 +138,10 @@ public class turretSelection : MonoBehaviour
         {
             projectile.GetComponent<projectileCanon>().target = target;
         }
+        else if (projectile.GetComponent<projectileBallista>() != null)
+        {
+            projectile.GetComponent<projectileBallista>().target = target;
+        }
     }
 
     /**
