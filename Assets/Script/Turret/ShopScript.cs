@@ -23,6 +23,7 @@ public class ShopScript : MonoBehaviour
         if(MoneyCounter.MoneyValue < turretBuilder.GetTourelleAConstruire().GetComponent<turretSelection>().GetPrice())
         {
             GenerateErrorMessage("Not enough money to buy this turret");
+            outilPoseTourelle.ReactivateButtons();
             outilPoseTourelle.enabled = false;
         }
         else
@@ -33,7 +34,7 @@ public class ShopScript : MonoBehaviour
         
     }
 
-    public void BuySecondaryTurret(){
+    public void BuyCannonTurret(){
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleCanon);
         GameObject t = turretBuilder.GetTourelleAConstruire();
@@ -41,6 +42,7 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            outilPoseTourelle.ReactivateButtons();
             GenerateErrorMessage("Not enough money to buy this turret");
             outilPoseTourelle.enabled = false;
         }
@@ -52,7 +54,7 @@ public class ShopScript : MonoBehaviour
        
     }
 
-    public void BuyFourthTurret()
+    public void BuyStickyTurret()
     {
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleColle);
@@ -61,6 +63,7 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            outilPoseTourelle.ReactivateButtons();
             Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
         }
@@ -71,7 +74,7 @@ public class ShopScript : MonoBehaviour
         }
     }
 
-    public void BuyThirdTurret()
+    public void BuyBallistaTurret()
     {
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleBallista);
@@ -80,6 +83,7 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            outilPoseTourelle.ReactivateButtons();
             Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
         }
