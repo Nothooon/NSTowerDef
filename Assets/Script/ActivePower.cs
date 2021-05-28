@@ -48,7 +48,7 @@ public class ActivePower : MonoBehaviour
         if(!isQuickShotOnCooldown){
             turrets.AddRange(GameObject.FindGameObjectsWithTag("Turret")); 
             foreach(GameObject turret in turrets.ToArray()){
-                turret.GetComponent<turretSelection>().fireRate *= 4f;
+                turret.GetComponent<turretSelection>().fireRate *= 1.5f;
                 turrets.Add(turret);
                 
             }
@@ -60,7 +60,7 @@ public class ActivePower : MonoBehaviour
     }
 
     public void addTurret(GameObject turret){
-        turret.GetComponent<turretSelection>().fireRate *= 1.2f;
+        turret.GetComponent<turretSelection>().fireRate *= 1.5f;
         turrets.Add(turret);
     }
 
@@ -80,7 +80,8 @@ public class ActivePower : MonoBehaviour
         if(isQuickShotOnCooldown){
             if(Time.time >= endQuickShotTime){
                 foreach(GameObject turret in turrets){
-                    turret.GetComponent<turretSelection>().fireRate /= 1.2f;
+                    Debug.Log("test");
+                    turret.GetComponent<turretSelection>().fireRate = turret.GetComponent<turretSelection>().fireRate / 3 *2;
                 }
                 turrets.Clear();
             }

@@ -10,7 +10,7 @@ public class EnnemySpawner : MonoBehaviour
     public Transform[] waypoints;
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
-    private bool paused;
+    public bool paused;
     private bool wavesFinished = false;
 
 

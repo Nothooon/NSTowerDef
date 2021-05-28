@@ -701,6 +701,7 @@ MonoBehaviour:
   - {fileID: 879777820}
   - {fileID: 2072580515}
   - {fileID: 2028433166}
+  paused: 0
 --- !u!114 &304650192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -720,7 +721,9 @@ MonoBehaviour:
   waveCounter: {fileID: 7650656455437341733}
   shop: {fileID: 681433863}
   turrentBuilder: {fileID: 1748096910}
-  powerButons: {fileID: 0}
+  powerButons:
+  - {fileID: 467614737}
+  - {fileID: 4241204102180286516}
 --- !u!4 &304650193
 Transform:
   m_ObjectHideFlags: 0
@@ -3647,7 +3650,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d97a00407d3c31b4db38e4fd623e0b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: []
+  buttons:
+  - {fileID: 659199204}
+  - {fileID: 108935685}
+  - {fileID: 354605735}
+  - {fileID: 1593082701}
   circleRange_: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
 --- !u!224 &1783575583
 RectTransform:
