@@ -173,7 +173,7 @@ public class turretAdding : MonoBehaviour
     }
 
 
-    private void ReactivateButtons(){
+    public void ReactivateButtons(){
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Button>().interactable = true;
