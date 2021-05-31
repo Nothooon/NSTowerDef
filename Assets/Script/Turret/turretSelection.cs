@@ -179,16 +179,22 @@ public class turretSelection : MonoBehaviour
      */
     private void OnMouseUp()
     {
-        if(!displayRange)
+        if (enabled)
         {
-            GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
-            foreach (GameObject turret in turrets)
+            if (!displayRange)
             {
-                turret.GetComponentInChildren<turretSelection>().displayRange = false;
+                GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
+                foreach (GameObject turret in turrets)
+                {
+                    if (turret.GetComponentInChildren<turretSelection>() != null)
+                    {
+                        turret.GetComponentInChildren<turretSelection>().displayRange = false;
+                    }
+                }
             }
+            displayRange = !displayRange;
+            buttonSell.SetActive(displayRange);
         }
-        displayRange = !displayRange;
-        buttonSell.SetActive(displayRange);
     }
 
     /**

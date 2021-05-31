@@ -93,7 +93,7 @@ public class turretAdding : MonoBehaviour
             GameObject spawned = Instantiate(turret);
             spawned.transform.position = mousePos2D;
             circleRange.SetActive(false);
-            turretSprite.SetActive(false);
+            Destroy(turretSprite.gameObject);
             return true;
         }
 
