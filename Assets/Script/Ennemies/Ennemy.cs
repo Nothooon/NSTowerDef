@@ -69,5 +69,13 @@ public class Ennemy : MonoBehaviour
         this.currentSpeed = this.speed;
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("hit");
+        if (collision.GetComponent<projectileBallista>() != null)
+        {
+            takeDamage(collision.GetComponent<projectileBallista>().power);
+        }
+    }
 
 }

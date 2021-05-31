@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 386149991
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8cf8ea0ba3e5fd4aa3168695a1bcb12, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90672761c3e83994a9a81d86eea4ffa8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -101,8 +101,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 5.12, y: 5.12}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -125,8 +125,8 @@ MonoBehaviour:
   circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
   target: {fileID: 0}
   price: 150
-  range: 3
+  range: 4
   displayRange: 0
   projectilePrefab: {fileID: 6526398951606987512, guid: 8c19fb8e58fef794d9006f5535a8cc83, type: 3}
   projectileSpeed: 10000
-  fireRate: 10
+  fireRate: 1
