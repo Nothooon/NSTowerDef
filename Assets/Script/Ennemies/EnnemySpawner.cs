@@ -105,8 +105,6 @@ public class EnnemySpawner : MonoBehaviour
             }
         }
 
-
-
         return 0;
     }
 

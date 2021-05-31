@@ -139,7 +139,6 @@ MonoBehaviour:
   reward: 500
   points: 10
   speed: 3
-  currentSpeed: 0
   slider: {fileID: 8000368681091235733}
 --- !u!61 &4577389895215406990
 BoxCollider2D:
@@ -156,7 +155,7 @@ BoxCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0.000000029802322, y: -0.56158954}
   m_SpriteTilingProperty:
-    border: {x: 1.8199999, y: 0, z: 1.74, w: 1.1}
+    border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5061146, y: 0.2851153}
     oldSize: {x: 5.12, y: 2.56}
     newSize: {x: 5.12, y: 2.56}
