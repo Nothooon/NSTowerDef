@@ -139,6 +139,7 @@ MonoBehaviour:
   reward: 30
   points: 0
   speed: 5
+  currentSpeed: 0
   slider: {fileID: 7868002473286130863}
 --- !u!61 &8611010994274055921
 BoxCollider2D:
