@@ -127,9 +127,10 @@ public class turretAdding : MonoBehaviour
 
             // Initialize the turretSprite
             turretSprite = Instantiate(turret);
+            turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
             turretSprite.transform.position = mousePos2D;
             turretSprite.transform.parent = gameObject.transform;
-            turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
+            
         }
     }
 

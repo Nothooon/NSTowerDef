@@ -21,8 +21,10 @@ public class turretSelection : MonoBehaviour
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed = 60.0f;
 
-    public float fireRate = 0.6f; // number of seconds between two shots
+    public GameObject sellButton;
+    GameObject buttonSell;
 
+    public float fireRate = 0.6f; // number of seconds between two shots
 
 
     // Start is called before the first frame update
@@ -39,8 +41,14 @@ public class turretSelection : MonoBehaviour
         circleRange = Instantiate(circle);
         circleRange.transform.localScale = new Vector3(1, 1, 1) * range * 2;
         circleRange.transform.position = gameObject.transform.position;
-        circleRange.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.5f);
-        circleRange.transform.parent = gameObject.transform;
+        circleRange.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.25f);
+        //circleRange.transform.parent = gameObject.transform;
+
+
+        buttonSell = Instantiate(sellButton);
+        buttonSell.GetComponent<SellTurret>().SetTurret(gameObject);
+        buttonSell.transform.position = new Vector2(3.5f,-3.15f);
+        buttonSell.SetActive(false);
 
         // Call of the shot at the chosen frequency
         StartCoroutine(TryShootingCo());
@@ -66,7 +74,7 @@ public class turretSelection : MonoBehaviour
             Vector3 targetPos = target.transform.position;
 
             // We show the target tracked
-            circleEnemy.SetActive(true);
+            circleEnemy.SetActive(displayRange);
             circleEnemy.transform.position = targetPos;
 
             // We calculate the turret rotation
@@ -164,6 +172,34 @@ public class turretSelection : MonoBehaviour
     public int GetPrice()
     {
         return price;
+    }
+
+    /**
+     * The click activate the display mode
+     */
+    private void OnMouseUp()
+    {
+        if(!displayRange)
+        {
+            GameObject[] turrets = GameObject.FindGameObjectsWithTag("Turret");
+            foreach (GameObject turret in turrets)
+            {
+                turret.GetComponentInChildren<turretSelection>().displayRange = false;
+            }
+        }
+        displayRange = !displayRange;
+        buttonSell.SetActive(displayRange);
+    }
+
+    /**
+     * Display the turret and its components
+     */
+    public void Delete()
+    {
+        Destroy(circleEnemy);
+        Destroy(circleRange);
+        Destroy(buttonSell);
+        Destroy(gameObject);
     }
 
 }
