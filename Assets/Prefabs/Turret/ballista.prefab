@@ -129,4 +129,5 @@ MonoBehaviour:
   displayRange: 0
   projectilePrefab: {fileID: 6526398951606987512, guid: 8c19fb8e58fef794d9006f5535a8cc83, type: 3}
   projectileSpeed: 10000
+  sellButton: {fileID: 5823854123475464939, guid: c7e01fb98d6040147965c83dc9eec3ab, type: 3}
   fireRate: 10

@@ -130,6 +130,7 @@ MonoBehaviour:
   displayRange: 0
   projectilePrefab: {fileID: 318978306617464399, guid: abc919970464ab4429222a9fdadfb72c, type: 3}
   projectileSpeed: 60
+  sellButton: {fileID: 0}
   fireRate: 0.6
 --- !u!1 &4559738526605141785
 GameObject:
@@ -233,4 +234,5 @@ MonoBehaviour:
   displayRange: 0
   projectilePrefab: {fileID: 318978306617464399, guid: abc919970464ab4429222a9fdadfb72c, type: 3}
   projectileSpeed: 6000
+  sellButton: {fileID: 5823854123475464939, guid: c7e01fb98d6040147965c83dc9eec3ab, type: 3}
   fireRate: 1.5

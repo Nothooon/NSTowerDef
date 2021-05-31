@@ -1,18 +1,18 @@
 using UnityEngine;
 using System.Collections; 
 using TMPro;
+using UnityEngine.UI;
 
 public class ShopScript : MonoBehaviour
 {
     TurretBuilder turretBuilder;
     turretAdding outilPoseTourelle;
-    public GameObject errorPosition;
     public GameObject errorMessage;
-    
+    public GameObject[] buttons;
+
     private void Start(){
         turretBuilder = GameObject.Find("TurretBuilder").GetComponent(typeof(TurretBuilder)) as TurretBuilder;
         outilPoseTourelle = turretBuilder.GetOutilPoseTourelle();
-        errorPosition = GameObject.Find("ErrorMessages");
     }
 
 
@@ -28,6 +28,7 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
@@ -48,6 +49,7 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
@@ -69,6 +71,7 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
@@ -89,15 +92,21 @@ public class ShopScript : MonoBehaviour
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
     }
 
     private void GenerateErrorMessage(string message){
-        errorMessage.GetComponent<TextMeshProUGUI>().text = "caca";
-        Instantiate(errorMessage, errorPosition.transform.position, errorPosition.transform.rotation);
+        errorMessage.GetComponent<TextMeshProUGUI>().text = message;
+        errorMessage.GetComponent<Animator>().Play("FadeAwayText");
     }
 
-
+    public void DeactivateButtons(){
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Button>().interactable = false;
+        }
+    }
 }
