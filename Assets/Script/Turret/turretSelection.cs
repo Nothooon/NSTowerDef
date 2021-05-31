@@ -205,6 +205,10 @@ public class turretSelection : MonoBehaviour
         Destroy(circleEnemy);
         Destroy(circleRange);
         Destroy(buttonSell);
+        if(transform.parent != null && transform.parent.tag == "Turret")
+        {
+            Destroy(transform.parent.gameObject);
+        }
         Destroy(gameObject);
     }
 
