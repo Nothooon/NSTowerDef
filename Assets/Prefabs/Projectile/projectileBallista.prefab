@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -7318221569226922865}
   - component: {fileID: 674023693707377570}
   - component: {fileID: -2600138429471962746}
+  - component: {fileID: -2713528436857012070}
   m_Layer: 0
   m_Name: projectileBallista
   m_TagString: Projectile
@@ -99,7 +100,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -117,5 +118,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4cf60b71fda74f4898b4887e3e90b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 2
+  power: 10
   target: {fileID: 0}
+  boomAnimation: {fileID: 0}
+--- !u!58 &-2713528436857012070
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6526398951606987512}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.16
