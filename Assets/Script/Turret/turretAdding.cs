@@ -93,7 +93,7 @@ public class turretAdding : MonoBehaviour
             GameObject spawned = Instantiate(turret);
             spawned.transform.position = mousePos2D;
             circleRange.SetActive(false);
-            turretSprite.SetActive(false);
+            Destroy(turretSprite.gameObject);
             return true;
         }
 
@@ -127,9 +127,10 @@ public class turretAdding : MonoBehaviour
 
             // Initialize the turretSprite
             turretSprite = Instantiate(turret);
+            turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
             turretSprite.transform.position = mousePos2D;
             turretSprite.transform.parent = gameObject.transform;
-            turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
+            
         }
     }
 
@@ -173,7 +174,7 @@ public class turretAdding : MonoBehaviour
     }
 
 
-    private void ReactivateButtons(){
+    public void ReactivateButtons(){
         foreach (GameObject button in buttons)
         {
             button.GetComponent<Button>().interactable = true;

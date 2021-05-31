@@ -1,18 +1,18 @@
 using UnityEngine;
 using System.Collections; 
 using TMPro;
+using UnityEngine.UI;
 
 public class ShopScript : MonoBehaviour
 {
     TurretBuilder turretBuilder;
     turretAdding outilPoseTourelle;
-    public GameObject errorPosition;
     public GameObject errorMessage;
-    
+    public GameObject[] buttons;
+
     private void Start(){
         turretBuilder = GameObject.Find("TurretBuilder").GetComponent(typeof(TurretBuilder)) as TurretBuilder;
         outilPoseTourelle = turretBuilder.GetOutilPoseTourelle();
-        errorPosition = GameObject.Find("ErrorMessages");
     }
 
 
@@ -23,17 +23,19 @@ public class ShopScript : MonoBehaviour
         if(MoneyCounter.MoneyValue < turretBuilder.GetTourelleAConstruire().GetComponent<turretSelection>().GetPrice())
         {
             GenerateErrorMessage("Not enough money to buy this turret");
+            outilPoseTourelle.ReactivateButtons();
             outilPoseTourelle.enabled = false;
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
         
     }
 
-    public void BuySecondaryTurret(){
+    public void BuyCannonTurret(){
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleCanon);
         GameObject t = turretBuilder.GetTourelleAConstruire();
@@ -41,18 +43,20 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            outilPoseTourelle.ReactivateButtons();
             GenerateErrorMessage("Not enough money to buy this turret");
             outilPoseTourelle.enabled = false;
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
        
     }
 
-    public void BuyFourthTurret()
+    public void BuyStickyTurret()
     {
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleColle);
@@ -61,17 +65,19 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            outilPoseTourelle.ReactivateButtons();
             Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
     }
 
-    public void BuyThirdTurret()
+    public void BuyBallistaTurret()
     {
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleBallista);
@@ -80,20 +86,27 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            outilPoseTourelle.ReactivateButtons();
             Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
         }
         else
         {
+            DeactivateButtons();
             outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
             outilPoseTourelle.enabled = true;
         }
     }
 
     private void GenerateErrorMessage(string message){
-        errorMessage.GetComponent<TextMeshProUGUI>().text = "caca";
-        Instantiate(errorMessage, errorPosition.transform.position, errorPosition.transform.rotation);
+        errorMessage.GetComponent<TextMeshProUGUI>().text = message;
+        errorMessage.GetComponent<Animator>().Play("FadeAwayText");
     }
 
-
+    public void DeactivateButtons(){
+        foreach (GameObject button in buttons)
+        {
+            button.GetComponent<Button>().interactable = false;
+        }
+    }
 }

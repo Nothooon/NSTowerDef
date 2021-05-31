@@ -9,7 +9,7 @@ public class BoutonsMenuPrincipal : MonoBehaviour
 
 
     public void launchFirstLevel(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("LevelPreview");
     }
 
     public void QuitGame(){
