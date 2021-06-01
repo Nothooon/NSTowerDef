@@ -7,13 +7,9 @@ public class PauseManager : MonoBehaviour
     // Start is called before the first frame update
 
     public bool isPaused;
+
+    public GameObject[] UIElements;
     public GameObject pauseUI;
-    public GameObject moneyCounter;
-    public GameObject lifeCounter;
-    public GameObject waveCounter;
-    public GameObject shop;
-    public GameObject turrentBuilder;
-    public GameObject[] powerButons;
     public static PauseManager instance;
     //private bool cantPause;
 
@@ -33,15 +29,9 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0;
 
-        turrentBuilder.SetActive(false);
-        shop.SetActive(false);
-        waveCounter.SetActive(false);
-        lifeCounter.SetActive(false);
-        moneyCounter.SetActive(false);
-        foreach(GameObject button in powerButons){
-            button.SetActive(false);
+        foreach(GameObject elem in UIElements){
+            elem.SetActive(false);
         }
-        gameObject.GetComponent<EnnemySpawner>().pauseSpawn();
     }
 
     public void unPauseGame(){
@@ -49,16 +39,9 @@ public class PauseManager : MonoBehaviour
         isPaused = false;
         Time.timeScale = 1;
         
-        turrentBuilder.SetActive(true);
-        shop.SetActive(true);
-        waveCounter.SetActive(true);
-        lifeCounter.SetActive(true);
-        moneyCounter.SetActive(true);
-        foreach(GameObject button in powerButons){
-            button.SetActive(true);
+        foreach(GameObject elem in UIElements){
+            elem.SetActive(true);
         }
-        
-        gameObject.GetComponent<EnnemySpawner>().unPauseSpawn();
     }
 
     // Update is called once per frame

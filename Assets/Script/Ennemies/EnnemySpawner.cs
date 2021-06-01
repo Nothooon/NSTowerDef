@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class EnnemySpawner : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject[] spawnee;
     private GameObject instance;
+    public Button nextWaveButton;
     public Transform[] waypoints;
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
@@ -15,62 +16,50 @@ public class EnnemySpawner : MonoBehaviour
 
 
     void Start(){
-        StartCoroutine(Waves());
+        
         wavesFinished = false;
         paused = false;    
     }
 
+    public void launchWaves(){
+        StartCoroutine(Waves());
+        nextWaveButton.interactable = false;
+    }
 
     IEnumerator Waves(){
         // WAVE 1
-        points = 10;
-        yield return new WaitForSecondsRealtime(5); // preparation time
+        yield return new WaitForSeconds(2); // preparation time
         WaveCounter.WaveActual++;
-        difficulty = 0.5f;
-        while(points > 0){ 
-            if(!paused){
-                points -= SpawnEnemies(points,difficulty);
-                Debug.Log(points);
-
-            }else{
-                yield return new WaitUntil(() => !paused );
-            }
-            yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(1); // interval between enemies spawn
         }
-        //GetComponentInParent<GameOverManager>().onDefeat();
 
         // WAVE 2
-        points = 20;
-        yield return new WaitForSecondsRealtime(5); // preparation time
+        yield return new WaitForSeconds(5); // preparation time
         WaveCounter.WaveActual++;
-        difficulty = 0.2f;
-        while(points > 0){ 
-            if(!paused){
-                points -= SpawnEnemies(points,difficulty);
-                Debug.Log(points);
-            }else{
-                yield return new WaitUntil(() => !paused );
-            }
-            yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
+        SpawnEnemy(2);
+        yield return new WaitForSeconds(1); // interval between enemies spawn
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(1); // interval between enemies spawn
         }
 
         // WAVE 3
-        points = 50;
-        yield return new WaitForSecondsRealtime(5); // preparation time
+        yield return new WaitForSeconds(5); // preparation time
         WaveCounter.WaveActual++;
-        difficulty = 0f;
-        while(points > 0){ 
-            if(!paused){
-                points -= SpawnEnemies(points,difficulty);
-                Debug.Log(points);
-            }else{
-                yield return new WaitUntil(() => !paused );
-            }
-            yield return new WaitForSecondsRealtime(1); // interval between enemies spawn
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(1); // interval between enemies spawn
         }
+
         wavesFinished =  true;
-        
     }
+    
+    /*
     public int SpawnEnemies(int points, float difficulty){
         float random = Random.Range(0f,1f);
         int enemyIndex = 0;
@@ -107,7 +96,7 @@ public class EnnemySpawner : MonoBehaviour
 
         return 0;
     }
-
+*/
 
 
     public int SpawnEnemy(int enemyIndex){
@@ -117,17 +106,6 @@ public class EnnemySpawner : MonoBehaviour
         follow.SetWaypoints(waypoints);
         return spawnee[enemyIndex].GetComponent<Ennemy>().points;
     }
-
-    public void pauseSpawn(){
-        StopCoroutine("Waves");
-        this.paused = true;
-    }
-
-    public void unPauseSpawn(){
-        StartCoroutine("Waves");
-        this.paused = false;
-    }
-
     public void Update(){
         if(wavesFinished && points == 0 && FindObjectOfType<Ennemy>() == null){
             GetComponent<GameOverManager>().onSuccess();
