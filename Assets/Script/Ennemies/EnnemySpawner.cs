@@ -2,33 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class EnnemySpawner : MonoBehaviour
 {
     public Transform spawnPoint;
-    public GameObject[] spawnee;
+    public GameObject[] spawnee; // an array of the enemies that will spawn in this level
     private GameObject instance;
-    public Button nextWaveButton;
+    public Button nextWaveButton; // the button triggering the next wave
     public Transform[] waypoints;
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
-    public bool paused;
+    public bool triggerNextWave; // will trigger the next wave if true
     private bool wavesFinished = false;
 
 
     void Start(){
-        
         wavesFinished = false;
-        paused = false;    
+        triggerNextWave = false;
+        StartCoroutine(Waves());
     }
 
-    public void launchWaves(){
-        StartCoroutine(Waves());
-        nextWaveButton.interactable = false;
-    }
 
     IEnumerator Waves(){
         // WAVE 1
-        yield return new WaitForSeconds(2); // preparation time
+        yield return new WaitUntil(() => triggerNextWave);
+        triggerNextWave = false;
+        this.nextWaveButton.interactable = false;
+        yield return new WaitForSeconds(1); // smooth transition
         WaveCounter.WaveActual++;
         for (int i = 0; i < 10; i++)
         {
@@ -36,9 +36,16 @@ public class EnnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(1); // interval between enemies spawn
         }
 
+
+
         // WAVE 2
-        yield return new WaitForSeconds(5); // preparation time
+        nextWaveButton.interactable = true;
+        float preparationTime = Time.time + 5;
+        yield return new WaitUntil(() => testNextWave(preparationTime));
+        yield return new WaitForSeconds(1); // smooth transition
         WaveCounter.WaveActual++;
+
+
         SpawnEnemy(2);
         yield return new WaitForSeconds(1); // interval between enemies spawn
         for (int i = 0; i < 10; i++)
@@ -47,9 +54,16 @@ public class EnnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(1); // interval between enemies spawn
         }
 
+
+
         // WAVE 3
-        yield return new WaitForSeconds(5); // preparation time
+        nextWaveButton.interactable = true;
+        preparationTime = Time.time + 5;
+        yield return new WaitUntil(() => testNextWave(preparationTime));
+        yield return new WaitForSeconds(1); // smooth transition
         WaveCounter.WaveActual++;
+        
+
         for (int i = 0; i < 10; i++)
         {
             SpawnEnemy(3);
@@ -58,9 +72,23 @@ public class EnnemySpawner : MonoBehaviour
 
         wavesFinished =  true;
     }
+
+    public void nextWave(){
+        this.triggerNextWave = true;
+    }
+
+    private bool testNextWave(float timeInterval){
+       if(triggerNextWave || Time.time >= timeInterval){
+            this.nextWaveButton.interactable = false;
+            triggerNextWave = false;
+            return true;    
+       }else{
+           return false;
+       }
+    }
     
     /*
-    public int SpawnEnemies(int points, float difficulty){
+    public int SpawnRandomEnemies(int points, float difficulty){
         float random = Random.Range(0f,1f);
         int enemyIndex = 0;
         random += difficulty;

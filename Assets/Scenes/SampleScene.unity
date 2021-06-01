@@ -715,7 +715,7 @@ MonoBehaviour:
   - {fileID: 879777820}
   - {fileID: 2072580515}
   - {fileID: 2028433166}
-  paused: 0
+  triggerNextWave: 0
 --- !u!114 &304650192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -729,7 +729,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPaused: 0
-  UIElements: []
+  UIElements:
+  - {fileID: 2047032081}
+  - {fileID: 681433863}
+  - {fileID: 1807823961}
+  - {fileID: 1136855267}
+  - {fileID: 1573077283}
+  - {fileID: 1489197482}
+  - {fileID: 588406878}
   pauseUI: {fileID: 844840127}
 --- !u!4 &304650193
 Transform:
@@ -1761,7 +1768,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 304650191}
         m_TargetAssemblyTypeName: EnnemySpawner, Assembly-CSharp
-        m_MethodName: launchWaves
+        m_MethodName: nextWave
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3389,7 +3396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Next
+  m_text: Begin
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
   m_sharedMaterial: {fileID: -8038383525292327815, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
@@ -4018,6 +4025,11 @@ PrefabInstance:
       objectReference: {fileID: 12800000, guid: 110c02677a9ea004984dcfd7f065a632, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fbc19ad5411ddbc42ae02c31eec8aa47, type: 3}
+--- !u!1 &1136855267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5112289572628408810, guid: fbc19ad5411ddbc42ae02c31eec8aa47, type: 3}
+  m_PrefabInstance: {fileID: 1136855266}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1150080642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5215,6 +5227,11 @@ Transform:
   m_Father: {fileID: 662085227}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1573077283 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4241204102147990076, guid: 03d6893bfc4e25549a5a44180c9b2b0a, type: 3}
+  m_PrefabInstance: {fileID: 4241204102180286515}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1593082701
 GameObject:
   m_ObjectHideFlags: 0
@@ -5811,6 +5828,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e9a2c7f0703c0f45bb3f89a3c693807, type: 3}
+--- !u!1 &1807823961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 789162712191567317, guid: 7e9a2c7f0703c0f45bb3f89a3c693807, type: 3}
+  m_PrefabInstance: {fileID: 1807823960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1845254698
 GameObject:
   m_ObjectHideFlags: 0
