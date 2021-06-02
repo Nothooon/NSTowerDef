@@ -5,6 +5,8 @@ using UnityEngine;
 public class KeepAudio : MonoBehaviour
 {
     private static KeepAudio instance;
+    public GameObject[] objects;
+
     void Awake(){
         DontDestroyOnLoad(transform.gameObject);
         if(instance != null){
@@ -12,6 +14,10 @@ public class KeepAudio : MonoBehaviour
         }else {
             instance = this;
             DontDestroyOnLoad(transform.gameObject);
+        }
+
+        foreach(GameObject audio in objects){
+                DontDestroyOnLoad(audio);
         }
     }
 }
