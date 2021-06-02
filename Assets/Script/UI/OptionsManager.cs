@@ -12,6 +12,7 @@ public class OptionsManager : MonoBehaviour
     public GameObject sliderMusic;
     public GameObject sliderSound;
     public AudioMixer audioMixer;
+
     public void Start(){
         
         setMusicVolume(sliderMusic.GetComponent<Slider>().value);
