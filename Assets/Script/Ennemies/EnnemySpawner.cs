@@ -28,8 +28,9 @@ public class EnnemySpawner : MonoBehaviour
         yield return new WaitUntil(() => triggerNextWave);
         triggerNextWave = false;
         this.nextWaveButton.interactable = false;
-        yield return new WaitForSeconds(1); // smooth transition
+        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";
         WaveCounter.WaveActual++;
+        yield return new WaitForSeconds(1); // smooth transition
         for (int i = 0; i < 10; i++)
         {
             SpawnEnemy(3);
@@ -42,8 +43,9 @@ public class EnnemySpawner : MonoBehaviour
         nextWaveButton.interactable = true;
         float preparationTime = Time.time + 5;
         yield return new WaitUntil(() => testNextWave(preparationTime));
-        yield return new WaitForSeconds(1); // smooth transition
         WaveCounter.WaveActual++;
+        yield return new WaitForSeconds(1); // smooth transition
+        
 
 
         SpawnEnemy(2);
@@ -60,8 +62,8 @@ public class EnnemySpawner : MonoBehaviour
         nextWaveButton.interactable = true;
         preparationTime = Time.time + 5;
         yield return new WaitUntil(() => testNextWave(preparationTime));
-        yield return new WaitForSeconds(1); // smooth transition
         WaveCounter.WaveActual++;
+        yield return new WaitForSeconds(1); // smooth transition
         
 
         for (int i = 0; i < 10; i++)
