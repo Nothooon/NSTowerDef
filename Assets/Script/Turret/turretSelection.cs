@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class turretSelection : MonoBehaviour
 {
@@ -21,8 +24,10 @@ public class turretSelection : MonoBehaviour
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed = 60.0f;
 
-    public GameObject sellButton;
+    public GameObject buttonSellAsset;
     GameObject buttonSell;
+    public GameObject refundTextAsset;
+    GameObject refundText;
 
     public float fireRate = 0.6f; // number of seconds between two shots
 
@@ -45,10 +50,18 @@ public class turretSelection : MonoBehaviour
         //circleRange.transform.parent = gameObject.transform;
 
 
-        buttonSell = Instantiate(sellButton);
+        buttonSell = Instantiate(buttonSellAsset);
         buttonSell.GetComponent<SellTurret>().SetTurret(gameObject);
         buttonSell.transform.position = new Vector2(3.5f,-3.15f);
         buttonSell.SetActive(false);
+
+        refundText = Instantiate(refundTextAsset);
+        refundText.transform.SetParent(GameObject.Find("UI").transform);
+        refundText.transform.localScale = Vector3.one;
+        refundText.GetComponent<RectTransform>().anchoredPosition = new Vector3(280f, -285f,0);
+        refundText.GetComponent<Text>().text = (0.8f * price).ToString() ;
+        refundText.SetActive(false);
+
 
         // Call of the shot at the chosen frequency
         StartCoroutine(TryShootingCo());
@@ -188,12 +201,15 @@ public class turretSelection : MonoBehaviour
                 {
                     if (turret.GetComponentInChildren<turretSelection>() != null)
                     {
-                        turret.GetComponentInChildren<turretSelection>().displayRange = false;
+                        turretSelection tmp = turret.GetComponentInChildren<turretSelection>();
+                        tmp.displayRange = false;
+                        tmp.refundText.SetActive(false);
                     }
                 }
             }
             displayRange = !displayRange;
             buttonSell.SetActive(displayRange);
+            refundText.SetActive(displayRange);
         }
     }
 
@@ -205,6 +221,7 @@ public class turretSelection : MonoBehaviour
         Destroy(circleEnemy);
         Destroy(circleRange);
         Destroy(buttonSell);
+        Destroy(refundText);
         if(transform.parent != null && transform.parent.tag == "Turret")
         {
             Destroy(transform.parent.gameObject);
