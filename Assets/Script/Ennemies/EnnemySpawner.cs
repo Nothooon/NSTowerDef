@@ -1,13 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+
 public class EnnemySpawner : MonoBehaviour
 {
     public Transform spawnPoint;
     public GameObject[] spawnee; // an array of the enemies that will spawn in this level
     private GameObject instance;
+
+    private GameObject timerUntilNextWave;
     public Button nextWaveButton; // the button triggering the next wave
     public Transform[] waypoints;
     private int points; // the higher the number, the more enemies will spawn
@@ -15,21 +19,28 @@ public class EnnemySpawner : MonoBehaviour
     public bool triggerNextWave; // will trigger the next wave if true
     private bool wavesFinished = false;
 
+    float preparationTime;
+    int timerText;
 
     void Start(){
         wavesFinished = false;
         triggerNextWave = false;
+        timerUntilNextWave = GameObject.Find("TimerNextWave");
         StartCoroutine(Waves());
     }
 
 
     IEnumerator Waves(){
         // WAVE 1
-        yield return new WaitUntil(() => triggerNextWave);
         triggerNextWave = false;
-        this.nextWaveButton.interactable = false;
-        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";
+        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
+        preparationTime = 90f;
+        timerText = (int) Math.Round(preparationTime, 0);
+        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
+        yield return new WaitUntil(() => testNextWave(preparationTime));
         WaveCounter.WaveActual++;
+
+
         yield return new WaitForSeconds(1); // smooth transition
         for (int i = 0; i < 10; i++)
         {
@@ -40,8 +51,11 @@ public class EnnemySpawner : MonoBehaviour
 
 
         // WAVE 2
+        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";
         nextWaveButton.interactable = true;
-        float preparationTime = Time.time + 5;
+        preparationTime = 90f;
+        timerText = (int) Math.Round(preparationTime, 0);
+        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
         yield return new WaitUntil(() => testNextWave(preparationTime));
         WaveCounter.WaveActual++;
         yield return new WaitForSeconds(1); // smooth transition
@@ -60,7 +74,7 @@ public class EnnemySpawner : MonoBehaviour
 
         // WAVE 3
         nextWaveButton.interactable = true;
-        preparationTime = Time.time + 5;
+        preparationTime = 90f;
         yield return new WaitUntil(() => testNextWave(preparationTime));
         WaveCounter.WaveActual++;
         yield return new WaitForSeconds(1); // smooth transition
@@ -77,14 +91,19 @@ public class EnnemySpawner : MonoBehaviour
 
     public void nextWave(){
         this.triggerNextWave = true;
+        nextWaveButton.interactable = false;
+        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + 0;
     }
 
     private bool testNextWave(float timeInterval){
-       if(triggerNextWave || Time.time >= timeInterval){
+       if(triggerNextWave || 0 >= timeInterval){
             this.nextWaveButton.interactable = false;
             triggerNextWave = false;
             return true;    
        }else{
+           preparationTime-= Time.deltaTime;
+           timerText = (int) Math.Round(preparationTime, 0);
+           timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = ""+timerText;
            return false;
        }
     }
