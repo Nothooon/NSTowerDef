@@ -469,7 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSource: {fileID: 61035241}
   soundSource: {fileID: 61035240}
-  paperSound: {fileID: 8300000, guid: 703b5a3f06d953d43b5bed54df84c1f9, type: 3}
+  soundEffectMixer: {fileID: -5248801089117726536, guid: 30b488dee51e7ed49b04978bccb2815a, type: 2}
 --- !u!4 &61035243
 Transform:
   m_ObjectHideFlags: 0
@@ -2630,10 +2630,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1938377452}
   m_HandleRect: {fileID: 1167967987}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
-  m_WholeNumbers: 1
-  m_Value: 0
+  m_MinValue: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -4006,10 +4006,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 767066881}
   m_HandleRect: {fileID: 805683249}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
-  m_WholeNumbers: 1
-  m_Value: 0
+  m_MinValue: 0
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
