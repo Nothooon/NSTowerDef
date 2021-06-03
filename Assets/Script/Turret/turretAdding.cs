@@ -5,6 +5,8 @@ public class turretAdding : MonoBehaviour
 {
     public GameObject[] buttons;
     private GameObject turret;
+    private GameObject audioMixer;
+    public AudioClip buyingSound;
     float radius;
 
     public GameObject circleRange_;
@@ -15,6 +17,7 @@ public class turretAdding : MonoBehaviour
 
     private void Start()
     {
+        audioMixer = GameObject.Find("AudioManager");
         // Recover mouse position
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
@@ -47,6 +50,7 @@ public class turretAdding : MonoBehaviour
         {
             if (trySpawnTurret()){
                 MoneyCounter.MoneyValue -= turret.GetComponentInChildren<turretSelection>().GetPrice();
+                audioMixer.GetComponent<audioManager>().playSound(buyingSound);
                 ReactivateButtons();
             }
         }

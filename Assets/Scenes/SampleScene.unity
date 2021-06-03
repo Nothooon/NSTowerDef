@@ -694,6 +694,7 @@ MonoBehaviour:
   - {fileID: 4226188520265023569, guid: 28e099fab0ee4c14bbbfbc9df5d07d99, type: 3}
   - {fileID: 2466671384839661376, guid: 60a269049f9b4d74b8860baf453dd4c4, type: 3}
   - {fileID: 6212759062065800814, guid: d2e74a5d689264f40bbfd2a55d028e9c, type: 3}
+  waveStartSound: {fileID: 8300000, guid: 81e93862feb6cfe409ac10319889917e, type: 3}
   nextWaveButton: {fileID: 588406880}
   waypoints:
   - {fileID: 1635479787}
@@ -1814,18 +1815,6 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8300000, guid: 64a570f937535ea47b21be2055abecb8, type: 3}
-        m_TargetAssemblyTypeName: EnnemySpawner, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5766,6 +5755,7 @@ MonoBehaviour:
   - {fileID: 108935685}
   - {fileID: 354605735}
   - {fileID: 1593082701}
+  buyingSound: {fileID: 8300000, guid: 5c6b69c5cc29cb94da218635a74f07a2, type: 3}
   circleRange_: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
 --- !u!1 &1761684848
 GameObject:
