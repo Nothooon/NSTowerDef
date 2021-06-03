@@ -11,6 +11,9 @@ public class EnnemySpawner : MonoBehaviour
     public GameObject[] spawnee; // an array of the enemies that will spawn in this level
     private GameObject instance;
 
+    private GameObject audioMixer;
+    public AudioClip waveStartSound;
+
     private GameObject timerUntilNextWave;
     public Button nextWaveButton; // the button triggering the next wave
     public Transform[] waypoints;
@@ -26,6 +29,7 @@ public class EnnemySpawner : MonoBehaviour
         wavesFinished = false;
         triggerNextWave = false;
         timerUntilNextWave = GameObject.Find("TimerNextWave");
+        audioMixer = GameObject.Find("AudioManager");
         StartCoroutine(Waves());
     }
 
@@ -99,6 +103,7 @@ public class EnnemySpawner : MonoBehaviour
        if(triggerNextWave || 0 >= timeInterval){
             this.nextWaveButton.interactable = false;
             triggerNextWave = false;
+            audioMixer.GetComponent<audioManager>().playSound(waveStartSound);
             return true;    
        }else{
            preparationTime-= Time.deltaTime;

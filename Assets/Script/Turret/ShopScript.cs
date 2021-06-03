@@ -43,8 +43,8 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
-            outilPoseTourelle.ReactivateButtons();
             GenerateErrorMessage("Not enough money to buy this turret");
+            outilPoseTourelle.ReactivateButtons();
             outilPoseTourelle.enabled = false;
         }
         else
@@ -65,8 +65,8 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            GenerateErrorMessage("Not enough money to buy this turret");
             outilPoseTourelle.ReactivateButtons();
-            Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
         }
         else
@@ -86,8 +86,8 @@ public class ShopScript : MonoBehaviour
 
         if (MoneyCounter.MoneyValue < prix)
         {
+            GenerateErrorMessage("Not enough money to buy this turret");
             outilPoseTourelle.ReactivateButtons();
-            Debug.Log("Pas assez d'argent - TODO : Créer un message à l'écran");
             outilPoseTourelle.enabled = false;
         }
         else
