@@ -8,7 +8,7 @@ public class audioManager : MonoBehaviour
     
     public AudioSource musicSource;
     public AudioSource soundSource;
-    public AudioClip paperSound;
+    public AudioMixerGroup soundEffectMixer;
 
 
     public void playMusic(AudioClip music){
@@ -16,5 +16,16 @@ public class audioManager : MonoBehaviour
     }
      public void playSound(AudioClip sound){
         soundSource.PlayOneShot(sound);
+    }
+
+    public void PlayClipBeforeDestroy(AudioClip sound){
+        Vector3 position = new Vector3(0,0,0);
+        GameObject tempGameObject = new GameObject("TempAudio");
+        tempGameObject.transform.position = position;
+        AudioSource audioSource = tempGameObject.AddComponent<AudioSource>();
+        audioSource.clip = sound;
+        audioSource.outputAudioMixerGroup = soundEffectMixer;
+        audioSource.Play();
+        Destroy(tempGameObject, sound.length);
     }
 }

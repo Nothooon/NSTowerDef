@@ -49,11 +49,19 @@ public class OptionsManager : MonoBehaviour
 
     public void setMusicVolume(float volume)
     {
-        audioMixer.SetFloat("Music", volume);
+        float dbVolume = Mathf.Log10(volume) * 20;
+        if(volume == 0.0f){
+            dbVolume = -80.0f;
+        }
+        audioMixer.SetFloat("Music", dbVolume);
     }
 
     public void setSoundVolume(float volume)
     {
-        audioMixer.SetFloat("SoundEffects", volume);
+        float dbVolume = Mathf.Log10(volume) * 20;
+        if(volume == 0.0f){
+            dbVolume = -80.0f;
+        }
+        audioMixer.SetFloat("SoundEffects", dbVolume);
     }
 }
