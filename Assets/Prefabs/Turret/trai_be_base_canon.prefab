@@ -186,7 +186,8 @@ MonoBehaviour:
   displayRange: 0
   projectilePrefab: {fileID: 2416906669234828768, guid: 2a06446c7cd883b4cb1323699ff1196a, type: 3}
   projectileSpeed: 6000
-  sellButton: {fileID: 5823854123475464939, guid: c7e01fb98d6040147965c83dc9eec3ab, type: 3}
+  buttonSellAsset: {fileID: 5823854123475464939, guid: c7e01fb98d6040147965c83dc9eec3ab, type: 3}
+  refundTextAsset: {fileID: 1234568292059026523, guid: 513a43ddd37a2f349aed2d82e5554198, type: 3}
   fireRate: 1.5
 --- !u!61 &9135034626199538916
 BoxCollider2D:
