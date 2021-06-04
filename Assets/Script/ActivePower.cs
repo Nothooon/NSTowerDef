@@ -38,6 +38,12 @@ public class ActivePower : MonoBehaviour
                 enemy.GetComponent<Ennemy>().takeDamage(10);
                 Instantiate(boomAnimation, enemy.transform.position, new Quaternion(0,0,0,0));
             }
+            GameObject[] enemies2 = GameObject.FindGameObjectsWithTag("EnemyGhost");
+            foreach (GameObject enemy in enemies2)
+            {
+                enemy.GetComponent<Ennemy>().takeDamage(10);
+                Instantiate(boomAnimation, enemy.transform.position, new Quaternion(0, 0, 0, 0));
+            }
             boomButton.GetComponent<Image>().fillAmount = 0;
             nextBoomTime = Time.time + boomCooldown;
             isBoomOnCooldown = true;

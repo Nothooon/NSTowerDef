@@ -129,5 +129,6 @@ MonoBehaviour:
   displayRange: 0
   projectilePrefab: {fileID: 1926976674763420170, guid: 5d9bb05f5f40399418f58c6f1d88501c, type: 3}
   projectileSpeed: 10000
-  sellButton: {fileID: 5823854123475464939, guid: c7e01fb98d6040147965c83dc9eec3ab, type: 3}
+  buttonSellAsset: {fileID: 5823854123475464939, guid: c7e01fb98d6040147965c83dc9eec3ab, type: 3}
+  refundTextAsset: {fileID: 1234568292059026523, guid: 513a43ddd37a2f349aed2d82e5554198, type: 3}
   fireRate: 1.5
