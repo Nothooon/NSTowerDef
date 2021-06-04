@@ -1,9 +1,6 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class turretSelection : MonoBehaviour
 {
@@ -24,10 +21,15 @@ public class turretSelection : MonoBehaviour
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed = 60.0f;
 
-    public GameObject buttonSellAsset;
-    GameObject buttonSell;
-    public GameObject refundTextAsset;
-    GameObject refundText;
+    public GameObject buttonAsset;
+    GameObject refundButton;
+    int refundPrice;
+
+    GameObject upgradeButton;
+    bool upgraded;
+    int upgradePrice;
+
+    ShopScript shop;
 
     public float fireRate = 0.6f; // number of seconds between two shots
 
@@ -49,18 +51,27 @@ public class turretSelection : MonoBehaviour
         circleRange.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.25f);
         //circleRange.transform.parent = gameObject.transform;
 
+        refundPrice =(int) (0.8f * price);
+        refundButton = Instantiate(buttonAsset);
+        refundButton.transform.SetParent(GameObject.Find("UI").transform);
+        refundButton.transform.localScale = Vector3.one;
+        refundButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(550, -520,0);
+        refundButton.GetComponentInChildren<Text>().text = "Sell : " + refundPrice;
+        refundButton.GetComponent<Button>().onClick.AddListener(delegate { Sell(); });
+        refundButton.SetActive(false);
 
-        buttonSell = Instantiate(buttonSellAsset);
-        buttonSell.GetComponent<SellTurret>().SetTurret(gameObject);
-        buttonSell.transform.position = new Vector2(3.5f,-3.15f);
-        buttonSell.SetActive(false);
+        upgraded = false;
+        upgradePrice = (int)(0.5f * price);
+        upgradeButton = Instantiate(buttonAsset);
+        upgradeButton.transform.SetParent(GameObject.Find("UI").transform);
+        upgradeButton.transform.localScale = Vector3.one;
+        upgradeButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(550, -550, 0);
+        upgradeButton.GetComponentInChildren<Text>().text = "Upgrade : " + upgradePrice;
+        upgradeButton.GetComponent<Button>().onClick.AddListener(delegate { TryUpgrade(); });
+        upgradeButton.SetActive(false);
 
-        refundText = Instantiate(refundTextAsset);
-        refundText.transform.SetParent(GameObject.Find("UI").transform);
-        refundText.transform.localScale = Vector3.one;
-        refundText.GetComponent<RectTransform>().anchoredPosition = new Vector3(280f, -285f,0);
-        refundText.GetComponent<Text>().text = (0.8f * price).ToString() ;
-        refundText.SetActive(false);
+        shop = GameObject.Find("Shop").GetComponent<ShopScript>();
+
 
 
         // Call of the shot at the chosen frequency
@@ -203,30 +214,58 @@ public class turretSelection : MonoBehaviour
                     {
                         turretSelection tmp = turret.GetComponentInChildren<turretSelection>();
                         tmp.displayRange = false;
-                        tmp.refundText.SetActive(false);
+                        tmp.refundButton.SetActive(false);
+                        tmp.upgradeButton.SetActive(false);
                     }
                 }
             }
             displayRange = !displayRange;
-            buttonSell.SetActive(displayRange);
-            refundText.SetActive(displayRange);
+            refundButton.SetActive(displayRange);
+            upgradeButton.SetActive(displayRange && !upgraded);
         }
+    }
+
+    public void Sell()
+    {
+        MoneyCounter.MoneyValue = MoneyCounter.MoneyValue + refundPrice;
+        Delete();
     }
 
     /**
      * Display the turret and its components
      */
-    public void Delete()
+    void Delete()
     {
         Destroy(circleEnemy);
         Destroy(circleRange);
-        Destroy(buttonSell);
-        Destroy(refundText);
+        Destroy(refundButton);
+        Destroy(upgradeButton);
         if(transform.parent != null && transform.parent.tag == "Turret")
         {
             Destroy(transform.parent.gameObject);
         }
         Destroy(gameObject);
+    }
+
+    public void TryUpgrade()
+    {
+        if(MoneyCounter.MoneyValue >= upgradePrice && !upgraded)
+        {
+            MoneyCounter.MoneyValue -= upgradePrice;
+            upgraded = false;
+            Upgrade();
+            refundPrice += (int) (0.8f * upgradePrice);
+            refundButton.GetComponentInChildren<Text>().text = "Sell : " + refundPrice;
+        } 
+        else if (MoneyCounter.MoneyValue < upgradePrice)
+        {
+            shop.GenerateErrorMessage("Not enough money to upgrade this turret");
+        }
+    }
+
+    void Upgrade()
+    {
+        fireRate *= 1.5f;
     }
 
 }

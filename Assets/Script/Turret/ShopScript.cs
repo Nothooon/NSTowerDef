@@ -98,7 +98,7 @@ public class ShopScript : MonoBehaviour
         }
     }
 
-    private void GenerateErrorMessage(string message){
+    public void GenerateErrorMessage(string message){
         errorMessage.GetComponent<TextMeshProUGUI>().text = message;
         errorMessage.GetComponent<Animator>().Play("FadeAwayText");
     }
