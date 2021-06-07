@@ -11,6 +11,9 @@ public class BoutonsMenuPrincipal : MonoBehaviour
     public void launchFirstLevel(){
         SceneManager.LoadScene("LevelPreview");
     }
+    public void launchSecondLevel(){
+        SceneManager.LoadScene("Level2Preview");
+    }
 
     public void QuitGame(){
         Debug.Log("User quitted the game");

@@ -17,9 +17,10 @@ public class EnnemySpawner : MonoBehaviour
     private GameObject timerUntilNextWave;
     public Button nextWaveButton; // the button triggering the next wave
     public Transform[] waypoints;
+    public GameObject arrow; // arrow that indicate the path of the enemies
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
-    public bool triggerNextWave; // will trigger the next wave if true
+    private bool triggerNextWave; // will trigger the next wave if true
     private bool wavesFinished = false;
 
     float preparationTime;
@@ -43,7 +44,7 @@ public class EnnemySpawner : MonoBehaviour
         timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
         yield return new WaitUntil(() => testNextWave(preparationTime));
         WaveCounter.WaveActual++;
-
+        arrow.SetActive(false);
 
         yield return new WaitForSeconds(1); // smooth transition
         for (int i = 0; i < 10; i++)
