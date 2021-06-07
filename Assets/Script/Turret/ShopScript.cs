@@ -19,8 +19,10 @@ public class ShopScript : MonoBehaviour
     public void BuyStandardTurret(){
 
         turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleStandard);
+        GameObject t = turretBuilder.GetTourelleAConstruire();
+        int prix = t.GetComponentInChildren<turretSelection>().GetPrice();
 
-        if(MoneyCounter.MoneyValue < turretBuilder.GetTourelleAConstruire().GetComponent<turretSelection>().GetPrice())
+        if (MoneyCounter.MoneyValue < prix)
         {
             GenerateErrorMessage("Not enough money to buy this turret");
             outilPoseTourelle.ReactivateButtons();
