@@ -252,7 +252,8 @@ public class turretSelection : MonoBehaviour
         if(MoneyCounter.MoneyValue >= upgradePrice && !upgraded)
         {
             MoneyCounter.MoneyValue -= upgradePrice;
-            upgraded = false;
+            upgraded = true;
+            upgradeButton.SetActive(false);
             Upgrade();
             refundPrice += (int) (0.8f * upgradePrice);
             refundButton.GetComponentInChildren<Text>().text = "Sell : " + refundPrice;

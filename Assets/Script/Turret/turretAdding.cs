@@ -125,7 +125,7 @@ public class turretAdding : MonoBehaviour
         {
             // Update turret and its radius
             this.turret = turret;
-            radius = Mathf.Max(turret.gameObject.transform.localScale.x, turret.gameObject.transform.localScale.y) / 2;
+            radius = Mathf.Max(turret.gameObject.transform.localScale.x, turret.gameObject.transform.localScale.y) / 2.5f;
 
             // Update range of the turret
             circleRange.SetActive(true);
