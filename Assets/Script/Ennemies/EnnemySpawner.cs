@@ -47,10 +47,25 @@ public class EnnemySpawner : MonoBehaviour
         arrow.SetActive(false);
 
         yield return new WaitForSeconds(1); // smooth transition
+        for (int i = 0; i < 5; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnEnemy(2);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 1; i++)
+        {
+            SpawnEnemy(1);
+            yield return new WaitForSeconds(1); // interval between enemies spawn
+        }
         for (int i = 0; i < 10; i++)
         {
             SpawnEnemy(3);
-            yield return new WaitForSeconds(1); // interval between enemies spawn
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
         }
 
 
@@ -67,12 +82,35 @@ public class EnnemySpawner : MonoBehaviour
         
 
 
-        SpawnEnemy(2);
-        yield return new WaitForSeconds(1); // interval between enemies spawn
+        for (int i = 0; i < 5; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            SpawnEnemy(2);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            SpawnEnemy(1);
+            yield return new WaitForSeconds(1); // interval between enemies spawn
+        }
         for (int i = 0; i < 10; i++)
         {
             SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            SpawnEnemy(0);
             yield return new WaitForSeconds(1); // interval between enemies spawn
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
         }
 
 
@@ -88,7 +126,32 @@ public class EnnemySpawner : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            SpawnEnemy(2);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            SpawnEnemy(1);
             yield return new WaitForSeconds(1); // interval between enemies spawn
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
+        }
+        for (int i = 0; i < 2; i++)
+        {
+            SpawnEnemy(0);
+            yield return new WaitForSeconds(1); // interval between enemies spawn
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            SpawnEnemy(3);
+            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
         }
 
         wavesFinished =  true;

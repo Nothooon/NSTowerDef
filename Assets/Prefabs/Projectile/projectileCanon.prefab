@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0db276fbc62c58a439bdd4b710dbc1e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  power: 12
+  power: 20
   target: {fileID: 0}
   range: 2
   boomAnimation: {fileID: 5855626589617168245, guid: 14f08a2a5751fe34f96b091b19463be7, type: 3}
