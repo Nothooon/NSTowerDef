@@ -72,6 +72,10 @@ public class Ennemy : MonoBehaviour
     public void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("hit");
+        if(this.gameObject.tag == "EnemyGhost"){
+            this.gameObject.tag = "Enemy";
+        }
+
         if (collision.GetComponent<projectileBallista>() != null)
         {
             takeDamage(collision.GetComponent<projectileBallista>().power);

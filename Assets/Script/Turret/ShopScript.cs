@@ -98,6 +98,25 @@ public class ShopScript : MonoBehaviour
         }
     }
 
+    public void BuyAntiGhostTurret(){
+
+        turretBuilder.SetTourelleAConstruire(turretBuilder.tourelleAntiGhost);
+
+        if(MoneyCounter.MoneyValue < turretBuilder.GetTourelleAConstruire().GetComponent<GhostSelection>().GetPrice())
+        {
+            GenerateErrorMessage("Not enough money to buy this turret");
+            outilPoseTourelle.ReactivateButtons();
+            outilPoseTourelle.enabled = false;
+        }
+        else
+        {
+            DeactivateButtons();
+            outilPoseTourelle.ChooseTurret(turretBuilder.GetTourelleAConstruire());
+            outilPoseTourelle.enabled = true;
+        }
+        
+    }
+
     public void GenerateErrorMessage(string message){
         errorMessage.GetComponent<TextMeshProUGUI>().text = message;
         errorMessage.GetComponent<Animator>().Play("FadeAwayText");

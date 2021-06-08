@@ -49,7 +49,13 @@ public class turretAdding : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && turretSprite != null && turretSprite.activeSelf)
         {
             if (trySpawnTurret()){
-                MoneyCounter.MoneyValue -= turret.GetComponentInChildren<turretSelection>().GetPrice();
+                if(turret.gameObject.GetComponentInChildren<turretSelection>() != null){
+                    MoneyCounter.MoneyValue -= turret.GetComponentInChildren<turretSelection>().GetPrice();
+                }
+                else{
+                    MoneyCounter.MoneyValue -= turret.GetComponentInChildren<GhostSelection>().GetPrice();
+                }
+                
                 audioMixer.GetComponent<audioManager>().playSound(buyingSound);
                 ReactivateButtons();
             }
@@ -123,15 +129,25 @@ public class turretAdding : MonoBehaviour
 
             // Update range of the turret
             circleRange.SetActive(true);
-            circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<turretSelection>().range * 2;
-            
+            if(turret.gameObject.GetComponentInChildren<turretSelection>() != null){
+                circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<turretSelection>().range * 2;
+            }
+            else{
+                circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<GhostSelection>().range * 2;
+            }
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
 
             // Initialize the turretSprite
             turretSprite = Instantiate(turret);
-            turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
+            if(turret.gameObject.GetComponentInChildren<turretSelection>() != null){
+                turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
+            }
+            else{
+                turretSprite.GetComponentInChildren<GhostSelection>().enabled = false;
+            }
+            
             turretSprite.transform.position = mousePos2D;
             turretSprite.transform.parent = gameObject.transform;
             

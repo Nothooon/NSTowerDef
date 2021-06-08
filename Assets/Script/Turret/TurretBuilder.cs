@@ -9,6 +9,7 @@ public class TurretBuilder : MonoBehaviour
     public GameObject tourelleCanon;
     public GameObject tourelleBallista;
     public GameObject tourelleColle;
+    public GameObject tourelleAntiGhost;
 
     private GameObject tourelleAConstruire;
 
