@@ -34,10 +34,90 @@ public class EnnemySpawner : MonoBehaviour
         StartCoroutine(Waves());
     }
 
+    public class waveContent
+    {
+        public float interval;
+        public int nbMonsters;
+        public int monsterType;
+            
+            public waveContent(float time, int nb, int mt)
+        {
+            this.interval = time;
+            this.nbMonsters = nb;
+            this.monsterType = mt;
+        }
+    }
+
+    IEnumerator launchContent (waveContent wC)
+    {
+        for (int i = 0; i < wC.nbMonsters; i++)
+        {
+            SpawnEnemy(wC.monsterType);
+            yield return new WaitForSeconds(wC.interval); // interval between enemies spawn
+        }
+    }
+
+    IEnumerator createWave(List<waveContent> wCL)
+    {
+        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
+        preparationTime = 90f;
+        timerText = (int)Math.Round(preparationTime, 0);
+        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
+        yield return new WaitUntil(() => testNextWave(preparationTime));
+        WaveCounter.WaveActual++;
+        arrow.SetActive(false);
+
+        yield return new WaitForSeconds(1); // smooth transition
+
+        foreach(waveContent wC in wCL)
+        {
+            yield return StartCoroutine(launchContent(wC));
+        }
+
+    }
+
 
     IEnumerator Waves(){
-        // WAVE 1
+
+
         triggerNextWave = false;
+
+        List<waveContent> wave = new List<waveContent>();
+
+
+        // WAVE 1
+        wave.Add(new waveContent(0.5f, 5, 3));
+        wave.Add(new waveContent(0.5f, 3, 2));
+        wave.Add(new waveContent(0.5f, 1, 1));
+        wave.Add(new waveContent(0.5f, 10, 3));
+
+        yield return StartCoroutine(createWave(wave));
+        wave.Clear();
+
+        //WAVE 2
+        wave.Add(new waveContent(0.5f, 5, 3));
+        wave.Add(new waveContent(0.5f, 3, 2));
+        wave.Add(new waveContent(1f  , 2, 1));
+        wave.Add(new waveContent(0.5f, 10, 3));
+        wave.Add(new waveContent(1f  , 2, 0));
+        wave.Add(new waveContent(0.5f, 10, 3));
+
+        yield return StartCoroutine(createWave(wave));
+        wave.Clear();
+
+        //WAVE 3
+        wave.Add(new waveContent(0.5f, 10, 3));
+        wave.Add(new waveContent(0.5f, 5, 2));
+        wave.Add(new waveContent(1f, 2, 1));
+        wave.Add(new waveContent(0.5f, 10, 3));
+        wave.Add(new waveContent(1f, 2, 0));
+        wave.Add(new waveContent(0.5f, 10, 3));
+
+        yield return StartCoroutine(createWave(wave));
+        wave.Clear();
+
+        /*
+        // WAVE 1
         this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
         preparationTime = 90f;
         timerText = (int) Math.Round(preparationTime, 0);
@@ -153,7 +233,7 @@ public class EnnemySpawner : MonoBehaviour
             SpawnEnemy(3);
             yield return new WaitForSeconds(0.5f); // interval between enemies spawn
         }
-
+        */
         wavesFinished =  true;
     }
 
