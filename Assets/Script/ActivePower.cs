@@ -7,7 +7,7 @@ public class ActivePower : MonoBehaviour
 {
     public GameObject boomButton;
     private bool isBoomOnCooldown = false;
-    private float boomCooldown = 5;
+    private float boomCooldown = 25;
     private float nextBoomTime = 0;
     public GameObject boomAnimation;
 
@@ -15,21 +15,13 @@ public class ActivePower : MonoBehaviour
     public GameObject quickButton;
     public List<GameObject> turrets;
     private bool isQuickShotOnCooldown = false;
-    private float quickShotCooldown = 5;
+    private float quickShotCooldown = 30;
     private float nextQuickShotTime = 0;
-    private float quickShotDuration = 2;
+    private float quickShotDuration = 5;
     private float endQuickShotTime = 0;
 
     void Start(){
-        boomCooldown = 2;
-        nextBoomTime = 0;
-        isBoomOnCooldown = false;
-        boomButton.GetComponent<Image>().fillAmount = 1;
-        quickShotCooldown = 5;
-        nextQuickShotTime = 0;
-        endQuickShotTime = 0;
-        isQuickShotOnCooldown = false;
-        quickButton.GetComponent<Image>().fillAmount = 1;
+        
     }
     public void boom(){
         if(!isBoomOnCooldown){
@@ -54,9 +46,7 @@ public class ActivePower : MonoBehaviour
         if(!isQuickShotOnCooldown){
             turrets.AddRange(GameObject.FindGameObjectsWithTag("Turret")); 
             foreach(GameObject turret in turrets.ToArray()){
-                turret.GetComponent<turretSelection>().fireRate *= 1.5f;
-                turrets.Add(turret);
-                
+                turret.GetComponentInChildren<turretSelection>().fireRate *= 1.5f;
             }
             quickButton.GetComponent<Image>().fillAmount = 0;
             nextQuickShotTime = Time.time + quickShotCooldown;
@@ -79,6 +69,7 @@ public class ActivePower : MonoBehaviour
 
         if(Time.time >= nextQuickShotTime){
             isQuickShotOnCooldown = false;
+            
         }else{
             quickButton.GetComponent<Image>().fillAmount += 1f / quickShotCooldown * Time.deltaTime;
         }
@@ -86,8 +77,8 @@ public class ActivePower : MonoBehaviour
         if(isQuickShotOnCooldown){
             if(Time.time >= endQuickShotTime){
                 foreach(GameObject turret in turrets){
+                    turret.GetComponentInChildren<turretSelection>().fireRate = turret.GetComponentInChildren<turretSelection>().fireRate / 3 *2;
                     Debug.Log("test");
-                    turret.GetComponent<turretSelection>().fireRate = turret.GetComponent<turretSelection>().fireRate / 3 *2;
                 }
                 turrets.Clear();
             }

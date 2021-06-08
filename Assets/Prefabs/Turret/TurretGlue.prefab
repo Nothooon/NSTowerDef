@@ -182,12 +182,12 @@ MonoBehaviour:
   circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
   target: {fileID: 0}
   price: 150
-  range: 4
+  range: 3
   displayRange: 0
   projectilePrefab: {fileID: 318978306617464399, guid: abc919970464ab4429222a9fdadfb72c, type: 3}
-  projectileSpeed: 6000
+  projectileSpeed: 10000
   buttonAsset: {fileID: 3345206019677970297, guid: 90ee4661e4c15be4cb7c857faac47c13, type: 3}
-  fireRate: 1.5
+  fireRate: 0.5
 --- !u!61 &6311377147791212194
 BoxCollider2D:
   m_ObjectHideFlags: 0

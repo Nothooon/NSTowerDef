@@ -135,10 +135,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 5
-  damage: 1
+  damage: 3
   reward: 30
   points: 0
-  speed: 5
+  speed: 3
+  currentSpeed: 0
   slider: {fileID: 7868002473286130863}
 --- !u!61 &8611010994274055921
 BoxCollider2D:
