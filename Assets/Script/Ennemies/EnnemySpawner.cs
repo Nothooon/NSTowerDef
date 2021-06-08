@@ -57,8 +57,9 @@ public class EnnemySpawner : MonoBehaviour
         }
     }
 
-    IEnumerator createWave(List<waveContent> wCL)
+    IEnumerator createFirstWave(List<waveContent> wCL)
     {
+        
         this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
         preparationTime = 90f;
         timerText = (int)Math.Round(preparationTime, 0);
@@ -70,6 +71,26 @@ public class EnnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(1); // smooth transition
 
         foreach(waveContent wC in wCL)
+        {
+            yield return StartCoroutine(launchContent(wC));
+        }
+
+    }
+
+    IEnumerator createWave(List<waveContent> wCL)
+    {
+
+        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";
+        nextWaveButton.interactable = true;
+        preparationTime = 90f;
+        timerText = (int)Math.Round(preparationTime, 0);
+        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
+        yield return new WaitUntil(() => testNextWave(preparationTime));
+        WaveCounter.WaveActual++;
+
+        yield return new WaitForSeconds(1); // smooth transition
+
+        foreach (waveContent wC in wCL)
         {
             yield return StartCoroutine(launchContent(wC));
         }
@@ -91,7 +112,8 @@ public class EnnemySpawner : MonoBehaviour
         wave.Add(new waveContent(0.5f, 1, 1));
         wave.Add(new waveContent(0.5f, 10, 3));
 
-        yield return StartCoroutine(createWave(wave));
+        yield return StartCoroutine(createFirstWave(wave));
+        arrow.SetActive(false);
         wave.Clear();
 
         //WAVE 2
