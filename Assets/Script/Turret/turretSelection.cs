@@ -55,7 +55,7 @@ public class turretSelection : MonoBehaviour
         refundButton = Instantiate(buttonAsset);
         refundButton.transform.SetParent(GameObject.Find("UI").transform);
         refundButton.transform.localScale = Vector3.one;
-        refundButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(550, -520,0);
+        refundButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(200, -520,0);
         refundButton.GetComponentInChildren<Text>().text = "Sell : " + refundPrice;
         refundButton.GetComponent<Button>().onClick.AddListener(delegate { Sell(); });
         refundButton.SetActive(false);
@@ -65,7 +65,7 @@ public class turretSelection : MonoBehaviour
         upgradeButton = Instantiate(buttonAsset);
         upgradeButton.transform.SetParent(GameObject.Find("UI").transform);
         upgradeButton.transform.localScale = Vector3.one;
-        upgradeButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(550, -550, 0);
+        upgradeButton.GetComponent<RectTransform>().anchoredPosition = new Vector3(200, -550, 0);
         upgradeButton.GetComponentInChildren<Text>().text = "Upgrade : " + upgradePrice;
         upgradeButton.GetComponent<Button>().onClick.AddListener(delegate { TryUpgrade(); });
         upgradeButton.SetActive(false);
