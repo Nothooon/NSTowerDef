@@ -124,10 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
   target: {fileID: 0}
-  price: 50
-  range: 8
+  price: 75
+  range: 5.5
   displayRange: 0
   projectilePrefab: {fileID: 7669344441394270934, guid: 34652e6a47025ec47b0eb659f700ec57, type: 3}
-  projectileSpeed: 1000
+  projectileSpeed: 1750
   buttonAsset: {fileID: 3345206019677970297, guid: 90ee4661e4c15be4cb7c857faac47c13, type: 3}
-  fireRate: 0.6
+  fireRate: 0.8

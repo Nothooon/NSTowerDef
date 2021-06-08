@@ -10,7 +10,7 @@ public class PreviewWindowButtons : MonoBehaviour
     }
 
     public void LaunchLevel1Button(){
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Level1");
     }
 
     public void LaunchLevel2Button(){
