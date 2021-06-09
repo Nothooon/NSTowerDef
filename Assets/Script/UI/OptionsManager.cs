@@ -12,11 +12,24 @@ public class OptionsManager : MonoBehaviour
     public GameObject sliderMusic;
     public GameObject sliderSound;
     public AudioMixer audioMixer;
+    private float currentMusic;
+    private float currentSound;
 
     public void Start(){
-        
-        setMusicVolume(sliderMusic.GetComponent<Slider>().value);
-        setSoundVolume(sliderSound.GetComponent<Slider>().value);
+        audioMixer.GetFloat("Music", out currentMusic);
+        audioMixer.GetFloat("SoundEffects", out currentSound);
+
+        if(currentMusic == -80){
+            setMusicVolume(1);
+        }else{
+            sliderMusic.GetComponent<Slider>().value = Mathf.Pow(10, (currentMusic /20));
+        }
+        if(currentSound == -80){
+            setSoundVolume(1);
+        }else{
+            sliderSound.GetComponent<Slider>().value = Mathf.Pow(10, (currentSound /20));
+        }
+
 
         resolutions = Screen.resolutions.Select(resolution => new Resolution { width = resolution.width, height = resolution.height}).Distinct().ToArray();
         resolutionDropdown.ClearOptions();
@@ -37,7 +50,7 @@ public class OptionsManager : MonoBehaviour
         resolutionDropdown.value = currentResolution;
         resolutionDropdown.RefreshShownValue();
     }
-
+    
     public void setResolution(int resolutionIndex){
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
@@ -49,19 +62,14 @@ public class OptionsManager : MonoBehaviour
 
     public void setMusicVolume(float volume)
     {
+        Debug.Log(volume);
         float dbVolume = Mathf.Log10(volume) * 20;
-        if(volume == 0.0f){
-            dbVolume = -80.0f;
-        }
         audioMixer.SetFloat("Music", dbVolume);
     }
 
     public void setSoundVolume(float volume)
     {
         float dbVolume = Mathf.Log10(volume) * 20;
-        if(volume == 0.0f){
-            dbVolume = -80.0f;
-        }
         audioMixer.SetFloat("SoundEffects", dbVolume);
     }
 }

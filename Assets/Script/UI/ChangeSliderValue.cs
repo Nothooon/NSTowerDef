@@ -17,8 +17,8 @@ public class ChangeSliderValue : MonoBehaviour
 
     // Update is called once per frame
     public void ChangeTextBasedOnValue()
-    {
+    {/*
         int displayedValue = (int) Math.Round(slider.value * 100, 0);
-        textBox.text = "" + displayedValue;
+        textBox.text = "" + displayedValue;*/
     }
 }
