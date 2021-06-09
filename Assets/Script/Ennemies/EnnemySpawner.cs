@@ -34,66 +34,34 @@ public class EnnemySpawner : MonoBehaviour
         StartCoroutine(Waves());
     }
 
-    public class waveContent
-    {
-        public float interval;
-        public int nbMonsters;
-        public int monsterType;
-            
-            public waveContent(float time, int nb, int mt)
+    IEnumerator SpawnEnemies(float delay, int enemyIndex, int amount){
+        for (int i = 0; i < amount; i++)
         {
-            this.interval = time;
-            this.nbMonsters = nb;
-            this.monsterType = mt;
+            SpawnEnemy(enemyIndex);
+            yield return new WaitForSeconds(delay);
         }
     }
 
-    IEnumerator launchContent (waveContent wC)
-    {
-        for (int i = 0; i < wC.nbMonsters; i++)
-        {
-            SpawnEnemy(wC.monsterType);
-            yield return new WaitForSeconds(wC.interval); // interval between enemies spawn
-        }
-    }
 
-    IEnumerator createFirstWave(List<waveContent> wCL)
+    IEnumerator createWave(bool isFirst)
     {
+
+        if(isFirst){
+            this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
+        }else{
+            this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";    
+        }
         
-        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
-        preparationTime = 90f;
-        timerText = (int)Math.Round(preparationTime, 0);
-        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
-        yield return new WaitUntil(() => testNextWave(preparationTime));
-        WaveCounter.WaveActual++;
-        arrow.SetActive(false);
-
-        yield return new WaitForSeconds(1); // smooth transition
-
-        foreach(waveContent wC in wCL)
-        {
-            yield return StartCoroutine(launchContent(wC));
-        }
-
-    }
-
-    IEnumerator createWave(List<waveContent> wCL)
-    {
-
-        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";
         nextWaveButton.interactable = true;
         preparationTime = 90f;
         timerText = (int)Math.Round(preparationTime, 0);
         timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
         yield return new WaitUntil(() => testNextWave(preparationTime));
+        if(isFirst)
+            arrow.SetActive(false);
         WaveCounter.WaveActual++;
 
         yield return new WaitForSeconds(1); // smooth transition
-
-        foreach (waveContent wC in wCL)
-        {
-            yield return StartCoroutine(launchContent(wC));
-        }
 
     }
 
@@ -103,159 +71,36 @@ public class EnnemySpawner : MonoBehaviour
 
         triggerNextWave = false;
 
-        List<waveContent> wave = new List<waveContent>();
-
 
         // WAVE 1
-        wave.Add(new waveContent(0.5f, 5, 3));
-        wave.Add(new waveContent(0.5f, 3, 2));
-        wave.Add(new waveContent(0.5f, 1, 1));
-        wave.Add(new waveContent(0.5f, 10, 3));
+        yield return StartCoroutine(createWave(true));
 
-        yield return StartCoroutine(createFirstWave(wave));
-        arrow.SetActive(false);
-        wave.Clear();
-
-        //WAVE 2
-        wave.Add(new waveContent(0.5f, 5, 3));
-        wave.Add(new waveContent(0.5f, 3, 2));
-        wave.Add(new waveContent(1f  , 2, 1));
-        wave.Add(new waveContent(0.5f, 10, 3));
-        wave.Add(new waveContent(1f  , 2, 0));
-        wave.Add(new waveContent(0.5f, 10, 3));
-
-        yield return StartCoroutine(createWave(wave));
-        wave.Clear();
-
-        //WAVE 3
-        wave.Add(new waveContent(0.5f, 10, 3));
-        wave.Add(new waveContent(0.5f, 5, 2));
-        wave.Add(new waveContent(1f, 2, 1));
-        wave.Add(new waveContent(0.5f, 10, 3));
-        wave.Add(new waveContent(1f, 2, 0));
-        wave.Add(new waveContent(0.5f, 10, 3));
-
-        yield return StartCoroutine(createWave(wave));
-        wave.Clear();
-
-        /*
-        // WAVE 1
-        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
-        preparationTime = 90f;
-        timerText = (int) Math.Round(preparationTime, 0);
-        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
-        yield return new WaitUntil(() => testNextWave(preparationTime));
-        WaveCounter.WaveActual++;
-        arrow.SetActive(false);
-
-        yield return new WaitForSeconds(1); // smooth transition
-        for (int i = 0; i < 5; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 3; i++)
-        {
-            SpawnEnemy(2);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 1; i++)
-        {
-            SpawnEnemy(1);
-            yield return new WaitForSeconds(1); // interval between enemies spawn
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-
+        yield return StartCoroutine(SpawnEnemies(0.5f,3,5));
+        yield return StartCoroutine(SpawnEnemies(0.5f,2,3));
+        yield return StartCoroutine(SpawnEnemies(0.5f,1,1));
+        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
 
 
         // WAVE 2
-        this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "next wave";
-        nextWaveButton.interactable = true;
-        preparationTime = 90f;
-        timerText = (int) Math.Round(preparationTime, 0);
-        timerUntilNextWave.GetComponent<TextMeshProUGUI>().text = "" + timerText;
-        yield return new WaitUntil(() => testNextWave(preparationTime));
-        WaveCounter.WaveActual++;
-        yield return new WaitForSeconds(1); // smooth transition
-        
+        yield return StartCoroutine(createWave(false));
 
+        yield return StartCoroutine(SpawnEnemies(0.5f,3,5));
+        yield return StartCoroutine(SpawnEnemies(0.5f,2,3));
+        yield return StartCoroutine(SpawnEnemies(0.5f,1,2));
+        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
+        yield return StartCoroutine(SpawnEnemies(1f,0,2));
+        yield return StartCoroutine(SpawnEnemies(1f,3,10));
 
-        for (int i = 0; i < 5; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 3; i++)
-        {
-            SpawnEnemy(2);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            SpawnEnemy(1);
-            yield return new WaitForSeconds(1); // interval between enemies spawn
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            SpawnEnemy(0);
-            yield return new WaitForSeconds(1); // interval between enemies spawn
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
+        //WAVE 3
+        yield return StartCoroutine(createWave(false));
 
+        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
+        yield return StartCoroutine(SpawnEnemies(0.5f,2,5));
+        yield return StartCoroutine(SpawnEnemies(0.5f,1,2));
+        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
+        yield return StartCoroutine(SpawnEnemies(1f,0,2));
+        yield return StartCoroutine(SpawnEnemies(1f,3,10));
 
-
-        // WAVE 3
-        nextWaveButton.interactable = true;
-        preparationTime = 90f;
-        yield return new WaitUntil(() => testNextWave(preparationTime));
-        WaveCounter.WaveActual++;
-        yield return new WaitForSeconds(1); // smooth transition
-        
-
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 5; i++)
-        {
-            SpawnEnemy(2);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            SpawnEnemy(1);
-            yield return new WaitForSeconds(1); // interval between enemies spawn
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        for (int i = 0; i < 2; i++)
-        {
-            SpawnEnemy(0);
-            yield return new WaitForSeconds(1); // interval between enemies spawn
-        }
-        for (int i = 0; i < 10; i++)
-        {
-            SpawnEnemy(3);
-            yield return new WaitForSeconds(0.5f); // interval between enemies spawn
-        }
-        */
         wavesFinished =  true;
     }
 
