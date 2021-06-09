@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 444578192640630567}
   - component: {fileID: 7492923424842266987}
   - component: {fileID: 6139339629338887108}
+  - component: {fileID: 1818646078329853006}
   m_Layer: 0
   m_Name: ballista
   m_TagString: Turret
@@ -122,12 +123,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67f7fe2a16349d74ba0d78e571f49b3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
   target: {fileID: 0}
   price: 150
   range: 5
-  displayRange: 0
+  fireRate: 0.8
   projectilePrefab: {fileID: 6526398951606987512, guid: 8c19fb8e58fef794d9006f5535a8cc83, type: 3}
   projectileSpeed: 10000
+--- !u!114 &1818646078329853006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4769486530548670545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16364be8a07078340b2b82cb6ab39482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
   buttonAsset: {fileID: 3345206019677970297, guid: 90ee4661e4c15be4cb7c857faac47c13, type: 3}
-  fireRate: 0.8

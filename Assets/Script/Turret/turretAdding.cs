@@ -130,7 +130,7 @@ public class turretAdding : MonoBehaviour
             // Update range of the turret
             circleRange.SetActive(true);
             if(turret.gameObject.GetComponentInChildren<turretSelection>() != null){
-                circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<turretSelection>().range * 2;
+                circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<turretSelection>().GetRange() * 2;
             }
             else{
                 circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<GhostSelection>().range * 2;
@@ -143,6 +143,7 @@ public class turretAdding : MonoBehaviour
             turretSprite = Instantiate(turret);
             if(turret.gameObject.GetComponentInChildren<turretSelection>() != null){
                 turretSprite.GetComponentInChildren<turretSelection>().enabled = false;
+                turretSprite.GetComponentInChildren<turretUpgradeSell>().enabled = false;
             }
             else{
                 turretSprite.GetComponentInChildren<GhostSelection>().enabled = false;
