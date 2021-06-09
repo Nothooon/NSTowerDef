@@ -7,18 +7,26 @@ using TMPro;
 
 public class ChangeSliderValue : MonoBehaviour
 {
-    public Slider slider;
-    private TextMeshProUGUI textBox;
+    public Slider slider; // Slider corresponding to the value we want to change
+    private TextMeshProUGUI textBox; // Text component of the game object corresponding to the displayed value
+    int displayedValue; // Rounded value displayed on screen
+
     // Start is called before the first frame update
     void Start()
     {
-        textBox = this.GetComponent<TextMeshProUGUI>();
+        if (GameObject.Find("OptionsMenu") != null){ // As Options Menu isn't always active, we only act when it is active
+            textBox = this.GetComponent<TextMeshProUGUI>();
+            displayedValue = (int) Math.Round(slider.value * 100, 0); // Rounding the slider's value
+            textBox.text = "" + displayedValue; // Changing the text
+        }
     }
 
-    // Update is called once per frame
+    // Called each time the slider's value changes
     public void ChangeTextBasedOnValue()
-    {/*
-        int displayedValue = (int) Math.Round(slider.value * 100, 0);
-        textBox.text = "" + displayedValue;*/
+    {
+        if (GameObject.Find("OptionsMenu") != null){ // As Options Menu isn't always active, we only act when it is active
+            displayedValue = (int) Math.Round(slider.value * 100, 0); // Rounding the slider's value
+            textBox.text = "" + displayedValue; // Changing the value
+        }
     }
 }

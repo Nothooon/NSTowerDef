@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5278567960083547384}
   - component: {fileID: 3070243043462409440}
   - component: {fileID: 4277816582161982995}
-  - component: {fileID: -758199140305894928}
+  - component: {fileID: 271735785333010312}
   m_Layer: 0
-  m_Name: projectilAntiGhost
+  m_Name: projectileAntiGhost
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &-758199140305894928
+--- !u!114 &271735785333010312
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -114,6 +114,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7669344441394270934}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5fa89e6d58eeec4aa191ac72bbc33e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 7820197b2cb21a945b5e8a446656371d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}

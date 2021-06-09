@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Linq;
 using UnityEngine.Audio;
+
 public class OptionsManager : MonoBehaviour
 {
     public Dropdown resolutionDropdown;
@@ -62,7 +63,6 @@ public class OptionsManager : MonoBehaviour
 
     public void setMusicVolume(float volume)
     {
-        Debug.Log(volume);
         float dbVolume = Mathf.Log10(volume) * 20;
         audioMixer.SetFloat("Music", dbVolume);
     }
