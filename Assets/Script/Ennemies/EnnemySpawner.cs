@@ -71,35 +71,75 @@ public class EnnemySpawner : MonoBehaviour
 
         triggerNextWave = false;
 
+        /*
+         3 slime
+         2 bat
+         1 knight
+         0 dragon
+         */
+
 
         // WAVE 1
         yield return StartCoroutine(createWave(true));
 
         yield return StartCoroutine(SpawnEnemies(0.5f,3,5));
-        yield return StartCoroutine(SpawnEnemies(0.5f,2,3));
-        yield return StartCoroutine(SpawnEnemies(0.5f,1,1));
-        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
+        
 
 
         // WAVE 2
         yield return StartCoroutine(createWave(false));
 
-        yield return StartCoroutine(SpawnEnemies(0.5f,3,5));
-        yield return StartCoroutine(SpawnEnemies(0.5f,2,3));
-        yield return StartCoroutine(SpawnEnemies(0.5f,1,2));
         yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
-        yield return StartCoroutine(SpawnEnemies(1f,0,2));
-        yield return StartCoroutine(SpawnEnemies(1f,3,10));
+        
 
         //WAVE 3
         yield return StartCoroutine(createWave(false));
 
-        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
-        yield return StartCoroutine(SpawnEnemies(0.5f,2,5));
-        yield return StartCoroutine(SpawnEnemies(0.5f,1,2));
-        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
-        yield return StartCoroutine(SpawnEnemies(1f,0,2));
-        yield return StartCoroutine(SpawnEnemies(1f,3,10));
+        yield return StartCoroutine(SpawnEnemies(0.2f,3,15));
+
+        //WAVE 4
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(0.5f, 2, 5));
+
+        //WAVE 5
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(0.2f, 2, 10));
+
+        //WAVE 6
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(0.5f, 3, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, 2, 5));
+
+        //WAVE 7
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 1));
+        yield return StartCoroutine(SpawnEnemies(0.5f, 3, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 1));
+
+        //WAVE 8
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 5));
+
+        //WAVE 9
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(3f, 0, 3));
+
+        //WAVE 9
+        yield return StartCoroutine(createWave(false));
+
+        yield return StartCoroutine(SpawnEnemies(0.1f, 3, 50));
+        yield return StartCoroutine(SpawnEnemies(0.5f, 2, 20));
+        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, 0, 10));
+
+
+
 
         wavesFinished =  true;
     }

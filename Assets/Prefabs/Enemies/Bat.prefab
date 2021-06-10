@@ -136,7 +136,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 5
   damage: 3
-  reward: 30
+  reward: 10
   points: 0
   speed: 3
   currentSpeed: 0
