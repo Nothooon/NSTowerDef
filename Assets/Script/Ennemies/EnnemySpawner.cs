@@ -12,7 +12,7 @@ public class EnnemySpawner : MonoBehaviour
     private GameObject instance;
 
     private GameObject audioMixer;
-    public AudioClip waveStartSound;
+    public AudioClip WaveStartSound;
 
     private GameObject timerUntilNextWave;
     public Button nextWaveButton; // the button triggering the next wave
@@ -21,19 +21,41 @@ public class EnnemySpawner : MonoBehaviour
     private int points; // the higher the number, the more enemies will spawn
     private float difficulty; // the higher the number, the lower is the difficulty
     private bool triggerNextWave; // will trigger the next wave if true
-    private bool wavesFinished = false;
+    private bool WavesFinished = false;
 
     float preparationTime;
     int timerText;
 
+    public int level; // Which level is playing
+    /* Ennemies Indexes*/
+
+    int DRAGON = 0;
+    int KNIGHT = 1;
+    int BAT = 2;
+    int SLIME = 3;
+    int GHOST = 4;
+
+
     void Start(){
-        wavesFinished = false;
+        WavesFinished = false;
         triggerNextWave = false;
         timerUntilNextWave = GameObject.Find("TimerNextWave");
         audioMixer = GameObject.Find("AudioManager");
-        StartCoroutine(Waves());
+        switch(level){
+            case 1 :
+                StartCoroutine(FirstLevelWaves());
+                break;
+            case 2 :
+                StartCoroutine(SecondLevelWaves());
+                break;
+            default:
+                Debug.Log("Level number doesn't exists");
+                break;
+        }
+        
     }
 
+    // Used to spawn 'amount' ennemies of the same 'enemyIndex' type with 'delay' seconds between each spawn.
     IEnumerator SpawnEnemies(float delay, int enemyIndex, int amount){
         for (int i = 0; i < amount; i++)
         {
@@ -45,7 +67,7 @@ public class EnnemySpawner : MonoBehaviour
 
     IEnumerator createWave(bool isFirst)
     {
-
+        
         if(isFirst){
             this.nextWaveButton.transform.GetChild(0).GetComponent<Text>().text = "begin";
         }else{
@@ -65,84 +87,140 @@ public class EnnemySpawner : MonoBehaviour
 
     }
 
-
-    IEnumerator Waves(){
-
-
+    // Function called for first level waves
+    IEnumerator FirstLevelWaves(){
+        WaveCounter.WaveTotal = 9; // Indicates the total number of waves to 
         triggerNextWave = false;
-
-        /*
-         3 slime
-         2 bat
-         1 knight
-         0 dragon
-         */
-
 
         // WAVE 1
         yield return StartCoroutine(createWave(true));
-
-        yield return StartCoroutine(SpawnEnemies(0.5f,3,5));
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 5));
         
-
-
         // WAVE 2
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.5f,3,10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 10));
         
-
         //WAVE 3
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.2f,3,15));
+        yield return StartCoroutine(SpawnEnemies(0.2f, SLIME, 15));
 
         //WAVE 4
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.5f, 2, 5));
+        yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 5));
 
         //WAVE 5
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.2f, 2, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, BAT, 10));
 
         //WAVE 6
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.5f, 3, 10));
-        yield return StartCoroutine(SpawnEnemies(0.5f, 2, 5));
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 5));
 
         //WAVE 7
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 1));
-        yield return StartCoroutine(SpawnEnemies(0.5f, 3, 10));
-        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 1));
+        yield return StartCoroutine(SpawnEnemies(0.5f, KNIGHT, 1));
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, KNIGHT, 1));
 
         //WAVE 8
         yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 5));
-
-        //WAVE 9
-        yield return StartCoroutine(createWave(false));
-
-        yield return StartCoroutine(SpawnEnemies(3f, 0, 3));
+        yield return StartCoroutine(SpawnEnemies(0.5f, KNIGHT, 5));
 
         //WAVE 9
         yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(3f, DRAGON, 3));
 
-        yield return StartCoroutine(SpawnEnemies(0.1f, 3, 50));
-        yield return StartCoroutine(SpawnEnemies(0.5f, 2, 20));
-        yield return StartCoroutine(SpawnEnemies(0.5f, 1, 10));
-        yield return StartCoroutine(SpawnEnemies(0.5f, 0, 10));
+        //WAVE 9
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.1f, SLIME, 50));
+        yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 20));
+        yield return StartCoroutine(SpawnEnemies(0.5f, KNIGHT, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, DRAGON, 10));
 
-
-
-
-        wavesFinished =  true;
+        WavesFinished =  true;
     }
+
+    // Function called for second level waves
+    IEnumerator SecondLevelWaves(){
+        WaveCounter.WaveTotal = 9;
+        triggerNextWave = false;
+
+        // WAVE 1
+        yield return StartCoroutine(createWave(true));
+        yield return StartCoroutine(SpawnEnemies(0.8f, SLIME, 3));
+        yield return new WaitForSeconds(2.2f);
+        SpawnEnemy(GHOST);
+        yield return new WaitForSeconds(2.2f);
+        yield return StartCoroutine(SpawnEnemies(0.8f, SLIME, 3));
+
+        // WAVE 2
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(1.2f, SLIME, 5));
+        yield return new WaitForSeconds(2f);
+        yield return StartCoroutine(SpawnEnemies(1.5f, GHOST, 3));
+        yield return new WaitForSeconds(3.5f);
+        SpawnEnemy(KNIGHT);
+        
+        //WAVE 3
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(1f, SLIME, 15));
+        yield return StartCoroutine(SpawnEnemies(1f, GHOST, 3));
+
+        //WAVE 4
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.8f, BAT, 7));
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 5));
+
+        //WAVE 5
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 5));
+        yield return StartCoroutine(SpawnEnemies(0.5f, GHOST, 3));
+        yield return new WaitForSeconds(3.5f);
+        yield return StartCoroutine(SpawnEnemies(2.5f, KNIGHT, 3));
+
+        //WAVE 6
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 10));
+        yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 5));
+        yield return StartCoroutine(SpawnEnemies(0.5f, GHOST, 5));
+        yield return StartCoroutine(SpawnEnemies(3f, KNIGHT, 2));
+
+        //WAVE 7
+        yield return StartCoroutine(createWave(false));
+        SpawnEnemy(KNIGHT);
+        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(SpawnEnemies(0.5f, SLIME, 20));
+        SpawnEnemy(KNIGHT);
+
+        //WAVE 8
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(2f, KNIGHT, 2));
+        yield return StartCoroutine(SpawnEnemies(0.5f, GHOST, 5));
+        yield return StartCoroutine(SpawnEnemies(2f, KNIGHT, 2));
+        yield return StartCoroutine(SpawnEnemies(1f, SLIME, 25));
+
+        //WAVE 9
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(5f, DRAGON, 2));
+        yield return StartCoroutine(SpawnEnemies(1f, GHOST, 5));
+        yield return StartCoroutine(SpawnEnemies(5f, DRAGON, 2));
+
+        //WAVE 9
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.9f, GHOST, 10));
+        yield return StartCoroutine(SpawnEnemies(0.6f, SLIME, 5));
+        yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 20));
+        yield return StartCoroutine(SpawnEnemies(0.6f, SLIME, 5));
+        yield return StartCoroutine(SpawnEnemies(2.5f, KNIGHT, 3));
+        yield return StartCoroutine(SpawnEnemies(0.6f, SLIME, 5));
+        SpawnEnemy(DRAGON);
+        yield return new WaitForSeconds(3f);
+        yield return StartCoroutine(SpawnEnemies(0.6f, SLIME, 5));
+
+        WavesFinished =  true;
+    }
+
 
     public void nextWave(){
         this.triggerNextWave = true;
@@ -154,7 +232,7 @@ public class EnnemySpawner : MonoBehaviour
        if(triggerNextWave || 0 >= timeInterval){
             this.nextWaveButton.interactable = false;
             triggerNextWave = false;
-            audioMixer.GetComponent<audioManager>().playSound(waveStartSound);
+            audioMixer.GetComponent<audioManager>().playSound(WaveStartSound);
             return true;    
        }else{
            preparationTime-= Time.deltaTime;
@@ -203,7 +281,7 @@ public class EnnemySpawner : MonoBehaviour
     }
 */
 
-
+    // Spawns one enemy of the given index. 
     public int SpawnEnemy(int enemyIndex){
         instance = Instantiate(spawnee[enemyIndex], spawnPoint.position, spawnPoint.rotation);
         FollowThePath follow = instance.GetComponent(typeof(FollowThePath)) as FollowThePath;
@@ -212,7 +290,7 @@ public class EnnemySpawner : MonoBehaviour
         return spawnee[enemyIndex].GetComponent<Ennemy>().points;
     }
     public void Update(){
-        if(wavesFinished && points == 0 && FindObjectOfType<Ennemy>() == null){
+        if(WavesFinished && points == 0 && FindObjectOfType<Ennemy>() == null){
             GetComponent<GameOverManager>().onSuccess();
         }
     }
