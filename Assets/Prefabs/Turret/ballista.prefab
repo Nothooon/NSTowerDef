@@ -126,7 +126,7 @@ MonoBehaviour:
   target: {fileID: 0}
   price: 150
   range: 5
-  fireRate: 0.8
+  fireRate: 0.5
   projectilePrefab: {fileID: 6526398951606987512, guid: 8c19fb8e58fef794d9006f5535a8cc83, type: 3}
   projectileSpeed: 10000
 --- !u!114 &1818646078329853006
