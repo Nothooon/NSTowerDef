@@ -185,7 +185,7 @@ MonoBehaviour:
   range: 3
   fireRate: 0.5
   projectilePrefab: {fileID: 2416906669234828768, guid: 2a06446c7cd883b4cb1323699ff1196a, type: 3}
-  projectileSpeed: 10000
+  projectileSpeed: 75000
 --- !u!61 &9135034626199538916
 BoxCollider2D:
   m_ObjectHideFlags: 0
