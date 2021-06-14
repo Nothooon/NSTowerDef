@@ -10,7 +10,8 @@ Ennemies come wave by wave and each wave gets harder. It's a strategical type of
 
 Our team is composed of : @NothonIUT, @FlorestanHM, @BrettBeck, @YoannMerlet and @Kantun35
 
-TODO : Add Screenshot(s)
+![In-game Screenshot](https://cdn.discordapp.com/attachments/822492180240138292/853929616838230026/unknown.png)
+
 # **Main Features :**
 
 The player must be able to : 
@@ -36,4 +37,4 @@ If you have any idea on how we could improve our game, feel free to contact any 
 
 # **License**
 
-TODO
+Our game is an open-source project. Feel free to try it and modify it in any way you want.
