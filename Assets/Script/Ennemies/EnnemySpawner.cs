@@ -89,7 +89,7 @@ public class EnnemySpawner : MonoBehaviour
 
     // Function called for first level waves
     IEnumerator FirstLevelWaves(){
-        WaveCounter.WaveTotal = 9; // Indicates the total number of waves to 
+        WaveCounter.WaveTotal = 20; // Indicates the total number of waves to 
         triggerNextWave = false;
 
         // WAVE 1
@@ -137,6 +137,66 @@ public class EnnemySpawner : MonoBehaviour
         yield return StartCoroutine(SpawnEnemies(0.5f, BAT, 20));
         yield return StartCoroutine(SpawnEnemies(0.5f, KNIGHT, 10));
         yield return StartCoroutine(SpawnEnemies(0.5f, DRAGON, 10));
+
+        //WAVE 10
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, BAT, 40));
+
+        //WAVE 11
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, SLIME, 50));
+        yield return StartCoroutine(SpawnEnemies(0.3f, KNIGHT, 30));
+
+        //WAVE 12
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.1f, SLIME, 100));
+        yield return StartCoroutine(SpawnEnemies(0.5f, DRAGON, 15));
+
+        //WAVE 13
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, KNIGHT, 50));
+
+        //WAVE 14
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.3f, DRAGON, 50));
+
+        //WAVE 15
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, BAT, 100));
+
+        //WAVE 16
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, KNIGHT, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, KNIGHT, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, KNIGHT, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, KNIGHT, 10));
+        yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 10));
+
+        //WAVE 17
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, KNIGHT, 100));
+
+        //WAVE 18
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 100));
+
+        //WAVE 19
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.01f, SLIME, 500));
+
+        //WAVE 20
+        yield return StartCoroutine(createWave(false));
+        yield return StartCoroutine(SpawnEnemies(0.01f, SLIME, 200));
+        yield return StartCoroutine(SpawnEnemies(0.3f, BAT, 100));
+        yield return StartCoroutine(SpawnEnemies(0.3f, KNIGHT, 60));
+        yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 30));
+
+
+
+
 
         WavesFinished =  true;
     }
