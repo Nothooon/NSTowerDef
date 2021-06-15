@@ -185,11 +185,11 @@ public class EnnemySpawner : MonoBehaviour
 
         //WAVE 20
         yield return StartCoroutine(createWave(false));
-        yield return StartCoroutine(SpawnEnemies(0.01f, SLIME, 500));
+        yield return StartCoroutine(SpawnEnemies(0.1f, SLIME, 500));
     
         //WAVE 21
         yield return StartCoroutine(createWave(false));
-        yield return StartCoroutine(SpawnEnemies(0.01f, SLIME, 200));
+        yield return StartCoroutine(SpawnEnemies(0.1f, SLIME, 200));
         yield return StartCoroutine(SpawnEnemies(0.3f, BAT, 100));
         yield return StartCoroutine(SpawnEnemies(0.3f, KNIGHT, 60));
         yield return StartCoroutine(SpawnEnemies(0.2f, DRAGON, 30));
