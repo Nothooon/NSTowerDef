@@ -21,12 +21,14 @@ public class OptionsManager : MonoBehaviour
         audioMixer.GetFloat("SoundEffects", out currentSound);
 
         if(currentMusic == -80){
-            setMusicVolume(1);
+            setMusicVolume(0);
+            sliderMusic.GetComponent<Slider>().value = 0;
         }else{
             sliderMusic.GetComponent<Slider>().value = Mathf.Pow(10, (currentMusic /20));
         }
         if(currentSound == -80){
-            setSoundVolume(1);
+            setSoundVolume(0);
+            sliderSound.GetComponent<Slider>().value = 0;
         }else{
             sliderSound.GetComponent<Slider>().value = Mathf.Pow(10, (currentSound /20));
         }
@@ -62,14 +64,24 @@ public class OptionsManager : MonoBehaviour
     }
 
     public void setMusicVolume(float volume)
-    {
-        float dbVolume = Mathf.Log10(volume) * 20;
+    {   
+        float dbVolume;
+        if(volume == 0){
+            dbVolume = -80;
+        }else{
+            dbVolume = Mathf.Log10(volume) * 20;
+        }
         audioMixer.SetFloat("Music", dbVolume);
     }
 
     public void setSoundVolume(float volume)
     {
-        float dbVolume = Mathf.Log10(volume) * 20;
+        float dbVolume;
+        if(volume == 0){
+            dbVolume = -80;
+        }else{
+            dbVolume = Mathf.Log10(volume) * 20;
+        }
         audioMixer.SetFloat("SoundEffects", dbVolume);
     }
 }
