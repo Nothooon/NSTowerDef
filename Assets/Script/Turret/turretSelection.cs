@@ -15,7 +15,9 @@ public class turretSelection : MonoBehaviour
     public float fireRate = 0.6f; // number of seconds between two shots
 
     public GameObject projectilePrefab; // Object of the projectile
-    public float projectileSpeed;   
+    public float projectileSpeed;
+
+    float rangeCanon = 2f; // range of the explosion of the projectileCanon
 
     
 
@@ -119,7 +121,8 @@ public class turretSelection : MonoBehaviour
         }
         else if (projectile.GetComponent<projectileCanon>() != null)
         {
-            projectile.GetComponent<projectileCanon>().SetTarget(target);
+            projectile.GetComponent<projectileCanon>().SetRange(rangeCanon);
+            projectile.GetComponent<projectileCanon>().SetTarget(target);            
         } 
         else if (projectile.GetComponent<projectileGlue>() != null)
         {
@@ -159,6 +162,11 @@ public class turretSelection : MonoBehaviour
     public void Upgrade()
     {
         fireRate *= 1.5f;
+        if (projectilePrefab.GetComponent<projectileCanon>() != null)
+        {
+            rangeCanon *= 2f;
+        }
+        
     }
 
 }
