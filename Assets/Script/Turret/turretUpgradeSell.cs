@@ -27,8 +27,16 @@ public class turretUpgradeSell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Recover the turret's price
-        price = GetComponent<turretSelection>().GetPrice();
+        if (GetComponent<turretSelection>() != null)
+        {
+            // Recover the turret's price
+            price = GetComponent<turretSelection>().GetPrice();
+        }
+        else if ( GetComponent<ghostSelection>() != null )
+        {
+            // Recover the turret's price
+            price = GetComponent<ghostSelection>().GetPrice();
+        }
 
         // Instanciation of the circle showing the target
         circleEnemy = Instantiate(circle);
@@ -38,11 +46,19 @@ public class turretUpgradeSell : MonoBehaviour
         circleEnemy.transform.parent = gameObject.transform;
 
         // Instanciation of the circle showing the range
-        circleRange = Instantiate(circle);
-        circleRange.transform.localScale = new Vector3(1, 1, 1) * gameObject.GetComponent<turretSelection>().GetRange() * 2;
+        circleRange = Instantiate(circle);        
         circleRange.transform.position = gameObject.transform.position;
         circleRange.GetComponent<SpriteRenderer>().color = new Color(0, 0, 1, 0.25f);
-        
+        if (GetComponent<turretSelection>() != null)
+        {
+            circleRange.transform.localScale = new Vector3(1, 1, 1) * GetComponent<turretSelection>().GetRange() * 2;
+        }
+        else if (GetComponent<ghostSelection>() != null)
+        {
+            circleRange.transform.localScale = new Vector3(1, 1, 1) * GetComponent<ghostSelection>().GetRange() * 2;
+        }
+
+
         // Instanciation of the refund Button
         refundPrice = (int)(0.8f * price);
         refundButton = Instantiate(buttonAsset);
@@ -73,7 +89,14 @@ public class turretUpgradeSell : MonoBehaviour
         if(displayRange)
         {
             // Update the target position
-            circleEnemy.transform.position = gameObject.GetComponent<turretSelection>().GetTargetPos();
+            if (GetComponent<turretSelection>() != null)
+            {
+                circleEnemy.transform.position = GetComponent<turretSelection>().GetTargetPos();
+            }
+            else if (GetComponent<ghostSelection>() != null)
+            {
+                circleEnemy.transform.position = GetComponent<ghostSelection>().GetTargetPos();
+            }
         }
         // Display the range and the enemy target   
         circleRange.SetActive(displayRange);
@@ -138,7 +161,14 @@ public class turretUpgradeSell : MonoBehaviour
             MoneyCounter.MoneyValue -= upgradePrice; 
             upgraded = true; 
             upgradeButton.SetActive(false); // Disable the upgrade button
-            gameObject.GetComponent<turretSelection>().Upgrade(); // Upgrade the turret
+            if (GetComponent<turretSelection>() != null)
+            {
+                GetComponent<turretSelection>().Upgrade(); // Upgrade the turret
+            }
+            else if (GetComponent<ghostSelection>() != null)
+            {
+                GetComponent<ghostSelection>().Upgrade(); // Upgrade the turret
+            }
             refundPrice += (int)(0.8f * upgradePrice); // Update the refund price taking into account the upgrade
             refundButton.GetComponentInChildren<Text>().text = "Sell : " + refundPrice;
         }

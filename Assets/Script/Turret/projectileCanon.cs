@@ -56,8 +56,8 @@ public class projectileCanon : MonoBehaviour
         this.target = target;
     }
 
-    public void SetRange(float range)
+    public void Upgrade()
     {
-        this.range = range;
+        range *= 2;
     }
 }

@@ -17,7 +17,7 @@ public class turretSelection : MonoBehaviour
     public GameObject projectilePrefab; // Object of the projectile
     public float projectileSpeed;
 
-    float rangeCanon = 2f; // range of the explosion of the projectileCanon
+    bool upgraded;
 
     
 
@@ -25,7 +25,7 @@ public class turretSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        upgraded = false;
 
         // Call of the shot at the chosen frequency
         StartCoroutine(TryShootingCo());
@@ -120,13 +120,20 @@ public class turretSelection : MonoBehaviour
             projectile.GetComponent<projectile>().SetTarget(target);
         }
         else if (projectile.GetComponent<projectileCanon>() != null)
-        {
-            projectile.GetComponent<projectileCanon>().SetRange(rangeCanon);
-            projectile.GetComponent<projectileCanon>().SetTarget(target);            
+        {            
+            projectile.GetComponent<projectileCanon>().SetTarget(target);
+            if(upgraded)
+            {
+                projectile.GetComponent<projectileCanon>().Upgrade();    
+            }                  
         } 
         else if (projectile.GetComponent<projectileGlue>() != null)
         {
             projectile.GetComponent<projectileGlue>().SetTarget(target);
+            if (upgraded)
+            {
+                projectile.GetComponent<projectileGlue>().Upgrade();
+            }
         }
         else if (projectile.GetComponent<projectileBallista>() != null)
         {
@@ -161,11 +168,8 @@ public class turretSelection : MonoBehaviour
 
     public void Upgrade()
     {
-        fireRate *= 1.5f;
-        if (projectilePrefab.GetComponent<projectileCanon>() != null)
-        {
-            rangeCanon *= 2f;
-        }
+        upgraded = true;
+        fireRate *= 1.5f;       
         
     }
 

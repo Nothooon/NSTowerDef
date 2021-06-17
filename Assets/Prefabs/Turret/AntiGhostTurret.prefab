@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1230466837415378723}
   - component: {fileID: 1230466837415378720}
   - component: {fileID: 4636216770796688617}
+  - component: {fileID: 6177703703697207776}
   m_Layer: 4
   m_Name: AntiGhostTurret
   m_TagString: Turret
@@ -131,3 +132,17 @@ MonoBehaviour:
   projectileSpeed: 1750
   buttonAsset: {fileID: 3345206019677970297, guid: 90ee4661e4c15be4cb7c857faac47c13, type: 3}
   fireRate: 0.8
+--- !u!114 &6177703703697207776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230466837415378142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16364be8a07078340b2b82cb6ab39482, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circle: {fileID: 874212035203925771, guid: 78b12da9d449409479ca9a42833daa9d, type: 3}
+  buttonAsset: {fileID: 3345206019677970297, guid: 90ee4661e4c15be4cb7c857faac47c13, type: 3}

@@ -7,6 +7,14 @@ public class projectileGlue : MonoBehaviour
     [SerializeField] GameObject target;
     float targetSize = 0.5f;
 
+    [SerializeField]
+    float duration;
+
+    private void Awake()
+    {
+        duration = 5f;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -25,7 +33,7 @@ public class projectileGlue : MonoBehaviour
     void TouchTarget()
     {
         Ennemy enemy = target.GetComponent<Ennemy>();
-        enemy.SetSpeed(enemy.GetSpeed()/2, 5f);        
+        enemy.SetSpeed(enemy.GetSpeed()/2, duration);        
     }
 
     // Destroy the projectile if is out of bound
@@ -37,5 +45,10 @@ public class projectileGlue : MonoBehaviour
     public void SetTarget(GameObject target)
     {
         this.target = target;
+    }
+
+    public void Upgrade()
+    {
+        duration = 7.5f; 
     }
 }

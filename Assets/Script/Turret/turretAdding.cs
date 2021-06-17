@@ -53,7 +53,7 @@ public class turretAdding : MonoBehaviour
                     MoneyCounter.MoneyValue -= turret.GetComponentInChildren<turretSelection>().GetPrice();
                 }
                 else{
-                    MoneyCounter.MoneyValue -= turret.GetComponentInChildren<GhostSelection>().GetPrice();
+                    MoneyCounter.MoneyValue -= turret.GetComponentInChildren<ghostSelection>().GetPrice();
                 }
                 
                 audioMixer.GetComponent<audioManager>().playSound(buyingSound);
@@ -133,7 +133,7 @@ public class turretAdding : MonoBehaviour
                 circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<turretSelection>().GetRange() * 2;
             }
             else{
-                circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<GhostSelection>().range * 2;
+                circleRange.transform.localScale = new Vector3(1, 1, 1) * turret.gameObject.GetComponentInChildren<ghostSelection>().range * 2;
             }
 
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -146,7 +146,8 @@ public class turretAdding : MonoBehaviour
                 turretSprite.GetComponentInChildren<turretUpgradeSell>().enabled = false;
             }
             else{
-                turretSprite.GetComponentInChildren<GhostSelection>().enabled = false;
+                turretSprite.GetComponentInChildren<ghostSelection>().enabled = false;
+                turretSprite.GetComponentInChildren<turretUpgradeSell>().enabled = false;
             }
             
             turretSprite.transform.position = mousePos2D;
