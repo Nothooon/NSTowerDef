@@ -8,6 +8,7 @@ public class projectileBallista : MonoBehaviour
     [SerializeField] GameObject target;
     float targetSize = 0.5f;
     public GameObject boomAnimation;
+    bool upgraded = false;
 
     // Update is called once per frame
     void Update()
@@ -20,13 +21,17 @@ public class projectileBallista : MonoBehaviour
                 TouchTarget();
             }
         }
+        if (power <= 0 || (power <= 5 && !upgraded))
+        {
+            Debug.Log(power);
+            Destroy(gameObject);
+        }
     }
 
     // What we do when the projectile hit the target (depends of the type of projectile)
     void TouchTarget()
     {
         target.GetComponent<Ennemy>().takeDamage(power);
-        //Destroy(gameObject); // Destroy the projectile after it touches the target
     }
 
     // Destroy the projectile if is out of bound
@@ -38,5 +43,10 @@ public class projectileBallista : MonoBehaviour
     public void SetTarget(GameObject target)
     {
         this.target = target;
+    }
+
+    public void Upgrade()
+    {
+        upgraded = true;
     }
 }

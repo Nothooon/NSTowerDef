@@ -80,10 +80,6 @@ public class Ennemy : MonoBehaviour
         {
             takeDamage(collision.GetComponent<projectileBallista>().power);
             collision.GetComponent<projectileBallista>().power--;
-            if(collision.GetComponent<projectileBallista>().power <= 0)
-            {
-                Destroy(collision.GetComponent<projectileBallista>().gameObject);
-            }
         }
     }
 

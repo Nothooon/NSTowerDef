@@ -118,6 +118,10 @@ public class turretSelection : MonoBehaviour
         if (projectile.GetComponent<projectile>() != null)
         {
             projectile.GetComponent<projectile>().SetTarget(target);
+            if (upgraded)
+            {
+                projectile.GetComponent<projectile>().Upgrade();
+            }
         }
         else if (projectile.GetComponent<projectileCanon>() != null)
         {            
@@ -138,6 +142,10 @@ public class turretSelection : MonoBehaviour
         else if (projectile.GetComponent<projectileBallista>() != null)
         {
             projectile.GetComponent<projectileBallista>().SetTarget(target);
+            if (upgraded)
+            {
+                projectile.GetComponent<projectileBallista>().Upgrade();
+            }
         }
     }
 

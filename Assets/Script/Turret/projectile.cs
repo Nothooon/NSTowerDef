@@ -42,4 +42,9 @@ public class projectile : MonoBehaviour
     {
         this.target = target;
     }
+
+    public void Upgrade()
+    {
+        power *= 2;
+    }
 }
