@@ -203,7 +203,7 @@ public class EnnemySpawner : MonoBehaviour
 
     // Function called for second level waves
     IEnumerator SecondLevelWaves(){
-        WaveCounter.WaveTotal = 9;
+        WaveCounter.WaveTotal = 10;
         triggerNextWave = false;
 
         // WAVE 1
@@ -266,7 +266,7 @@ public class EnnemySpawner : MonoBehaviour
         yield return StartCoroutine(SpawnEnemies(1f, GHOST, 5));
         yield return StartCoroutine(SpawnEnemies(5f, DRAGON, 2));
 
-        //WAVE 9
+        //WAVE 10
         yield return StartCoroutine(createWave(false));
         yield return StartCoroutine(SpawnEnemies(0.9f, GHOST, 10));
         yield return StartCoroutine(SpawnEnemies(0.6f, SLIME, 5));
