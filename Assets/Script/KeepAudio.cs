@@ -8,6 +8,8 @@ public class KeepAudio : MonoBehaviour
     public GameObject[] objects;
 
     void Awake(){
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
         DontDestroyOnLoad(transform.gameObject);
         if(instance != null){
             Destroy(this.gameObject);

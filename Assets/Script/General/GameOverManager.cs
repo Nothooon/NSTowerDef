@@ -44,4 +44,8 @@ public class GameOverManager : MonoBehaviour
     public void setSuccessUI(GameObject ui){
         this.successUI = ui;
     }  
+
+    public void changeScene(string scene){
+        SceneManager.LoadScene(scene);
+    }
 }

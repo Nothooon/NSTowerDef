@@ -497,7 +497,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A common enemy, too cute to be killed.
+  m_text: A fragile monster found in swamps. His strength is it's great number.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
   m_sharedMaterial: {fileID: -8038383525292327815, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
@@ -1264,7 +1264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "compl\xE8tement op pour le moment."
+  m_text: An agile dragon knight, Very dangerous, but can offer glitterous gold.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
   m_sharedMaterial: {fileID: -8038383525292327815, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
@@ -3927,7 +3927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "il est tr\xE8s fort"
+  m_text: A fallen knight in his sturdy armor. An extremelly durable but slow opponent
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
   m_sharedMaterial: {fileID: -8038383525292327815, guid: 4a67f3e4d2151d248b1040df32b55a69, type: 2}
